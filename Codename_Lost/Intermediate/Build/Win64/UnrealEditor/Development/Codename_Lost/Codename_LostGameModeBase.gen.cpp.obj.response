@@ -1,18 +1,16 @@
 C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Inc\Codename_Lost\UHT\Codename_LostGameModeBase.gen.cpp
 /I .
-/I C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Inc\Codename_Lost\UHT
-/I C:\Github\GDES705_Final_Project\Codename_Lost\Source
-/I Runtime
-/I Runtime\TraceLog\Public
-/I Runtime\Core\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\UHT
-/I Runtime\CoreUObject\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\UHT
+/I Runtime
 /I ..\Shaders\Shared
 /I Runtime\Engine\Classes
 /I Runtime\Engine\Public
+/I Runtime\TraceLog\Public
+/I Runtime\Core\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreOnline\UHT
 /I Runtime\CoreOnline\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\UHT
+/I Runtime\CoreUObject\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\NetCore\UHT
 /I Runtime\Net
 /I Runtime\Net\Core\Classes
@@ -271,6 +269,11 @@ C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEdi
 /I Runtime\MovieSceneCapture\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationDataController\UHT
 /I Developer\AnimationDataController\Public
+/I C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Inc\Codename_Lost\UHT
+/I C:\Github\GDES705_Final_Project\Codename_Lost\Source
+/I ..\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT
+/I ..\Plugins\EnhancedInput\Source
+/I ..\Plugins\EnhancedInput\Source\EnhancedInput\Public
 /I ThirdParty\mimalloc\include
 /I ThirdParty\LibTiff\Source\Win64
 /I ThirdParty\LibTiff\Source
