@@ -1,0 +1,13 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\inc\\codename_lost\\uht\\codename_lost.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\codename_losteditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\development\\codename_lost\\definitions.codename_lost.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Codename_Lost",
+			"Path": "C:\\Github\\GDES705_Final_Project\\Codename_Lost\\Source\\Codename_Lost.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "Codename_LostEditor",
+			"Path": "C:\\Github\\GDES705_Final_Project\\Codename_Lost\\Source\\Codename_LostEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
