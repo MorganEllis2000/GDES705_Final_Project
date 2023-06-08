@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
 #include "CharacterController.generated.h"
 
@@ -16,12 +17,15 @@ public:
 	// Sets default values for this character's properties
 	ACharacterController();
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
     class UInputMappingContext* InputMapping;
+
+	APlayerController* PlayerController;
 
 public:	
 	// Called every frame
@@ -33,8 +37,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	class UMyInputConfigData* InputActions;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	FVector CrouchEyeOffset;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	float CrouchSpeed;
+
 private:
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
-
+	void StartCrouch();
 };

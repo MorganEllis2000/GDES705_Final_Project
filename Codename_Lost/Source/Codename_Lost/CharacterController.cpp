@@ -6,13 +6,15 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInput/Public/EnhancedInputComponent.h"
 #include "MyInputConfigData.h"
+#include "InputCoreTypes.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 ACharacterController::ACharacterController()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 }
 
 // Called when the game starts or when spawned
@@ -33,7 +35,7 @@ void ACharacterController::Tick(float DeltaTime)
 void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// Get the player controller
-    APlayerController* PlayerController = Cast<APlayerController>(GetController());
+    PlayerController = Cast<APlayerController>(GetController());
     // Get the local player subsystem
     UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
     // Clear out existing mapping, and add our mapping
@@ -44,6 +46,7 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &ACharacterController::Move);
 	EnhancedInputComponent->BindAction(InputActions->InputLook, ETriggerEvent::Triggered, this, &ACharacterController::Look);
+	EnhancedInputComponent->BindAction(InputActions->InputCrouch, ETriggerEvent::Started, this, &ACharacterController::StartCrouch);
 
 }
 
@@ -56,7 +59,15 @@ void ACharacterController::Move(const FInputActionValue& Value){
 		if(MoveValue.Y != 0.0f){
 			// Get forward vector
 			const FVector Direction = MovementRotation.RotateVector(FVector::ForwardVector);
-			AddMovementInput(Direction, MoveValue.Y);
+
+			if(MoveValue.Y > 0 && PlayerController->IsInputKeyDown(EKeys::LeftShift)){
+				UE_LOG(LogTemp, Display, TEXT("RUN"));
+				AddMovementInput(Direction, MoveValue.Y);
+				GetCharacterMovement()->MaxWalkSpeed = 1000.f;
+			} else {
+				AddMovementInput(Direction, MoveValue.Y);
+				GetCharacterMovement()->MaxWalkSpeed = 600.f;
+			}
 		}
 
 		// Right/Left direction
@@ -83,6 +94,16 @@ void ACharacterController::Look(const FInputActionValue& Value){
 			AddControllerPitchInput(LookValue.Y);
 		}
 	}
+}
+
+void ACharacterController::StartCrouch(){
+	if(bIsCrouched){
+		ACharacter::UnCrouch();
+	} else{
+		ACharacter::Crouch();
+		UE_LOG(LogTemp, Display, TEXT("CROUCH"));
+	}
+
 }
 
 
