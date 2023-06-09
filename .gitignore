@@ -73,3 +73,4 @@ Plugins/*/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 Codename_Lost/.vscode/c_cpp_properties.json
+Codename_Lost/Saved/Logs/Codename_Lost.log
