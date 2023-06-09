@@ -8,6 +8,7 @@
 #include "MyInputConfigData.h"
 #include "InputCoreTypes.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 ACharacterController::ACharacterController()
@@ -15,6 +16,51 @@ ACharacterController::ACharacterController()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
+	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Player Component"));
+	PlayerCamera->SetupAttachment(GetRootComponent());
+	PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
+	PlayerCamera->bUsePawnControlRotation;
+
+	CrouchEyeOffset = FVector(0.f);
+	CrouchSpeed = 6.f;
+}
+
+void ACharacterController::OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
+{
+	if (HalfHeightAdjust == 0.f) {
+		return;
+	}
+
+	float StartBaseEyeHeight = BaseEyeHeight;
+	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
+	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight + HalfHeightAdjust;
+	if (PlayerCamera) {
+		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
+	}
+}
+
+void ACharacterController::OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
+{
+	if (HalfHeightAdjust == 0.f) {
+		return;
+	}
+
+	float StartBaseEyeHeight = BaseEyeHeight;
+	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
+	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight - HalfHeightAdjust;
+	if (PlayerCamera) {
+		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
+	}
+
+	
+}
+
+void ACharacterController::CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult)
+{
+	if (PlayerCamera) {
+		PlayerCamera->GetCameraView(DeltaTime, OutResult);
+		OutResult.Location += CrouchEyeOffset;
+	}
 }
 
 // Called when the game starts or when spawned
@@ -29,6 +75,8 @@ void ACharacterController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	float CrouchInterpTime = FMath::Min(1.f, CrouchSpeed * DeltaTime);
+	CrouchEyeOffset = (1.f - CrouchInterpTime) * CrouchEyeOffset;
 }
 
 // Called to bind functionality to input
