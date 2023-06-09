@@ -28,7 +28,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
     class UInputMappingContext* InputMapping;
 
+	
 	APlayerController* PlayerController;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera")
 	class UCameraComponent* PlayerCamera;
 
 public:	

@@ -19,49 +19,13 @@ ACharacterController::ACharacterController()
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Player Component"));
 	PlayerCamera->SetupAttachment(GetRootComponent());
 	PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
-	PlayerCamera->bUsePawnControlRotation;
+	//PlayerCamera->bUsePawnControlRotation = false;
 
 	CrouchEyeOffset = FVector(0.f);
 	CrouchSpeed = 6.f;
 }
 
-void ACharacterController::OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
-{
-	if (HalfHeightAdjust == 0.f) {
-		return;
-	}
 
-	float StartBaseEyeHeight = BaseEyeHeight;
-	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
-	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight + HalfHeightAdjust;
-	if (PlayerCamera) {
-		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
-	}
-}
-
-void ACharacterController::OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
-{
-	if (HalfHeightAdjust == 0.f) {
-		return;
-	}
-
-	float StartBaseEyeHeight = BaseEyeHeight;
-	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
-	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight - HalfHeightAdjust;
-	if (PlayerCamera) {
-		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
-	}
-
-	
-}
-
-void ACharacterController::CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult)
-{
-	if (PlayerCamera) {
-		PlayerCamera->GetCameraView(DeltaTime, OutResult);
-		OutResult.Location += CrouchEyeOffset;
-	}
-}
 
 // Called when the game starts or when spawned
 void ACharacterController::BeginPlay()
@@ -154,4 +118,40 @@ void ACharacterController::StartCrouch(){
 
 }
 
+
+void ACharacterController::OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
+{
+	if (HalfHeightAdjust == 0.f) {
+		return;
+	}
+
+	float StartBaseEyeHeight = BaseEyeHeight;
+	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
+	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight + HalfHeightAdjust;
+	if (PlayerCamera) {
+		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
+	}
+}
+
+void ACharacterController::OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
+{
+	if (HalfHeightAdjust == 0.f) {
+		return;
+	}
+
+	float StartBaseEyeHeight = BaseEyeHeight;
+	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
+	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight - HalfHeightAdjust;
+	if (PlayerCamera) {
+		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
+	}
+}
+
+void ACharacterController::CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult)
+{
+	if (PlayerCamera) {
+		PlayerCamera->GetCameraView(DeltaTime, OutResult);
+		OutResult.Location += CrouchEyeOffset;
+	}
+}
 
