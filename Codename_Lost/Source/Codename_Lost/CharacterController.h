@@ -17,6 +17,9 @@ public:
 	// Sets default values for this character's properties
 	ACharacterController();
 
+	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
+	void OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
+	void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,6 +29,7 @@ protected:
     class UInputMappingContext* InputMapping;
 
 	APlayerController* PlayerController;
+	class UCameraComponent* PlayerCamera;
 
 public:	
 	// Called every frame
@@ -37,9 +41,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	class UMyInputConfigData* InputActions;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Crouch")
 	FVector CrouchEyeOffset;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Crouch")
 	float CrouchSpeed;
 
 private:
