@@ -44,10 +44,18 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	class UMyInputConfigData* InputActions;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	FRotator OriginalRotation;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Crouch")
 	FVector CrouchEyeOffset;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Crouch")
 	float CrouchSpeed;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lean")
+	float MinLean;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lean")
+	float MaxLean;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> MyShake;
@@ -61,4 +69,12 @@ private:
 	void Look(const FInputActionValue& Value);
 
 	void StartCrouch();
+
+	void LeanLeft();
+	void LeanRight();
+
+	void Lean(const FInputActionValue& Value);
+	void FinishLean();
+	bool IsLeaning = false;
+
 };

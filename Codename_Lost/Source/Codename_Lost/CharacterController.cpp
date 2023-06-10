@@ -57,6 +57,8 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	// Get the EnhancedInputComponent
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &ACharacterController::Move);
+	EnhancedInputComponent->BindAction(InputActions->InputLean, ETriggerEvent::Triggered, this, &ACharacterController::Lean);
+	EnhancedInputComponent->BindAction(InputActions->InputLean, ETriggerEvent::Completed, this, &ACharacterController::FinishLean);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Started, this, &ACharacterController::StartPlayerMovingCameraShake);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Completed, this, &ACharacterController::StopPlayerMovingCameraShake);
 
@@ -105,6 +107,79 @@ void ACharacterController::Look(const FInputActionValue& Value){
 
 		if(LookValue.Y != 0.f){
 			AddControllerPitchInput(LookValue.Y);
+		}
+	}
+}
+
+void ACharacterController::Lean(const FInputActionValue& Value) {
+	const FVector2D LeanValue = Value.Get<FVector2D>();
+
+	float currentTilt = GetControlRotation().Roll;
+
+	if (LeanValue.Y != 0.f) {
+		IsLeaning = true;
+		if (currentTilt + LeanValue.Y <= MinLean || currentTilt + LeanValue.Y >= MaxLean) {
+			AddControllerRollInput(LeanValue.Y);
+
+			if (LeanValue.Y > 0.f) {
+				AddActorLocalOffset(FVector(0.f, 2.f, 0.f));
+			}
+			else {
+				AddActorLocalOffset(FVector(0.f, -2.f, 0.f));
+			}
+		}
+	}
+	else {
+		if (currentTilt >= MaxLean) {
+			if (currentTilt <= 359.f) {
+				AddControllerRollInput(1.0f);
+				AddActorLocalOffset(FVector(0.f, 2.f, 0.f));
+			}
+			else {
+				AddControllerRollInput(360.f - currentTilt);
+			}
+		}
+		else if (currentTilt <= MinLean) {
+			if (currentTilt >= 1.f) {
+				AddControllerRollInput(-1.f);
+				AddActorLocalOffset(FVector(0.f, -2.f, 0.f));
+			}
+			else {
+				AddControllerRollInput(0.f - currentTilt);
+			}
+		}
+	}
+}
+
+void ACharacterController::FinishLean() {
+	SetActorRotation(OriginalRotation);
+}
+
+void ACharacterController::LeanLeft() {
+	float currentTilt = GetControlRotation().Roll;
+
+	if (currentTilt <= 30.f || currentTilt >= 270.f) {
+
+	} else {
+		if (currentTilt != 0.0f) {
+			if (currentTilt >= 330.f) {
+				if (currentTilt <= 359.9) {
+					AddControllerRollInput(1.f);
+					AddActorLocalOffset(FVector(0.f, 2.f, 0.f));
+				}
+				else {
+					AddControllerRollInput(360.f - currentTilt);
+				}
+			}
+			else if (currentTilt <= 30.f) {
+				if (currentTilt >= 1.f) {
+					AddControllerRollInput(-1.f);
+					AddActorLocalOffset(FVector(0.f, -2.f, 0.f));
+				}
+				else {
+					AddControllerRollInput(0.f - currentTilt);
+				}
+			}
 		}
 	}
 }

@@ -41,6 +41,10 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputCrouch_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputCrouch;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputLean_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputLean;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -77,10 +81,18 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputCrouch = { "InputCrouch", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputCrouch), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputCrouch_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputCrouch_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLean_MetaData[] = {
+		{ "Category", "MyInputConfigData" },
+		{ "ModuleRelativePath", "MyInputConfigData.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLean = { "InputLean", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputLean), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLean_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLean_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UMyInputConfigData_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputMove,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLook,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputCrouch,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLean,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UMyInputConfigData_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UMyInputConfigData>::IsAbstract,
@@ -119,9 +131,9 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UMyInputConfigData, UMyInputConfigData::StaticClass, TEXT("UMyInputConfigData"), &Z_Registration_Info_UClass_UMyInputConfigData, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyInputConfigData), 3455228846U) },
+		{ Z_Construct_UClass_UMyInputConfigData, UMyInputConfigData::StaticClass, TEXT("UMyInputConfigData"), &Z_Registration_Info_UClass_UMyInputConfigData, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyInputConfigData), 2356438412U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_1208659369(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_298484999(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
