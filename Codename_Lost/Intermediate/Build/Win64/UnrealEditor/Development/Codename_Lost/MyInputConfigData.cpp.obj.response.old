@@ -271,6 +271,9 @@ C:\Github\GDES705_Final_Project\Codename_Lost\Source\Codename_Lost\MyInputConfig
 /I Developer\AnimationDataController\Public
 /I C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Inc\Codename_Lost\UHT
 /I C:\Github\GDES705_Final_Project\Codename_Lost\Source
+/I ..\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT
+/I ..\Plugins\EnhancedInput\Source
+/I ..\Plugins\EnhancedInput\Source\EnhancedInput\Public
 /I ThirdParty\mimalloc\include
 /I ThirdParty\LibTiff\Source\Win64
 /I ThirdParty\LibTiff\Source

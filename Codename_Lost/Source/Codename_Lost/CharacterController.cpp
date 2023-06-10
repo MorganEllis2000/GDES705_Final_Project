@@ -19,7 +19,7 @@ ACharacterController::ACharacterController()
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Player Component"));
 	PlayerCamera->SetupAttachment(GetRootComponent());
 	PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
-	//PlayerCamera->bUsePawnControlRotation = false;
+	PlayerCamera->bUsePawnControlRotation = true;
 
 	CrouchEyeOffset = FVector(0.f);
 	CrouchSpeed = 6.f;
@@ -57,16 +57,18 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	// Get the EnhancedInputComponent
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &ACharacterController::Move);
+	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Started, this, &ACharacterController::StartPlayerMovingCameraShake);
+	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Completed, this, &ACharacterController::StopPlayerMovingCameraShake);
+
+
 	EnhancedInputComponent->BindAction(InputActions->InputLook, ETriggerEvent::Triggered, this, &ACharacterController::Look);
 	EnhancedInputComponent->BindAction(InputActions->InputCrouch, ETriggerEvent::Started, this, &ACharacterController::StartCrouch);
-
 }
 
 void ACharacterController::Move(const FInputActionValue& Value){
 	if(Controller != nullptr){
 		const FVector2D MoveValue = Value.Get<FVector2D>();
 		const FRotator MovementRotation(0, Controller->GetControlRotation().Yaw, 0);
-
 		// Forward/Backward direction
 		if(MoveValue.Y != 0.0f){
 			// Get forward vector
@@ -90,7 +92,6 @@ void ACharacterController::Move(const FInputActionValue& Value){
 			AddMovementInput(Direction, MoveValue.X);
 		}
 	}
-
 }
 
 void ACharacterController::Look(const FInputActionValue& Value){
@@ -117,7 +118,6 @@ void ACharacterController::StartCrouch(){
 	}
 
 }
-
 
 void ACharacterController::OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
 {
@@ -155,3 +155,11 @@ void ACharacterController::CalcCamera(float DeltaTime, struct FMinimalViewInfo& 
 	}
 }
 
+void ACharacterController::StartPlayerMovingCameraShake() {
+	GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(MyShake);
+}
+
+void ACharacterController::StopPlayerMovingCameraShake()
+{
+	GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StopAllInstancesOfCameraShake(MyShake);
+}

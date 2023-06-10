@@ -49,8 +49,16 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Crouch")
 	float CrouchSpeed;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCameraShakeBase> MyShake;
+
 private:
+	// Moving
 	void Move(const FInputActionValue& Value);
+	void StartPlayerMovingCameraShake();
+	void StopPlayerMovingCameraShake();
+
 	void Look(const FInputActionValue& Value);
+
 	void StartCrouch();
 };

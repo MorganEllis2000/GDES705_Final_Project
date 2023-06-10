@@ -12,6 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <None Include="..\..\.ignore" />
+    <None Include="..\..\.vsconfig" />
     <None Include="..\..\Codename_Lost.code-workspace" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -74,6 +75,12 @@
       <Filter>Source\Codename_Lost</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Codename_Lost\MyInputConfigData.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\MyLegacyCameraShake.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\MyLegacyCameraShake.h">
       <Filter>Source\Codename_Lost</Filter>
     </ClInclude>
   </ItemGroup>
