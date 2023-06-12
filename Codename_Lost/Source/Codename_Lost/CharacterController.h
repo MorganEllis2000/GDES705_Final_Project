@@ -60,6 +60,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> MyShake;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")
+	TSubclassOf<class AFlashlight> FlashlightClass;
+	class AFlashlight* Flashlight;
+
 private:
 	// Moving
 	void Move(const FInputActionValue& Value);
@@ -70,11 +74,9 @@ private:
 
 	void StartCrouch();
 
-	void LeanLeft();
-	void LeanRight();
-
 	void Lean(const FInputActionValue& Value);
-	void FinishLean();
+	void FinishLean(const FInputActionValue& Value);
 	bool IsLeaning = false;
 
+	void ToggleFlashlight();
 };
