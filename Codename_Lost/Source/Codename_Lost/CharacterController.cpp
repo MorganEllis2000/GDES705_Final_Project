@@ -13,6 +13,10 @@
 #include "DrawDebugHelpers.h"
 #include "Pickup.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SceneComponent.h"
+#include "Math/UnrealMathUtility.h"
+#include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 #pragma region Constructors/Setup
 // Sets default values
@@ -23,16 +27,20 @@ ACharacterController::ACharacterController()
 
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
+
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
+	RootComponent->SetupAttachment(GetRootComponent());
+
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Player Component"));
-	PlayerCamera->SetupAttachment(GetRootComponent());
+	PlayerCamera->SetupAttachment(RootComponent);
 	PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
 	PlayerCamera->bUsePawnControlRotation = true;
 
 	CrouchEyeOffset = FVector(0.f);
 	CrouchSpeed = 6.f;
 
-	HoldingComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Holding Component"));
-	HoldingComponent->SetRelativeLocation(FVector(50.0f, 0.0f, 0.0f));
+	HoldingComponent = CreateDefaultSubobject<USceneComponent>(TEXT("HoldingComponent"));
+	HoldingComponent->SetupAttachment(PlayerCamera);
 	GetCharacterMovement()->MaxWalkSpeedCrouched = 125.f;
 
 	CurrentItem = NULL;
@@ -86,6 +94,8 @@ void ACharacterController::Tick(float DeltaTime)
 
 
 	if (bInspecting) {
+		LookAt(CurrentItem->GetActorLocation());
+
 		if (bHoldingItem) {
 			PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
 			//HoldingComponent->SetRelativeLocation(FVector(0.f, 50.f, 50.f));
@@ -137,6 +147,19 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Completed, this, &ACharacterController::OnInspectReleased);
 }
+
+void ACharacterController::LookAt(FVector LookAtTarget)
+{
+	FVector ToTarget = LookAtTarget - RootComponent->GetComponentLocation();
+	FRotator LookAtRotation = FRotator(0.f, ToTarget.Rotation().Yaw, 0.f);
+	GetCapsuleComponent()->SetRelativeRotation(
+		FMath::RInterpTo(
+			GetCapsuleComponent()->GetComponentRotation(),
+			LookAtRotation,
+			UGameplayStatics::GetWorldDeltaSeconds(this),
+			25.f));
+}
+
 #pragma endregion
 
 #pragma region Player Movement
@@ -307,7 +330,9 @@ void ACharacterController::OnInspect()
 void ACharacterController::OnInspectReleased()
 {
 	if (bInspecting) {
+
 		GetController()->SetControlRotation(LastRotation);
+
 		PlayerController->PlayerCameraManager->ViewPitchMin = PitchMin;
 		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
 		ToggleMovement();

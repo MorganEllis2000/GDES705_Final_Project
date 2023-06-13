@@ -34,6 +34,7 @@ public:
 
 	void Pickup();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bHolding;
 	bool bGravity;
 
@@ -46,4 +47,11 @@ public:
 	FVector InitialLocation;
 	UPROPERTY(EditAnywhere)
 	FRotator InitialRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
+	FText ObjectName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
+	FText ObjectType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
+	FText ObjectDescription;
 };

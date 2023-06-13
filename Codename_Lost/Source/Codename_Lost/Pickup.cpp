@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
 #include "Camera/CameraComponent.h"
+#include "Internationalization/Text.h"
 
 // Sets default values
 APickup::APickup()
@@ -57,7 +58,6 @@ void APickup::RotateActor()
 void APickup::Pickup()
 {
 	bHolding = !bHolding;
-	bGravity = !bGravity;
 	ObjectMesh->SetEnableGravity(bGravity);
 	ObjectMesh->SetSimulatePhysics(bGravity ? false : true);
 	ObjectMesh->SetCollisionEnabled(bHolding ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryAndPhysics);

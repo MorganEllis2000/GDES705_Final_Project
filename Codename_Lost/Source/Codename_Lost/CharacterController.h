@@ -28,8 +28,13 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> MyShake;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	class USceneComponent* HoldingComponent;
+
+	class USceneComponent* RootComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
+	class UStaticMeshComponent* PlayerMesh;
 
 protected:
 	// Called when the game starts or when spawned
@@ -105,6 +110,7 @@ public:
 	FComponentQueryParams DefaultComponentQueryParams;
 	FCollisionResponseParams DefaultResponseParams;
 
+	void LookAt(FVector LookAtTarget);
 private:
 	// Moving
 	void Move(const FInputActionValue& Value);
