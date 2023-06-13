@@ -10,20 +10,34 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Flashlight.h"
+#include "DrawDebugHelpers.h"
+#include "Pickup.h"
+#include "Components/CapsuleComponent.h"
 
+#pragma region Constructors/Setup
 // Sets default values
 ACharacterController::ACharacterController()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
+	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
+
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Player Component"));
 	PlayerCamera->SetupAttachment(GetRootComponent());
 	PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
 	PlayerCamera->bUsePawnControlRotation = true;
-	
+
 	CrouchEyeOffset = FVector(0.f);
 	CrouchSpeed = 6.f;
+
+	HoldingComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Holding Component"));
+	HoldingComponent->SetRelativeLocation(FVector(50.0f, 0.0f, 0.0f));
+	GetCharacterMovement()->MaxWalkSpeedCrouched = 125.f;
+
+	CurrentItem = NULL;
+	bCanMove = true;
+	bInspecting = false;
 }
 
 
@@ -32,13 +46,16 @@ ACharacterController::ACharacterController()
 void ACharacterController::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	if (FlashlightClass) {
 		Flashlight = GetWorld()->SpawnActor<AFlashlight>(FlashlightClass);
 		if (Flashlight) {
 			Flashlight->AttachToComponent(PlayerCamera, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true));
 		}
 	}
+
+	PitchMax = 45.f;
+	PitchMin = -45.f;
 }
 
 // Called every frame
@@ -48,24 +65,59 @@ void ACharacterController::Tick(float DeltaTime)
 
 	float CrouchInterpTime = FMath::Min(1.f, CrouchSpeed * DeltaTime);
 	CrouchEyeOffset = (1.f - CrouchInterpTime) * CrouchEyeOffset;
+
+	Start = PlayerCamera->GetComponentLocation();
+	ForwardVector = PlayerCamera->GetForwardVector();
+	End = ((ForwardVector * 200.f) + Start);
+	//DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
+
+	if (!bHoldingItem)
+	{
+		if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
+		{
+
+			CurrentItem = Cast<APickup>(Hit.GetActor());
+		}
+		else
+		{
+			CurrentItem = NULL;
+		}
+	}
+
+
+	if (bInspecting) {
+		if (bHoldingItem) {
+			PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
+			//HoldingComponent->SetRelativeLocation(FVector(0.f, 50.f, 50.f));
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 179.90000002f;
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = -179.90000002f;
+			CurrentItem->RotateActor();
+		}
+	} else {
+		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
+
+		if (bHoldingItem) {
+			//HoldingComponent->SetRelativeLocation(FVector(50.f, 0.f, 0.f));
+		}
+	}
 }
 
 // Called to bind functionality to input
 void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// Get the player controller
-    PlayerController = Cast<APlayerController>(GetController());
+	PlayerController = Cast<APlayerController>(GetController());
 
 	if (PlayerController) {
 		PlayerController->PlayerCameraManager->ViewPitchMin = -45.f;
 		PlayerController->PlayerCameraManager->ViewPitchMax = 45.f;
 	}
 
-    // Get the local player subsystem
-    UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
-    // Clear out existing mapping, and add our mapping
-    Subsystem->ClearAllMappings();
-    Subsystem->AddMappingContext(InputMapping, 0);
+	// Get the local player subsystem
+	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
+	// Clear out existing mapping, and add our mapping
+	Subsystem->ClearAllMappings();
+	Subsystem->AddMappingContext(InputMapping, 0);
 
 	// Get the EnhancedInputComponent
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
@@ -82,30 +134,35 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::ToggleFlashlight);
 
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Completed, this, &ACharacterController::OnInspectReleased);
 }
+#pragma endregion
 
-void ACharacterController::Move(const FInputActionValue& Value){
-	if(Controller != nullptr){
+#pragma region Player Movement
+void ACharacterController::Move(const FInputActionValue& Value) {
+	if (Controller != nullptr && bCanMove) {
 		const FVector2D MoveValue = Value.Get<FVector2D>();
 		const FRotator MovementRotation(0, Controller->GetControlRotation().Yaw, 0);
 		// Forward/Backward direction
-		if(MoveValue.Y != 0.0f){
+		if (MoveValue.Y != 0.0f) {
 			// Get forward vector
 			const FVector Direction = MovementRotation.RotateVector(FVector::ForwardVector);
 
-			if(MoveValue.Y > 0 && PlayerController->IsInputKeyDown(EKeys::LeftShift)){
+			if (MoveValue.Y > 0 && PlayerController->IsInputKeyDown(EKeys::LeftShift)) {
 				UE_LOG(LogTemp, Display, TEXT("RUN"));
 				AddMovementInput(Direction, MoveValue.Y);
-				GetCharacterMovement()->MaxWalkSpeed = 600.f;
-			} else {
-				AddMovementInput(Direction, MoveValue.Y);
 				GetCharacterMovement()->MaxWalkSpeed = 300.f;
+			}
+			else {
+				AddMovementInput(Direction, MoveValue.Y);
+				GetCharacterMovement()->MaxWalkSpeed = 175.f;
 			}
 		}
 
 		// Right/Left direction
-		if(MoveValue.X != 0.f){
-			
+		if (MoveValue.X != 0.f) {
+
 			// Get right vector
 			const FVector Direction = MovementRotation.RotateVector(FVector::RightVector);
 			AddMovementInput(Direction, MoveValue.X);
@@ -113,17 +170,17 @@ void ACharacterController::Move(const FInputActionValue& Value){
 	}
 }
 
-void ACharacterController::Look(const FInputActionValue& Value){
-	if(Controller != nullptr){
+void ACharacterController::Look(const FInputActionValue& Value) {
+	if (Controller != nullptr) {
 
 		const FVector2D LookValue = Value.Get<FVector2D>();
-		
-		if(LookValue.X != 0.f){
+
+		if (LookValue.X != 0.f) {
 			AddControllerYawInput(LookValue.X);
-			
+
 		}
 
-		if(LookValue.Y != 0.f){
+		if (LookValue.Y != 0.f) {
 			AddControllerPitchInput(LookValue.Y);
 		}
 	}
@@ -134,7 +191,7 @@ void ACharacterController::Lean(const FInputActionValue& Value) {
 
 	float currentTilt = GetControlRotation().Roll;
 
-	if (LeanValue.Y != 0.f) {
+	if (LeanValue.Y != 0.f && bCanMove == true) {
 		IsLeaning = true;
 		if (currentTilt + LeanValue.Y <= MinLean || currentTilt + LeanValue.Y >= MaxLean) {
 			AddControllerRollInput(LeanValue.Y);
@@ -170,7 +227,7 @@ void ACharacterController::FinishLean(const FInputActionValue& Value) {
 			else if (currentTilt <= MinLean) {
 				if (currentTilt >= 10.f) {
 					UE_LOG(LogTemp, Warning, TEXT("The character is returning from tilting right (CW)"))
-					AddControllerRollInput(-10.f);
+						AddControllerRollInput(-10.f);
 					AddActorLocalOffset(FVector(0.f, 0, 0.f));
 				}
 				else {
@@ -184,12 +241,15 @@ void ACharacterController::FinishLean(const FInputActionValue& Value) {
 	IsLeaning = false;
 }
 
-void ACharacterController::StartCrouch(){
-	if(bIsCrouched){
-		ACharacter::UnCrouch();
-	} else{
-		ACharacter::Crouch();
-		UE_LOG(LogTemp, Display, TEXT("CROUCH"));
+void ACharacterController::StartCrouch() {
+	if (bCanMove) {
+		if (bIsCrouched) {
+			ACharacter::UnCrouch();
+		}
+		else {
+			ACharacter::Crouch();
+			UE_LOG(LogTemp, Display, TEXT("CROUCH"));
+		}
 	}
 }
 
@@ -228,9 +288,62 @@ void ACharacterController::CalcCamera(float DeltaTime, struct FMinimalViewInfo& 
 		OutResult.Location += CrouchEyeOffset;
 	}
 }
+#pragma endregion
+
+#pragma region Pickup System
+
+void ACharacterController::OnInspect()
+{
+	if (!bInspecting && CurrentItem) {
+		ToggleItemPickup();
+		LastRotation = GetControlRotation();
+		ToggleMovement();
+	}
+	else {
+		bInspecting = false;
+	}
+}
+
+void ACharacterController::OnInspectReleased()
+{
+	if (bInspecting) {
+		GetController()->SetControlRotation(LastRotation);
+		PlayerController->PlayerCameraManager->ViewPitchMin = PitchMin;
+		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
+		ToggleMovement();
+		ToggleItemPickup();
+	}
+	else {
+		
+		bInspecting = false;
+	}
+	
+}
+
+void ACharacterController::ToggleMovement() {
+	bCanMove = !bCanMove;
+	bInspecting = !bInspecting;
+	PlayerCamera->bUsePawnControlRotation = !PlayerCamera->bUsePawnControlRotation;
+	bUseControllerRotationYaw = !bUseControllerRotationYaw;
+}
+
+void ACharacterController::ToggleItemPickup() {
+	if (CurrentItem) {
+		bHoldingItem = !bHoldingItem;
+		CurrentItem->Pickup();
+
+		if (!bHoldingItem) {
+			CurrentItem = NULL;
+		}
+	}
+}
+#pragma endregion
 
 void ACharacterController::StartPlayerMovingCameraShake() {
-	GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(MyShake);
+	if (bCanMove == true) {
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(MyShake);
+	}
+	
 }
 
 void ACharacterController::StopPlayerMovingCameraShake()
@@ -239,5 +352,8 @@ void ACharacterController::StopPlayerMovingCameraShake()
 }
 
 void ACharacterController::ToggleFlashlight() {
-	Flashlight->ToggleLight();
+	if (bCanMove) {
+		Flashlight->ToggleLight();
+	}
+	
 }

@@ -5,7 +5,7 @@
 
 UMyLegacyCameraShake::UMyLegacyCameraShake()
 {
-    OscillationDuration = -1.f;
+    OscillationDuration = -4.f;
     OscillationBlendInTime = 2.f;
     OscillationBlendOutTime = 0.2f;
 

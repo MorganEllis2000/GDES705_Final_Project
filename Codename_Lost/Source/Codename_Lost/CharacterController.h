@@ -8,6 +8,7 @@
 #include "InputActionValue.h"
 #include "CharacterController.generated.h"
 
+
 UCLASS()
 class CODENAME_LOST_API ACharacterController : public ACharacter
 {
@@ -20,6 +21,15 @@ public:
 	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	class UMyInputConfigData* InputActions;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCameraShakeBase> MyShake;
+
+	UPROPERTY(EditAnywhere)
+	class USceneComponent* HoldingComponent;
 
 protected:
 	// Called when the game starts or when spawned
@@ -34,6 +44,15 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera")
 	class UCameraComponent* PlayerCamera;
 
+	// Pickup
+
+	void OnAction();
+	void OnInspect();
+	void OnInspectReleased();
+
+	void ToggleMovement();
+	void ToggleItemPickup();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -41,8 +60,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
-	class UMyInputConfigData* InputActions;
+
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	FRotator OriginalRotation;
@@ -57,12 +75,35 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lean")
 	float MaxLean;
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UCameraShakeBase> MyShake;
+
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")
 	TSubclassOf<class AFlashlight> FlashlightClass;
 	class AFlashlight* Flashlight;
+
+
+	// Pick up system
+	UPROPERTY(EditAnywhere)
+	class APickup* CurrentItem;
+
+	bool bCanMove;
+	bool bHoldingItem;
+	bool bInspecting;
+
+	float PitchMax;
+	float PitchMin;
+
+	FVector HoldingComp;
+	FRotator LastRotation;
+
+	FVector Start;
+	FVector ForwardVector;
+	FVector End;
+
+	FHitResult Hit;
+
+	FComponentQueryParams DefaultComponentQueryParams;
+	FCollisionResponseParams DefaultResponseParams;
 
 private:
 	// Moving
@@ -79,4 +120,6 @@ private:
 	bool IsLeaning = false;
 
 	void ToggleFlashlight();
+
+	
 };

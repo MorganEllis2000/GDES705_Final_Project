@@ -89,5 +89,11 @@
     <ClInclude Include="..\..\Source\Codename_Lost\MyLegacyCameraShake.h">
       <Filter>Source\Codename_Lost</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\Pickup.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\Pickup.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
