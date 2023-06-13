@@ -93,6 +93,7 @@ public:
 
 	bool bCanMove;
 	bool bHoldingItem;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bInspecting;
 
 	float PitchMax;
