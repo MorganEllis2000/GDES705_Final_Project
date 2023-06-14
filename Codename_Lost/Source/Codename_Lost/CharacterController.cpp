@@ -17,6 +17,7 @@
 #include "Math/UnrealMathUtility.h"
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Blueprint/UserWidget.h"
 
 #pragma region Constructors/Setup
 // Sets default values
@@ -94,7 +95,10 @@ void ACharacterController::Tick(float DeltaTime)
 
 
 	if (bInspecting) {
-		LookAt(CurrentItem->GetActorLocation());
+		if (PlayerController->WasInputKeyJustPressed(EKeys::V)) {
+			CurrentItem->OnInteract();
+
+		}
 
 		if (bHoldingItem) {
 			PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
@@ -330,7 +334,6 @@ void ACharacterController::OnInspect()
 void ACharacterController::OnInspectReleased()
 {
 	if (bInspecting) {
-
 		GetController()->SetControlRotation(LastRotation);
 
 		PlayerController->PlayerCameraManager->ViewPitchMin = PitchMin;
@@ -364,6 +367,24 @@ void ACharacterController::ToggleItemPickup() {
 }
 #pragma endregion
 
+#pragma region Inventory
+void ACharacterController::AddToInventory(class APickup* actor) {
+	_inventory.Add(actor);
+}
+
+void ACharacterController::PrintInventory() {
+	FString sInventory = "";
+
+	for (APickup* actor : _inventory) {
+		sInventory.Append(actor->Name);
+		sInventory.Append(" | ");
+	}
+
+	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *sInventory);
+}
+#pragma endregion
+
+
 void ACharacterController::StartPlayerMovingCameraShake() {
 	if (bCanMove == true) {
 		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(MyShake);
@@ -379,6 +400,5 @@ void ACharacterController::StopPlayerMovingCameraShake()
 void ACharacterController::ToggleFlashlight() {
 	if (bCanMove) {
 		Flashlight->ToggleLight();
-	}
-	
+	}	
 }

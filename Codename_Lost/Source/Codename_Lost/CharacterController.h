@@ -58,6 +58,11 @@ protected:
 	void ToggleMovement();
 	void ToggleItemPickup();
 
+	
+
+	UFUNCTION(BlueprintCallable)
+	void PrintInventory();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -88,7 +93,7 @@ public:
 
 
 	// Pick up system
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	class APickup* CurrentItem;
 
 	bool bCanMove;
@@ -112,6 +117,8 @@ public:
 	FCollisionResponseParams DefaultResponseParams;
 
 	void LookAt(FVector LookAtTarget);
+
+	void AddToInventory(class APickup* actor);
 private:
 	// Moving
 	void Move(const FInputActionValue& Value);
@@ -128,5 +135,5 @@ private:
 
 	void ToggleFlashlight();
 
-	
+	TArray<APickup*> _inventory;
 };

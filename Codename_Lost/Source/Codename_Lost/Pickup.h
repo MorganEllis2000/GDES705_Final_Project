@@ -19,6 +19,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	virtual void Show(bool visible);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -54,4 +56,9 @@ public:
 	FText ObjectType;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
 	FText ObjectDescription;
+
+	UPROPERTY(EditAnywhere)
+	FString Name;
+
+	virtual void OnInteract();
 };

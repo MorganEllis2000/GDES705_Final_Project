@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Camera/CameraComponent.h"
 #include "Internationalization/Text.h"
+#include "CharacterController.h"
 
 // Sets default values
 APickup::APickup()
@@ -72,5 +73,29 @@ void APickup::Pickup()
 		ObjectMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 		ObjectMesh->SetRelativeLocationAndRotation(InitialLocation, InitialRotation);
 	}
+}
+
+void APickup::OnInteract()
+{
+	FString pickup = FString::Printf(TEXT("Picked up: &s"), *ObjectName.ToString());
+
+	ACharacterController* player = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	if (player) {
+		Show(false);
+
+		player->AddToInventory(this);
+	}
+	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
+}
+
+void APickup::Show(bool visible) {
+
+	ECollisionEnabled::Type collision = visible ? ECollisionEnabled::QueryAndPhysics : ECollisionEnabled::NoCollision;
+
+	this->SetActorTickEnabled(visible);
+
+	this->ObjectMesh->SetVisibility(visible);
+	this->ObjectMesh->SetCollisionEnabled(collision);
+	
 }
 
