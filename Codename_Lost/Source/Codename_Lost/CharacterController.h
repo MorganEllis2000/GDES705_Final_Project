@@ -19,23 +19,27 @@ public:
 	// Sets default values for this character's properties
 	ACharacterController();
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Movement Functions
+
 	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
+	void LookAt(FVector LookAtTarget);
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
-	class UMyInputConfigData* InputActions;
+	// Inventory Functions
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UCameraShakeBase> MyShake;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	class USceneComponent* HoldingComponent;
-
-	class USceneComponent* RootComponent;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
-	class UStaticMeshComponent* PlayerMesh;
+	void AddToInventory(class APickup* actor);
+	void OpenInventory();
+	void UpdateInventoryDelegate();
+	void AddItemToInventory();
+	UFUNCTION(BlueprintCallable)
+	void PrintInventory();
 
 protected:
 	// Called when the game starts or when spawned
@@ -50,29 +54,29 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera")
 	class UCameraComponent* PlayerCamera;
 
-	// Pickup
+	// Pickup Functions
 
-	void OnAction();
 	void OnInspect();
 	void OnInspectReleased();
 
 	void ToggleMovement();
 	void ToggleItemPickup();
 
+private:
+	// Movement Functions
+	void Move(const FInputActionValue& Value);
+	void StartPlayerMovingCameraShake();
+	void StopPlayerMovingCameraShake();
+	void Look(const FInputActionValue& Value);
+	void StartCrouch();
+	void Lean(const FInputActionValue& Value);
+	void FinishLean(const FInputActionValue& Value);
 	
-
-	UFUNCTION(BlueprintCallable)
-	void PrintInventory();
-
+	// Flashlight Functions
+	void ToggleFlashlight();
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-
-
+	// Movement Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	FRotator OriginalRotation;
 
@@ -87,18 +91,18 @@ public:
 	float MaxLean;
 
 
-
+	// Flashlight Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")
 	TSubclassOf<class AFlashlight> FlashlightClass;
 	class AFlashlight* Flashlight;
 
-
-	// Pick up system
+	// Pickup Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	class APickup* CurrentItem;
 
 	bool bCanMove;
 	bool bHoldingItem;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bInspecting;
 
@@ -117,35 +121,37 @@ public:
 	FComponentQueryParams DefaultComponentQueryParams;
 	FCollisionResponseParams DefaultResponseParams;
 
-	void LookAt(FVector LookAtTarget);
 
-	void AddToInventory(class APickup* actor);
-
+	// Inventory Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bIsInventoryOpen;
-	void OpenInventory();
-	void UpdateInventoryDelegate();
-	void AddItemToInventory();
-
 	UPROPERTY(BlueprintAssignable, Category = "Pickup")
 	FUpdateIventoryDelegate OnUpdateInventory;
 
+	// World Variables
 	bool GamePaused;
+
+	// Camera Shake
+		UPROPERTY(EditAnywhere)
+	TSubclassOf<UCameraShakeBase> MyShake;
+
+	// Components and Setup
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	class UMyInputConfigData* InputActions;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	class USceneComponent* HoldingComponent;
+
+	class USceneComponent* RootComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
+	class UStaticMeshComponent* PlayerMesh;
+
+
+protected:
+
 private:
-	// Moving
-	void Move(const FInputActionValue& Value);
-	void StartPlayerMovingCameraShake();
-	void StopPlayerMovingCameraShake();
-
-	void Look(const FInputActionValue& Value);
-
-	void StartCrouch();
-
-	void Lean(const FInputActionValue& Value);
-	void FinishLean(const FInputActionValue& Value);
-	bool IsLeaning = false;
-
-	void ToggleFlashlight();
-
 	TArray<APickup*> _inventory;
+
+	bool IsLeaning = false;
 };

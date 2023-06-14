@@ -387,12 +387,18 @@ void ACharacterController::PrintInventory() {
 void ACharacterController::OpenInventory() {
 	bIsInventoryOpen = !bIsInventoryOpen;
 	GamePaused = !GamePaused;
+	PlayerController->bShowMouseCursor = bIsInventoryOpen;
+	
 	if (PlayerController) {
 		PlayerController->SetPause(GamePaused);
 	}
 
 	if (bIsInventoryOpen == true) {
-		UpdateInventoryDelegate();
+		UpdateInventoryDelegate();		
+		PlayerController->SetInputMode(FInputModeGameAndUI());
+	}
+	else {
+		PlayerController->SetInputMode(FInputModeGameOnly());
 	}
 }
 
@@ -403,7 +409,7 @@ void ACharacterController::UpdateInventoryDelegate() {
 void ACharacterController::AddItemToInventory() {
 	CurrentItem->OnInteract();
 	OnInspectReleased();
-	UpdateInventoryDelegate();
+	UpdateInventoryDelegate(); 
 }
 #pragma endregion
 
@@ -412,7 +418,6 @@ void ACharacterController::StartPlayerMovingCameraShake() {
 	if (bCanMove == true) {
 		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(MyShake);
 	}
-	
 }
 
 void ACharacterController::StopPlayerMovingCameraShake()
