@@ -97,7 +97,7 @@ void ACharacterController::Tick(float DeltaTime)
 	if (bInspecting) {
 		if (PlayerController->WasInputKeyJustPressed(EKeys::V)) {
 			CurrentItem->OnInteract();
-
+			OnInspectReleased();
 		}
 
 		if (bHoldingItem) {
@@ -340,9 +340,9 @@ void ACharacterController::OnInspectReleased()
 		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
 		ToggleMovement();
 		ToggleItemPickup();
-	}
-	else {
 		
+	}
+	else {	
 		bInspecting = false;
 	}
 	

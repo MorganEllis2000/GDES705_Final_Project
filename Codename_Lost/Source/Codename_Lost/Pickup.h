@@ -57,8 +57,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
 	FText ObjectDescription;
 
-	UPROPERTY(EditAnywhere)
+	
 	FString Name;
 
+	UFUNCTION(BlueprintCallable)
 	virtual void OnInteract();
 };

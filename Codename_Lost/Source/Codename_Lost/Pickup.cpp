@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "Internationalization/Text.h"
 #include "CharacterController.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
 
 // Sets default values
 APickup::APickup()
