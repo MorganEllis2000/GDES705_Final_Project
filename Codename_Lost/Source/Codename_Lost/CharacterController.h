@@ -119,6 +119,12 @@ public:
 	void LookAt(FVector LookAtTarget);
 
 	void AddToInventory(class APickup* actor);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool bIsInventoryOpen;
+	void OpenInventory();
+
+	bool GamePaused;
 private:
 	// Moving
 	void Move(const FInputActionValue& Value);

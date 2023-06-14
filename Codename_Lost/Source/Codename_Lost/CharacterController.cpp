@@ -150,6 +150,8 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Completed, this, &ACharacterController::OnInspectReleased);
+
+	EnhancedInputComponent->BindAction(InputActions->InputOpenInventory, ETriggerEvent::Started, this, &ACharacterController::OpenInventory);
 }
 
 void ACharacterController::LookAt(FVector LookAtTarget)
@@ -381,6 +383,14 @@ void ACharacterController::PrintInventory() {
 	}
 
 	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *sInventory);
+}
+
+void ACharacterController::OpenInventory() {
+	bIsInventoryOpen = !bIsInventoryOpen;
+	GamePaused = !GamePaused;
+	if (PlayerController) {
+		PlayerController->SetPause(GamePaused);
+	}
 }
 #pragma endregion
 
