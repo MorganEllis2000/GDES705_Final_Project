@@ -96,8 +96,7 @@ void ACharacterController::Tick(float DeltaTime)
 
 	if (bInspecting) {
 		if (PlayerController->WasInputKeyJustPressed(EKeys::V)) {
-			CurrentItem->OnInteract();
-			OnInspectReleased();
+			AddItemToInventory();
 		}
 
 		if (bHoldingItem) {
@@ -391,6 +390,20 @@ void ACharacterController::OpenInventory() {
 	if (PlayerController) {
 		PlayerController->SetPause(GamePaused);
 	}
+
+	if (bIsInventoryOpen == true) {
+		UpdateInventoryDelegate();
+	}
+}
+
+void ACharacterController::UpdateInventoryDelegate() {
+	OnUpdateInventory.Broadcast(_inventory);
+}
+
+void ACharacterController::AddItemToInventory() {
+	CurrentItem->OnInteract();
+	OnInspectReleased();
+	UpdateInventoryDelegate();
 }
 #pragma endregion
 

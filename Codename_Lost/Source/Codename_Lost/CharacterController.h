@@ -8,6 +8,7 @@
 #include "InputActionValue.h"
 #include "CharacterController.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FUpdateIventoryDelegate, const TArray<APickup*>&, IventoryItems);
 
 UCLASS()
 class CODENAME_LOST_API ACharacterController : public ACharacter
@@ -123,6 +124,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bIsInventoryOpen;
 	void OpenInventory();
+	void UpdateInventoryDelegate();
+	void AddItemToInventory();
+
+	UPROPERTY(BlueprintAssignable, Category = "Pickup")
+	FUpdateIventoryDelegate OnUpdateInventory;
 
 	bool GamePaused;
 private:

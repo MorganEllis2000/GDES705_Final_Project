@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Pickup.generated.h"
 
+
+
 UCLASS()
 class CODENAME_LOST_API APickup : public AActor
 {
@@ -62,4 +64,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	virtual void OnInteract();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup UI")
+	class UTexture2D* Image;
 };
