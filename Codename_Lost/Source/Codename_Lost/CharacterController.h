@@ -147,7 +147,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	class UStaticMeshComponent* PlayerMesh;
 
-
 protected:
 
 private:

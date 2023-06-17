@@ -84,11 +84,12 @@ void ACharacterController::Tick(float DeltaTime)
 	{
 		if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
 		{
-
+			UE_LOG(LogTemp, Warning, TEXT("Can Inspect"));
 			CurrentItem = Cast<APickup>(Hit.GetActor());
 		}
 		else
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Can't Inspect"));
 			CurrentItem = NULL;
 		}
 	}
@@ -346,7 +347,6 @@ void ACharacterController::OnInspectReleased()
 	else {	
 		bInspecting = false;
 	}
-	
 }
 
 void ACharacterController::ToggleMovement() {
