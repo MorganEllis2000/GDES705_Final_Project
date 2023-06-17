@@ -127,6 +127,8 @@ public:
 	bool bIsInventoryOpen;
 	UPROPERTY(BlueprintAssignable, Category = "Pickup")
 	FUpdateIventoryDelegate OnUpdateInventory;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<APickup*> _inventory;
 
 	// World Variables
 	bool GamePaused;
@@ -150,7 +152,7 @@ public:
 protected:
 
 private:
-	TArray<APickup*> _inventory;
+	
 
 	bool IsLeaning = false;
 };
