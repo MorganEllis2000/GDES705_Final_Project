@@ -141,7 +141,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	class UMyInputConfigData* InputActions;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	class USceneComponent* HoldingComponent;
 
 	class USceneComponent* RootComponent;

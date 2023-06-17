@@ -42,6 +42,7 @@ ACharacterController::ACharacterController()
 
 	HoldingComponent = CreateDefaultSubobject<USceneComponent>(TEXT("HoldingComponent"));
 	HoldingComponent->SetupAttachment(PlayerCamera);
+	
 	GetCharacterMovement()->MaxWalkSpeedCrouched = 125.f;
 
 	CurrentItem = NULL;
@@ -55,7 +56,7 @@ ACharacterController::ACharacterController()
 void ACharacterController::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	if (FlashlightClass) {
 		Flashlight = GetWorld()->SpawnActor<AFlashlight>(FlashlightClass);
 		if (Flashlight) {
