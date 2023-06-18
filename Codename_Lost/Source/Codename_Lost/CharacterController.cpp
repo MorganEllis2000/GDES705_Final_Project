@@ -18,6 +18,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
+#include "Gun.h"
+#include "Components/SkeletalMeshComponent.h"
 
 #pragma region Constructors/Setup
 // Sets default values
@@ -42,12 +44,19 @@ ACharacterController::ACharacterController()
 
 	HoldingComponent = CreateDefaultSubobject<USceneComponent>(TEXT("HoldingComponent"));
 	HoldingComponent->SetupAttachment(PlayerCamera);
+
+	SkeletalMesh = Cast<USkeletalMeshComponent>(this->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 	
 	GetCharacterMovement()->MaxWalkSpeedCrouched = 125.f;
 
 	CurrentItem = NULL;
 	bCanMove = true;
 	bInspecting = false;
+
+	PitchMax = 15.f;
+	PitchMin = -15.f;
+	RollMax = 5.f;
+	RollMin = -5.f;
 }
 
 
@@ -56,6 +65,11 @@ ACharacterController::ACharacterController()
 void ACharacterController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
+	GetMesh()->HideBoneByName(TEXT("hand_r"), EPhysBodyOp::PBO_None);
+	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+	Glock->SetOwner(this);
 	
 	if (FlashlightClass) {
 		Flashlight = GetWorld()->SpawnActor<AFlashlight>(FlashlightClass);
@@ -64,8 +78,6 @@ void ACharacterController::BeginPlay()
 		}
 	}
 
-	PitchMax = 45.f;
-	PitchMin = -45.f;
 }
 
 // Called every frame
@@ -85,20 +97,19 @@ void ACharacterController::Tick(float DeltaTime)
 	{
 		if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Can Inspect"));
 			CurrentItem = Cast<APickup>(Hit.GetActor());
 			bShowCanInspectWidget = true;
 		}
 		else
 		{
 			bShowCanInspectWidget = false;
-			UE_LOG(LogTemp, Warning, TEXT("Can't Inspect"));
 			CurrentItem = NULL;
 		}
 	}
 
 
 	if (bInspecting) {
+		bShowCanInspectWidget = false;
 		if (PlayerController->WasInputKeyJustPressed(EKeys::V)) {
 			AddItemToInventory();
 		}
@@ -126,8 +137,10 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	PlayerController = Cast<APlayerController>(GetController());
 
 	if (PlayerController) {
-		PlayerController->PlayerCameraManager->ViewPitchMin = -45.f;
-		PlayerController->PlayerCameraManager->ViewPitchMax = 45.f;
+		PlayerController->PlayerCameraManager->ViewPitchMin = PitchMin;
+		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
+		PlayerController->PlayerCameraManager->ViewRollMin = RollMin;
+		PlayerController->PlayerCameraManager->ViewRollMax = RollMax;
 	}
 
 	// Get the local player subsystem
@@ -138,13 +151,13 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	// Get the EnhancedInputComponent
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+
+	// Movement
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &ACharacterController::Move);
 	EnhancedInputComponent->BindAction(InputActions->InputLean, ETriggerEvent::Triggered, this, &ACharacterController::Lean);
 	EnhancedInputComponent->BindAction(InputActions->InputLean, ETriggerEvent::Completed, this, &ACharacterController::FinishLean);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Started, this, &ACharacterController::StartPlayerMovingCameraShake);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Completed, this, &ACharacterController::StopPlayerMovingCameraShake);
-
-
 	EnhancedInputComponent->BindAction(InputActions->InputLook, ETriggerEvent::Triggered, this, &ACharacterController::Look);
 	EnhancedInputComponent->BindAction(InputActions->InputCrouch, ETriggerEvent::Started, this, &ACharacterController::StartCrouch);
 
@@ -155,6 +168,9 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Completed, this, &ACharacterController::OnInspectReleased);
 
 	EnhancedInputComponent->BindAction(InputActions->InputOpenInventory, ETriggerEvent::Started, this, &ACharacterController::OpenInventory);
+
+	// Shooting
+	EnhancedInputComponent->BindAction(InputActions->InputShoot, ETriggerEvent::Started, this, &ACharacterController::Shoot);
 }
 
 void ACharacterController::LookAt(FVector LookAtTarget)
@@ -224,7 +240,6 @@ void ACharacterController::Lean(const FInputActionValue& Value) {
 	float currentTilt = GetControlRotation().Roll;
 
 	if (LeanValue.Y != 0.f && bCanMove == true) {
-		IsLeaning = true;
 		if (currentTilt + LeanValue.Y <= MinLean || currentTilt + LeanValue.Y >= MaxLean) {
 			AddControllerRollInput(LeanValue.Y);
 
@@ -270,7 +285,6 @@ void ACharacterController::FinishLean(const FInputActionValue& Value) {
 		}
 	}
 
-	IsLeaning = false;
 }
 
 void ACharacterController::StartCrouch() {
@@ -295,7 +309,7 @@ void ACharacterController::OnStartCrouch(float HalfHeightAdjust, float ScaledHal
 	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
 	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight + HalfHeightAdjust;
 	if (PlayerCamera) {
-		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
+		PlayerCamera->SetRelativeLocation(FVector(CameraInitalPos, BaseEyeHeight), false);
 	}
 }
 
@@ -309,7 +323,7 @@ void ACharacterController::OnEndCrouch(float HalfHeightAdjust, float ScaledHalfH
 	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
 	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight - HalfHeightAdjust;
 	if (PlayerCamera) {
-		PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, BaseEyeHeight), false);
+		PlayerCamera->SetRelativeLocation(FVector(CameraInitalPos, BaseEyeHeight), false);
 	}
 }
 
@@ -330,9 +344,11 @@ void ACharacterController::OnInspect()
 		ToggleItemPickup();
 		LastRotation = GetControlRotation();
 		ToggleMovement();
+		SkeletalMesh->SetVisibility(false);
+		Glock->Mesh->SetVisibility(false);
 	}
-	else {
-		bInspecting = false;
+	else {		
+		bInspecting = false;	
 	}
 }
 
@@ -345,7 +361,8 @@ void ACharacterController::OnInspectReleased()
 		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
 		ToggleMovement();
 		ToggleItemPickup();
-		
+		SkeletalMesh->SetVisibility(true);
+		Glock->Mesh->SetVisibility(true);
 	}
 	else {	
 		bInspecting = false;
@@ -416,7 +433,6 @@ void ACharacterController::AddItemToInventory() {
 }
 #pragma endregion
 
-
 void ACharacterController::StartPlayerMovingCameraShake() {
 	if (bCanMove == true) {
 		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(MyShake);
@@ -433,3 +449,12 @@ void ACharacterController::ToggleFlashlight() {
 		Flashlight->ToggleLight();
 	}	
 }
+
+#pragma region Shooting
+void ACharacterController::Shoot()
+{
+	Glock->PullTrigger();
+}
+#pragma endregion
+
+

@@ -77,6 +77,12 @@
     <ClInclude Include="..\..\Source\Codename_Lost\Flashlight.h">
       <Filter>Source\Codename_Lost</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\Gun.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\Gun.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Codename_Lost\MyInputConfigData.cpp">
       <Filter>Source\Codename_Lost</Filter>
     </ClCompile>

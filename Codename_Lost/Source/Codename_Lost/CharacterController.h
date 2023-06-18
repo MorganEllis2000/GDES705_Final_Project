@@ -8,6 +8,8 @@
 #include "InputActionValue.h"
 #include "CharacterController.generated.h"
 
+class AGun;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FUpdateIventoryDelegate, const TArray<APickup*>&, IventoryItems);
 
 UCLASS()
@@ -74,6 +76,9 @@ private:
 	
 	// Flashlight Functions
 	void ToggleFlashlight();
+
+	// Gun Functions
+	void Shoot();
 public:	
 
 	// Movement Variables
@@ -89,6 +94,9 @@ public:
 	float MinLean;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lean")
 	float MaxLean;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FVector2D CameraInitalPos;
 
 
 	// Flashlight Variables
@@ -110,6 +118,8 @@ public:
 
 	float PitchMax;
 	float PitchMin;
+	float RollMax;
+	float RollMin;
 
 	FVector HoldingComp;
 	FRotator LastRotation;
@@ -154,7 +164,11 @@ public:
 protected:
 
 private:
-	
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AGun> GunClass;
 
-	bool IsLeaning = false;
+	UPROPERTY()
+	AGun* Glock;
+
+	class USkeletalMeshComponent* SkeletalMesh;
 };

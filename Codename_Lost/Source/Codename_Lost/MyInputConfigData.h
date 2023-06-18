@@ -39,4 +39,7 @@ public:
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
     UInputAction* InputOpenInventory;
+
+     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+    UInputAction* InputShoot;
 };
