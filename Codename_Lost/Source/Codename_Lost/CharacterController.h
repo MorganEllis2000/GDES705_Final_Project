@@ -102,6 +102,8 @@ public:
 
 	bool bCanMove;
 	bool bHoldingItem;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool bShowCanInspectWidget;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bInspecting;
@@ -134,7 +136,7 @@ public:
 	bool GamePaused;
 
 	// Camera Shake
-		UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> MyShake;
 
 	// Components and Setup

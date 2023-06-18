@@ -87,9 +87,11 @@ void ACharacterController::Tick(float DeltaTime)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Can Inspect"));
 			CurrentItem = Cast<APickup>(Hit.GetActor());
+			bShowCanInspectWidget = true;
 		}
 		else
 		{
+			bShowCanInspectWidget = false;
 			UE_LOG(LogTemp, Warning, TEXT("Can't Inspect"));
 			CurrentItem = NULL;
 		}
