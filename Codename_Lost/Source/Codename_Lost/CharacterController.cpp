@@ -55,8 +55,8 @@ ACharacterController::ACharacterController()
 
 	PitchMax = 15.f;
 	PitchMin = -15.f;
-	RollMax = 5.f;
-	RollMin = -5.f;
+	RollMax = 10.f;
+	RollMin = -10.f;
 
 	GetCharacterMovement()->MaxWalkSpeed = 125;
 }
@@ -167,7 +167,7 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::ToggleFlashlight);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
-	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Completed, this, &ACharacterController::OnInspectReleased);
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInteract, ETriggerEvent::Started, this, &ACharacterController::Interact);
 
@@ -407,10 +407,8 @@ void ACharacterController::ToggleItemPickup() {
 }
 
 void ACharacterController::Interact() {
-	if (bInspecting) {
-		if (PlayerController) {
-			AddItemToInventory();
-		}
+	if (bInspecting && PlayerController) {
+		AddItemToInventory();
 	}
 }
 #pragma endregion
@@ -460,6 +458,16 @@ void ACharacterController::AddItemToInventory() {
 }
 #pragma endregion
 
+#pragma region Shooting
+void ACharacterController::Shoot()
+{
+	if (!bInspecting) {
+		Glock->PullTrigger();
+	}
+	
+}
+#pragma endregion
+
 void ACharacterController::StartPlayerMovingCameraShake() {
 	if (bCanMove == true) {
 		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(MyShake);
@@ -474,14 +482,5 @@ void ACharacterController::StopPlayerMovingCameraShake()
 void ACharacterController::ToggleFlashlight() {
 	if (bCanMove) {
 		Flashlight->ToggleLight();
-	}	
+	}
 }
-
-#pragma region Shooting
-void ACharacterController::Shoot()
-{
-	Glock->PullTrigger();
-}
-#pragma endregion
-
-

@@ -62,7 +62,7 @@ void APickup::Pickup()
 	bHolding = !bHolding;
 	ObjectMesh->SetEnableGravity(bGravity);
 	ObjectMesh->SetSimulatePhysics(bGravity ? false : true);
-	ObjectMesh->SetCollisionEnabled(bHolding ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryAndPhysics);
+	//ObjectMesh->SetCollisionEnabled(bHolding ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryAndPhysics);
 
 	if (HoldingComp && bHolding) {
 		ObjectMesh->AttachToComponent(HoldingComp, FAttachmentTransformRules::KeepWorldTransform);

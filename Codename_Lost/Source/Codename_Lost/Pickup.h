@@ -16,12 +16,13 @@ class CODENAME_LOST_API APickup : public AActor
 public:	
 	// Sets default values for this actor's properties
 	APickup();
+	virtual void Show(bool visible);
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	virtual void Show(bool visible);
+	
 
 public:	
 	// Called every frame
