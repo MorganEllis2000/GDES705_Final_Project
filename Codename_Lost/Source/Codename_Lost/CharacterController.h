@@ -60,6 +60,7 @@ protected:
 
 	void OnInspect();
 	void OnInspectReleased();
+	void Interact();
 
 	void ToggleMovement();
 	void ToggleItemPickup();
@@ -70,9 +71,12 @@ private:
 	void StartPlayerMovingCameraShake();
 	void StopPlayerMovingCameraShake();
 	void Look(const FInputActionValue& Value);
+	void ControllerLook(const FInputActionValue& Value);
 	void StartCrouch();
 	void Lean(const FInputActionValue& Value);
 	void FinishLean(const FInputActionValue& Value);
+	void StartSprint();
+	void FinishSprint();
 	
 	// Flashlight Functions
 	void ToggleFlashlight();
@@ -171,4 +175,10 @@ private:
 	AGun* Glock;
 
 	class USkeletalMeshComponent* SkeletalMesh;
+
+	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
+	float LookRotationRateX = 10.f;
+
+	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
+	float LookRotationRateY = 10.f;
 };

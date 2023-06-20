@@ -57,6 +57,8 @@ ACharacterController::ACharacterController()
 	PitchMin = -15.f;
 	RollMax = 5.f;
 	RollMin = -5.f;
+
+	GetCharacterMovement()->MaxWalkSpeed = 125;
 }
 
 
@@ -110,9 +112,6 @@ void ACharacterController::Tick(float DeltaTime)
 
 	if (bInspecting) {
 		bShowCanInspectWidget = false;
-		if (PlayerController->WasInputKeyJustPressed(EKeys::V)) {
-			AddItemToInventory();
-		}
 
 		if (bHoldingItem) {
 			PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
@@ -159,13 +158,18 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Started, this, &ACharacterController::StartPlayerMovingCameraShake);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Completed, this, &ACharacterController::StopPlayerMovingCameraShake);
 	EnhancedInputComponent->BindAction(InputActions->InputLook, ETriggerEvent::Triggered, this, &ACharacterController::Look);
+	EnhancedInputComponent->BindAction(InputActions->InputControllerLook, ETriggerEvent::Triggered, this, &ACharacterController::ControllerLook);
 	EnhancedInputComponent->BindAction(InputActions->InputCrouch, ETriggerEvent::Started, this, &ACharacterController::StartCrouch);
+	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Triggered, this, &ACharacterController::StartSprint);
+	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Completed, this, &ACharacterController::FinishSprint);
 
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::ToggleFlashlight);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Completed, this, &ACharacterController::OnInspectReleased);
+
+	EnhancedInputComponent->BindAction(InputActions->InputInteract, ETriggerEvent::Started, this, &ACharacterController::Interact);
 
 	EnhancedInputComponent->BindAction(InputActions->InputOpenInventory, ETriggerEvent::Started, this, &ACharacterController::OpenInventory);
 
@@ -196,16 +200,7 @@ void ACharacterController::Move(const FInputActionValue& Value) {
 		if (MoveValue.Y != 0.0f) {
 			// Get forward vector
 			const FVector Direction = MovementRotation.RotateVector(FVector::ForwardVector);
-
-			if (MoveValue.Y > 0 && PlayerController->IsInputKeyDown(EKeys::LeftShift)) {
-				UE_LOG(LogTemp, Display, TEXT("RUN"));
-				AddMovementInput(Direction, MoveValue.Y);
-				GetCharacterMovement()->MaxWalkSpeed = 300.f;
-			}
-			else {
-				AddMovementInput(Direction, MoveValue.Y);
-				GetCharacterMovement()->MaxWalkSpeed = 175.f;
-			}
+			AddMovementInput(Direction, MoveValue.Y);
 		}
 
 		// Right/Left direction
@@ -216,6 +211,14 @@ void ACharacterController::Move(const FInputActionValue& Value) {
 			AddMovementInput(Direction, MoveValue.X);
 		}
 	}
+}
+
+void ACharacterController::StartSprint() {
+	GetCharacterMovement()->MaxWalkSpeed = 250;
+}
+
+void ACharacterController::FinishSprint() {
+	GetCharacterMovement()->MaxWalkSpeed = 125;
 }
 
 void ACharacterController::Look(const FInputActionValue& Value) {
@@ -230,6 +233,22 @@ void ACharacterController::Look(const FInputActionValue& Value) {
 
 		if (LookValue.Y != 0.f) {
 			AddControllerPitchInput(LookValue.Y);
+		}
+	}
+}
+
+void ACharacterController::ControllerLook(const FInputActionValue& Value) {
+	if (Controller != nullptr) {
+
+		const FVector2D LookValue = Value.Get<FVector2D>();
+
+		if (LookValue.X != 0.f) {
+			AddControllerYawInput(LookValue.X * LookRotationRateX * GetWorld()->GetDeltaSeconds());
+
+		}
+
+		if (LookValue.Y != 0.f) {
+			AddControllerPitchInput(LookValue.Y * LookRotationRateY * GetWorld()->GetDeltaSeconds());
 		}
 	}
 }
@@ -383,6 +402,14 @@ void ACharacterController::ToggleItemPickup() {
 
 		if (!bHoldingItem) {
 			CurrentItem = NULL;
+		}
+	}
+}
+
+void ACharacterController::Interact() {
+	if (bInspecting) {
+		if (PlayerController) {
+			AddItemToInventory();
 		}
 	}
 }

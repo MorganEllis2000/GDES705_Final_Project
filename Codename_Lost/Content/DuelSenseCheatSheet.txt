@@ -1,0 +1,34 @@
+Vender ID: 0x054C
+Product ID: 0x0CE6
+
+R2 Trigger: GenericUSBController Axis 1
+L2 Trigger: GenericUSBController Axis 2
+
+(Remember to check the Gamepad Stick for left and right stick axes)
+Right Stick Up/Down: GenericUSBController Axis 3
+Right Stick Left/Right: GenericUSBController Axis 4
+
+Left Stick Up/Down:  GenericUSBController Axis 5
+Left Stick Left/Right: GenericUSBController Axis 6
+
+DPad : GenericUSBController Axis 8 (0~1.143, when no input outputs 1.143, 0 is when up is pressed)
+
+Square Button  : GenericUSBController Button 1 
+X Button            : GenericUSBController Button 2
+Circle Button    : GenericUSBController Button 3
+Triangle Button: GenericUSBController Button 4
+
+L1 Button: GenericUSBController Button 5
+R1 Button: GenericUSBController Button 6
+L2 (as button): GenericUSBController Button 7
+R2 (as button): GenericUSBController Button 8
+
+Share Button: GenericUSBController Button 9
+Option Button: GenericUSBController Button 10
+
+L3 Button: GenericUSBController Button 11
+R3 Button: GenericUSBController Button 12
+
+PS Button: GenericUSBController Button 13
+TouchPad Button: GenericUSBController Button 14
+Mute Button: GenericUSBController Button 15

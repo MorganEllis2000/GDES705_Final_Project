@@ -34,9 +34,17 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputMove;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputSprint_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputSprint;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputLook_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputLook;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputControllerLook_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputControllerLook;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputCrouch_MetaData[];
 #endif
@@ -88,12 +96,26 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputMove = { "InputMove", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputMove), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputMove_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputMove_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputSprint_MetaData[] = {
+		{ "Category", "MyInputConfigData" },
+		{ "ModuleRelativePath", "MyInputConfigData.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputSprint = { "InputSprint", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputSprint), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputSprint_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputSprint_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLook_MetaData[] = {
 		{ "Category", "MyInputConfigData" },
 		{ "ModuleRelativePath", "MyInputConfigData.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLook = { "InputLook", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputLook), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLook_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLook_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputControllerLook_MetaData[] = {
+		{ "Category", "MyInputConfigData" },
+		{ "ModuleRelativePath", "MyInputConfigData.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputControllerLook = { "InputControllerLook", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputControllerLook), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputControllerLook_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputControllerLook_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputCrouch_MetaData[] = {
 		{ "Category", "MyInputConfigData" },
@@ -145,7 +167,9 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputShoot = { "InputShoot", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputShoot), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputShoot_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputShoot_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UMyInputConfigData_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputMove,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputSprint,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLook,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputControllerLook,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputCrouch,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLean,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputFlashlight,
@@ -191,9 +215,9 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UMyInputConfigData, UMyInputConfigData::StaticClass, TEXT("UMyInputConfigData"), &Z_Registration_Info_UClass_UMyInputConfigData, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyInputConfigData), 1313411329U) },
+		{ Z_Construct_UClass_UMyInputConfigData, UMyInputConfigData::StaticClass, TEXT("UMyInputConfigData"), &Z_Registration_Info_UClass_UMyInputConfigData, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyInputConfigData), 455719437U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_609708464(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_4079933139(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
