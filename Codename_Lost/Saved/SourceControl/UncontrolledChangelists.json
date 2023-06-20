@@ -5,7 +5,37 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Levels/Level1.umap"
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Levels/Level1.umap",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Widgets/WBP_UIHUD.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Blueprints/BP_Glock.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Widgets/WBP_HowToInspect.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/temp_textureEditorIsolateSelectSet.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/aiStandardSurface1SG.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/g17_sdr.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/Glock17.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/Glock17_Glock17.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/Glock17_Magazine.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/Glock17_Slide.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock/Glock17_Trigger.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock17_Trigger.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock17_Slide.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock17_Magazine.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock17_Glock17.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glock17.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/g17_sdr.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/aiStandardSurface1SG.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/temp_textureEditorIsolateSelectSet.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Blueprints/BP_Door.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Widgets/WBP_Inventory.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Widgets/WBP_InventoryItem.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Door27.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Door27_ncl1_1.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Door27_ncl1_2.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Glass.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Material__39.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/Material__40.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/uploads_files_602596_Door27_Cylinder01.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Meshes/uploads_files_602596_Door27_Object01.uasset"
 			]
 		}
 	]

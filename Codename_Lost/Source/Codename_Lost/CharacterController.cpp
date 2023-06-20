@@ -99,8 +99,11 @@ void ACharacterController::Tick(float DeltaTime)
 	{
 		if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
 		{
-			CurrentItem = Cast<APickup>(Hit.GetActor());
-			bShowCanInspectWidget = true;
+			if (Cast<APickup>(Hit.GetActor())) {
+				CurrentItem = Cast<APickup>(Hit.GetActor());
+				bShowCanInspectWidget = true;
+			}
+
 		}
 		else
 		{
