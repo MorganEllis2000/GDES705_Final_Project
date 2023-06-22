@@ -4,6 +4,7 @@
 #include "Flashlight.h"
 #include "Components/SpotLightComponent.h"
 #include "TimerManager.h"
+#include "Engine/EngineTypes.h"
 
 // Sets default values
 AFlashlight::AFlashlight()
@@ -18,11 +19,11 @@ AFlashlight::AFlashlight()
 	Light->SetupAttachment(Mesh);
 	Light->Intensity = 0.f;
 
-	MaxBatteryLife = 1.f;
+	MaxBatteryLife = 60.f;
 	CurrentBatteryLife = MaxBatteryLife;
 
-	DrainBatteryLifeTickTime = 3.5f;
-	BatteryDrainPerTick = 0.05f;
+	DrainBatteryLifeTickTime = 1.f;
+	BatteryDrainPerTick = 1.f;
 
 	bIsLightOn = false;
 
@@ -33,6 +34,7 @@ AFlashlight::AFlashlight()
 void AFlashlight::BeginPlay()
 {
 	Super::BeginPlay();
+	GetWorld()->GetTimerManager().SetTimer(FlashlightRechargeTimerHandle, this, &AFlashlight::BatteryDrain, DrainBatteryLifeTickTime, true);
 	
 }
 
@@ -85,11 +87,19 @@ void AFlashlight::BatteryDrain()
 		{
 			CurrentBatteryLife -= BatteryDrainPerTick;
 			LightDrained.Broadcast(CurrentBatteryLife);
+			GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentBatteryLife));
 		}
 		else
 		{
 			CurrentBatteryLife = 0.f;
 			TurnLightOff();
+		}
+	}
+	else {
+		if (CurrentBatteryLife < MaxBatteryLife) {
+			CurrentBatteryLife += BatteryDrainPerTick;
+			LightDrained.Broadcast(CurrentBatteryLife);
+			GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentBatteryLife));
 		}
 	}
 }

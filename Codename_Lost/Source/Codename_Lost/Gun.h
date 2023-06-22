@@ -20,6 +20,10 @@ public:
 
 	void PullTrigger();
 
+	void Reload();
+
+	void ReloadTimer();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -32,13 +36,27 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ammo")
+	float MaxReserveAmmo;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ammo")
+	float CurrentReserveAmmo;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ammo")
+	float MagazineSize;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ammo")
+	float CurrentAmmo;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
+	float ReloadTime;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bIsReloading;
 protected:
+	FTimerHandle ReloadTimerHandle;
 
 private:
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* Root;
-
-	
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* MuzzleFlash;

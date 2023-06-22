@@ -83,6 +83,7 @@ private:
 
 	// Gun Functions
 	void Shoot();
+	void Reload();
 public:	
 
 	// Movement Variables
@@ -101,7 +102,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FVector2D CameraInitalPos;
-
 
 	// Flashlight Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")

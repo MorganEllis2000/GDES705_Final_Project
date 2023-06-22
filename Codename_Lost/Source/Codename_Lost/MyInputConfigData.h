@@ -47,6 +47,10 @@ public:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
     UInputAction* InputOpenInventory;
 
-     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
     UInputAction* InputShoot;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+    UInputAction* InputReload;
+
 };

@@ -72,6 +72,13 @@ void ACharacterController::BeginPlay()
 	GetMesh()->HideBoneByName(TEXT("hand_r"), EPhysBodyOp::PBO_None);
 	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Glock->SetOwner(this);
+
+	Glock->MagazineSize = 12;
+	Glock->CurrentReserveAmmo = 24;
+	Glock->MaxReserveAmmo = 36;
+	Glock->CurrentAmmo = Glock->MagazineSize;
+	Glock->ReloadTime = 3.f;
+
 	
 	if (FlashlightClass) {
 		Flashlight = GetWorld()->SpawnActor<AFlashlight>(FlashlightClass);
@@ -178,6 +185,7 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	// Shooting
 	EnhancedInputComponent->BindAction(InputActions->InputShoot, ETriggerEvent::Started, this, &ACharacterController::Shoot);
+	EnhancedInputComponent->BindAction(InputActions->InputReload, ETriggerEvent::Started, this, &ACharacterController::Reload);
 }
 
 void ACharacterController::LookAt(FVector LookAtTarget)
@@ -467,7 +475,12 @@ void ACharacterController::Shoot()
 	if (!bInspecting) {
 		Glock->PullTrigger();
 	}
-	
+}
+
+void ACharacterController::Reload() {
+	if (!bInspecting) {
+		Glock->Reload();
+	}
 }
 #pragma endregion
 

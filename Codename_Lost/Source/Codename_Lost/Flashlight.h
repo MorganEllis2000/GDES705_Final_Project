@@ -51,6 +51,8 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Flashlight")
 	FFlashLightDrained LightDrained;
 
+	FTimerHandle FlashlightRechargeTimerHandle;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
