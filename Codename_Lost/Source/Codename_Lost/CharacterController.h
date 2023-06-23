@@ -104,6 +104,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FVector2D CameraInitalPos;
 
+	bool bCanSprint;
+
 	// Flashlight Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")
 	TSubclassOf<class AFlashlight> FlashlightClass;
@@ -164,7 +166,7 @@ public:
 	class USceneComponent* RootComponent;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
-	class UStaticMeshComponent* PlayerMesh;
+	class USkeletalMeshComponent* PlayerMesh;
 
 protected:
 

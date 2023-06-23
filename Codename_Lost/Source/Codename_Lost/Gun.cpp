@@ -64,8 +64,6 @@ void AGun::PullTrigger()
 		//DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2, FColor::Red, true);
 
 		FVector End = Location + Rotation.Vector() * MaxRange;
-		
-		//FVector End = LaserSight->GetRelativeLocation() + LaserSight->GetRelativeRotation().Vector() * MaxRange;
 
 		FHitResult Hit;
 		bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1);
@@ -74,8 +72,7 @@ void AGun::PullTrigger()
 			DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
 			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, Hit.Location, ShotDirection.Rotation());
 		}
-	}
-	else {
+	} else {
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, TEXT("RELOAD"));
 	}
 }

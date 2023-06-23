@@ -45,6 +45,7 @@ ACharacterController::ACharacterController()
 	HoldingComponent = CreateDefaultSubobject<USceneComponent>(TEXT("HoldingComponent"));
 	HoldingComponent->SetupAttachment(PlayerCamera);
 
+	GetMesh()->SetupAttachment(PlayerCamera);
 	SkeletalMesh = Cast<USkeletalMeshComponent>(this->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 	
 	GetCharacterMovement()->MaxWalkSpeedCrouched = 125.f;
@@ -216,12 +217,12 @@ void ACharacterController::Move(const FInputActionValue& Value) {
 		if (MoveValue.Y != 0.0f) {
 			// Get forward vector
 			const FVector Direction = MovementRotation.RotateVector(FVector::ForwardVector);
+			bCanSprint = true;
 			AddMovementInput(Direction, MoveValue.Y);
 		}
 
 		// Right/Left direction
 		if (MoveValue.X != 0.f) {
-
 			// Get right vector
 			const FVector Direction = MovementRotation.RotateVector(FVector::RightVector);
 			AddMovementInput(Direction, MoveValue.X);
