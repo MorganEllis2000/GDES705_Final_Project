@@ -19,10 +19,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void PullTrigger();
+	void PullTrigger(FVector End);
 
 	void Reload();
 
 	void ReloadTimer();
+
+	void ToggleLaserSight();
 
 protected:
 	// Called when the game starts or when spawned
@@ -36,6 +39,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
+	class UNiagaraComponent* LaserSight;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ammo")
 	float MaxReserveAmmo;
@@ -51,6 +57,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsReloading;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bIsLaserOn;
 protected:
 	FTimerHandle ReloadTimerHandle;
 

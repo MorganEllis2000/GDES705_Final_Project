@@ -69,8 +69,11 @@ void ACharacterController::BeginPlay()
 	Super::BeginPlay();
 
 	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
-	GetMesh()->HideBoneByName(TEXT("hand_r"), EPhysBodyOp::PBO_None);
-	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+	//Glock->AttachToComponent(PlayerCamera, FAttachmentTransformRules::KeepRelativeTransform);
+	//Glock->SetActorRelativeLocation(FVector((31.400904f, -7.242783f, -1.818945f)));
+	//GetMesh()->HideBoneByName(TEXT("hand_r"), EPhysBodyOp::PBO_None);
+	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("middle_01_l"));
+	//Glock->SetActorRelativeRotation(FRotator(-126.316993f, 36.154595f, 53.225340f));
 	Glock->SetOwner(this);
 
 	Glock->MagazineSize = 12;
@@ -186,6 +189,8 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	// Shooting
 	EnhancedInputComponent->BindAction(InputActions->InputShoot, ETriggerEvent::Started, this, &ACharacterController::Shoot);
 	EnhancedInputComponent->BindAction(InputActions->InputReload, ETriggerEvent::Started, this, &ACharacterController::Reload);
+	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Started, this, &ACharacterController::Aim);
+	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::Aim);
 }
 
 void ACharacterController::LookAt(FVector LookAtTarget)
@@ -473,6 +478,7 @@ void ACharacterController::AddItemToInventory() {
 void ACharacterController::Shoot()
 {
 	if (!bInspecting) {
+		FVector EndPos = PlayerCamera->GetForwardVector() * 10000.f * PlayerCamera->GetComponentLocation();
 		Glock->PullTrigger();
 	}
 }
@@ -481,6 +487,10 @@ void ACharacterController::Reload() {
 	if (!bInspecting) {
 		Glock->Reload();
 	}
+}
+
+void ACharacterController::Aim() {
+	Glock->ToggleLaserSight();
 }
 #pragma endregion
 

@@ -84,6 +84,7 @@ private:
 	// Gun Functions
 	void Shoot();
 	void Reload();
+	void Aim();
 public:	
 
 	// Movement Variables
