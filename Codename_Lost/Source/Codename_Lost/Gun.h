@@ -54,6 +54,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
 	float ReloadTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
+	float Damage = 10.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsReloading;

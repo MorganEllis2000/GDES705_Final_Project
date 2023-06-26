@@ -6,6 +6,8 @@
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "NiagaraComponent.h"
+#include "Engine/DamageEvents.h"
+#include "GameFramework/DamageType.h"
 
 // Sets default values
 AGun::AGun()
@@ -50,7 +52,6 @@ void AGun::PullTrigger()
 		CurrentAmmo -= 1;
 		UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, MuzzleComponent, TEXT("MuzzleComponent"));
 
-		UE_LOG(LogTemp, Warning, TEXT("You've Been Shot"));
 		APawn* OwnerPawn = Cast<APawn>(GetOwner());
 
 		if (OwnerPawn == nullptr) return;
@@ -71,6 +72,12 @@ void AGun::PullTrigger()
 			FVector ShotDirection = -Rotation.Vector();
 			DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
 			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, Hit.Location, ShotDirection.Rotation());
+			AActor* HitActor = Hit.GetActor();
+			if (HitActor != nullptr) {
+				//FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
+				UGameplayStatics::ApplyDamage(HitActor, Damage, OwnerController, this, UDamageType::StaticClass());
+				//HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+			}
 		}
 	} else {
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, TEXT("RELOAD"));

@@ -35,13 +35,15 @@ public:
 	void LookAt(FVector LookAtTarget);
 
 	// Inventory Functions
-
 	void AddToInventory(class APickup* actor);
 	void OpenInventory();
 	void UpdateInventoryDelegate();
 	void AddItemToInventory();
 	UFUNCTION(BlueprintCallable)
 	void PrintInventory();
+
+	// Damage Functions
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 protected:
 	// Called when the game starts or when spawned
@@ -85,6 +87,8 @@ private:
 	void Shoot();
 	void Reload();
 	void Aim();
+	void ZoomIn();
+	void ZoomOut();
 public:	
 
 	// Movement Variables
@@ -168,6 +172,19 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	class USkeletalMeshComponent* PlayerMesh;
 
+
+	// Gun Variables
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool bIsSprinting;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool bIsZoomedIn;
+
+	UPROPERTY(EditDefaultsOnly)
+	float MaxHealth = 100.f;
+
+	UPROPERTY(VisibleAnywhere)
+	float Health;
 protected:
 
 private:
@@ -179,9 +196,17 @@ private:
 
 	class USkeletalMeshComponent* SkeletalMesh;
 
-	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
-	float LookRotationRateX = 10.f;
+	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
+	float MouseLookRotationRateX = 1.f;
+
+	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
+	float MouseLookRotationRateY = 1.f;
 
 	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
-	float LookRotationRateY = 10.f;
+	float ControllerLookRotationRateX = 10.f;
+
+	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
+	float ControllerLookRotationRateY = 10.f;
+
+
 };

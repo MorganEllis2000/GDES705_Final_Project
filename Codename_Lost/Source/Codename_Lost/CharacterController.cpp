@@ -38,6 +38,7 @@ ACharacterController::ACharacterController()
 	PlayerCamera->SetupAttachment(RootComponent);
 	PlayerCamera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
 	PlayerCamera->bUsePawnControlRotation = true;
+	PlayerCamera->SetFieldOfView(90.f);
 
 	CrouchEyeOffset = FVector(0.f);
 	CrouchSpeed = 6.f;
@@ -69,6 +70,8 @@ void ACharacterController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Health = MaxHealth;
+
 	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
 	//Glock->AttachToComponent(PlayerCamera, FAttachmentTransformRules::KeepRelativeTransform);
 	//Glock->SetActorRelativeLocation(FVector((31.400904f, -7.242783f, -1.818945f)));
@@ -90,6 +93,9 @@ void ACharacterController::BeginPlay()
 			Flashlight->AttachToComponent(PlayerCamera, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true));
 		}
 	}
+
+	Flashlight->TurnLightOn();
+	Flashlight->TurnLightOff();
 
 }
 
@@ -190,22 +196,19 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	// Shooting
 	EnhancedInputComponent->BindAction(InputActions->InputShoot, ETriggerEvent::Started, this, &ACharacterController::Shoot);
 	EnhancedInputComponent->BindAction(InputActions->InputReload, ETriggerEvent::Started, this, &ACharacterController::Reload);
-	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Started, this, &ACharacterController::Aim);
-	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::Aim);
+	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Triggered, this, &ACharacterController::ZoomIn);
+	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::ZoomOut);
 }
 
-void ACharacterController::LookAt(FVector LookAtTarget)
+float ACharacterController::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
-	FVector ToTarget = LookAtTarget - RootComponent->GetComponentLocation();
-	FRotator LookAtRotation = FRotator(0.f, ToTarget.Rotation().Yaw, 0.f);
-	GetCapsuleComponent()->SetRelativeRotation(
-		FMath::RInterpTo(
-			GetCapsuleComponent()->GetComponentRotation(),
-			LookAtRotation,
-			UGameplayStatics::GetWorldDeltaSeconds(this),
-			25.f));
-}
+	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	DamageToApply = FMath::Min(Health, DamageToApply);
+	Health -= DamageToApply;
+	UE_LOG(LogTemp, Warning, TEXT("Health Left %f"), Health);
 
+	return DamageToApply;
+}
 #pragma endregion
 
 #pragma region Player Movement
@@ -230,26 +233,17 @@ void ACharacterController::Move(const FInputActionValue& Value) {
 	}
 }
 
-void ACharacterController::StartSprint() {
-	GetCharacterMovement()->MaxWalkSpeed = 250;
-}
-
-void ACharacterController::FinishSprint() {
-	GetCharacterMovement()->MaxWalkSpeed = 125;
-}
-
 void ACharacterController::Look(const FInputActionValue& Value) {
 	if (Controller != nullptr) {
 
 		const FVector2D LookValue = Value.Get<FVector2D>();
 
 		if (LookValue.X != 0.f) {
-			AddControllerYawInput(LookValue.X);
-
+			AddControllerYawInput(LookValue.X * MouseLookRotationRateX *GetWorld()->GetDeltaSeconds());
 		}
 
 		if (LookValue.Y != 0.f) {
-			AddControllerPitchInput(LookValue.Y);
+			AddControllerPitchInput(LookValue.Y * MouseLookRotationRateY * GetWorld()->GetDeltaSeconds());
 		}
 	}
 }
@@ -260,13 +254,38 @@ void ACharacterController::ControllerLook(const FInputActionValue& Value) {
 		const FVector2D LookValue = Value.Get<FVector2D>();
 
 		if (LookValue.X != 0.f) {
-			AddControllerYawInput(LookValue.X * LookRotationRateX * GetWorld()->GetDeltaSeconds());
-
+			AddControllerYawInput(LookValue.X * ControllerLookRotationRateX * GetWorld()->GetDeltaSeconds());
 		}
 
 		if (LookValue.Y != 0.f) {
-			AddControllerPitchInput(LookValue.Y * LookRotationRateY * GetWorld()->GetDeltaSeconds());
+			AddControllerPitchInput(LookValue.Y * ControllerLookRotationRateY * GetWorld()->GetDeltaSeconds());
 		}
+	}
+}
+
+void ACharacterController::StartSprint() {
+	if (GetCharacterMovement() && bIsZoomedIn == false) {
+		GetCharacterMovement()->MaxWalkSpeed = 250;
+		bIsSprinting = true;
+	}	
+}
+
+void ACharacterController::FinishSprint() {
+	if (GetCharacterMovement()) {
+		GetCharacterMovement()->MaxWalkSpeed = 125;
+		bIsSprinting = false;
+	}
+}
+
+void ACharacterController::ZoomIn() {
+	if (PlayerCamera && bIsSprinting == false) {
+		PlayerCamera->SetFieldOfView(70.f);
+	}
+}
+
+void ACharacterController::ZoomOut() {
+	if (PlayerCamera) {
+		PlayerCamera->SetFieldOfView(90.f);
 	}
 }
 
@@ -370,6 +389,18 @@ void ACharacterController::CalcCamera(float DeltaTime, struct FMinimalViewInfo& 
 		OutResult.Location += CrouchEyeOffset;
 	}
 }
+
+void ACharacterController::LookAt(FVector LookAtTarget)
+{
+	FVector ToTarget = LookAtTarget - RootComponent->GetComponentLocation();
+	FRotator LookAtRotation = FRotator(0.f, ToTarget.Rotation().Yaw, 0.f);
+	GetCapsuleComponent()->SetRelativeRotation(
+		FMath::RInterpTo(
+			GetCapsuleComponent()->GetComponentRotation(),
+			LookAtRotation,
+			UGameplayStatics::GetWorldDeltaSeconds(this),
+			25.f));
+}
 #pragma endregion
 
 #pragma region Pickup System
@@ -446,6 +477,8 @@ void ACharacterController::PrintInventory() {
 	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *sInventory);
 }
 
+
+
 void ACharacterController::OpenInventory() {
 	bIsInventoryOpen = !bIsInventoryOpen;
 	GamePaused = !GamePaused;
@@ -511,3 +544,4 @@ void ACharacterController::ToggleFlashlight() {
 		Flashlight->ToggleLight();
 	}
 }
+
