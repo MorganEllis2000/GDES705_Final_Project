@@ -20,6 +20,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Gun.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "TimerManager.h"
 
 #pragma region Constructors/Setup
 // Sets default values
@@ -27,9 +28,6 @@ ACharacterController::ACharacterController()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	
-
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
 	RootComponent->SetupAttachment(GetRootComponent());
@@ -60,7 +58,10 @@ ACharacterController::ACharacterController()
 	RollMax = 10.f;
 	RollMin = -10.f;
 
-	GetCharacterMovement()->MaxWalkSpeed = 125;
+	GetCharacterMovement()->MaxWalkSpeed = 175;
+
+	MouseLookRotationX = MouseLookRotationRateX;
+	MouseLookRotationY = MouseLookRotationRateY;
 }
 
 
@@ -73,11 +74,7 @@ void ACharacterController::BeginPlay()
 	Health = MaxHealth;
 
 	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
-	//Glock->AttachToComponent(PlayerCamera, FAttachmentTransformRules::KeepRelativeTransform);
-	//Glock->SetActorRelativeLocation(FVector((31.400904f, -7.242783f, -1.818945f)));
-	//GetMesh()->HideBoneByName(TEXT("hand_r"), EPhysBodyOp::PBO_None);
 	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("middle_01_l"));
-	//Glock->SetActorRelativeRotation(FRotator(-126.316993f, 36.154595f, 53.225340f));
 	Glock->SetOwner(this);
 
 	Glock->MagazineSize = 12;
@@ -97,6 +94,7 @@ void ACharacterController::BeginPlay()
 	Flashlight->TurnLightOn();
 	Flashlight->TurnLightOff();
 
+	GetWorld()->GetTimerManager().SetTimer(StaminaRechargeTimerHandle, this, &ACharacterController::FinishSprint, DrainStaminaTickTime, true);
 }
 
 // Called every frame
@@ -110,7 +108,6 @@ void ACharacterController::Tick(float DeltaTime)
 	Start = PlayerCamera->GetComponentLocation();
 	ForwardVector = PlayerCamera->GetForwardVector();
 	End = ((ForwardVector * 200.f) + Start);
-	//DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
 
 	if (!bHoldingItem)
 	{
@@ -120,7 +117,6 @@ void ACharacterController::Tick(float DeltaTime)
 				CurrentItem = Cast<APickup>(Hit.GetActor());
 				bShowCanInspectWidget = true;
 			}
-
 		}
 		else
 		{
@@ -142,9 +138,16 @@ void ACharacterController::Tick(float DeltaTime)
 		}
 	} else {
 		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
+	}
 
-		if (bHoldingItem) {
-			//HoldingComponent->SetRelativeLocation(FVector(50.f, 0.f, 0.f));
+	if (bIsCrouched) {
+		if (SkeletalMesh->GetRelativeLocation().Z != -140.f) {
+			SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
+		}
+	}
+	else {
+		if (SkeletalMesh->GetRelativeLocation().Z != -140.f) {
+			SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 		}
 	}
 }
@@ -264,28 +267,36 @@ void ACharacterController::ControllerLook(const FInputActionValue& Value) {
 }
 
 void ACharacterController::StartSprint() {
-	if (GetCharacterMovement() && bIsZoomedIn == false) {
-		GetCharacterMovement()->MaxWalkSpeed = 250;
+	if (GetCharacterMovement() && bIsZoomedIn == false && CurrentStamina > 0) {
+		GetCharacterMovement()->MaxWalkSpeed = 250.f;
 		bIsSprinting = true;
-	}	
+		CurrentStamina -= StaminaDrainPerTick;
+		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
+	}
+	else {
+		bIsSprinting = false;
+		GetCharacterMovement()->MaxWalkSpeed = 125.f;
+	}
 }
 
 void ACharacterController::FinishSprint() {
-	if (GetCharacterMovement()) {
-		GetCharacterMovement()->MaxWalkSpeed = 125;
+	if (GetCharacterMovement() && CurrentStamina < MaxStamina) {
+		GetCharacterMovement()->MaxWalkSpeed = 125.f;
 		bIsSprinting = false;
+		CurrentStamina += StaminaDrainPerTick;
+		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
 	}
 }
 
 void ACharacterController::ZoomIn() {
 	if (PlayerCamera && bIsSprinting == false) {
-		PlayerCamera->SetFieldOfView(70.f);
+		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 60.f, 0.1f));
 	}
 }
 
 void ACharacterController::ZoomOut() {
 	if (PlayerCamera) {
-		PlayerCamera->SetFieldOfView(90.f);
+		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
 	}
 }
 
@@ -362,7 +373,6 @@ void ACharacterController::OnStartCrouch(float HalfHeightAdjust, float ScaledHal
 	float StartBaseEyeHeight = BaseEyeHeight;
 	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
 	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight + HalfHeightAdjust;
-	GetCapsuleComponent()->InitCapsuleSize(40.f, 32.f);
 	SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 	if (PlayerCamera) {
 		PlayerCamera->SetRelativeLocation(FVector(CameraInitalPos, BaseEyeHeight), false);
@@ -381,7 +391,6 @@ void ACharacterController::OnEndCrouch(float HalfHeightAdjust, float ScaledHalfH
 	float StartBaseEyeHeight = BaseEyeHeight;
 	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
 	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight - HalfHeightAdjust;
-	GetCapsuleComponent()->InitCapsuleSize(40.f, 90.f);
 	SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 	if (PlayerCamera) {
 		PlayerCamera->SetRelativeLocation(FVector(CameraInitalPos, BaseEyeHeight), false);
@@ -422,6 +431,8 @@ void ACharacterController::OnInspect()
 		ToggleMovement();
 		SkeletalMesh->SetVisibility(false);
 		Glock->Mesh->SetVisibility(false);
+		MouseLookRotationRateX = MouseLookRotationRateX * 1.5f;
+		MouseLookRotationRateY = MouseLookRotationRateY * 1.5f;
 	}
 	else {		
 		bInspecting = false;	
@@ -439,6 +450,8 @@ void ACharacterController::OnInspectReleased()
 		ToggleItemPickup();
 		SkeletalMesh->SetVisibility(true);
 		Glock->Mesh->SetVisibility(true);
+		MouseLookRotationRateX = MouseLookRotationX;
+		MouseLookRotationRateY = MouseLookRotationY;
 	}
 	else {	
 		bInspecting = false;
