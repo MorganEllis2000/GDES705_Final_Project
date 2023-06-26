@@ -14,4 +14,13 @@ class CODENAME_LOST_API ACodename_LostGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	UPROPERTY(EditAnywhere)
+	bool bHasFirstKey;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FString> ArrayOfKeys;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<FString, bool> TMapOfKeys;
 };

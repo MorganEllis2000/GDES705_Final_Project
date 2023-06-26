@@ -28,7 +28,7 @@ ACharacterController::ACharacterController()
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
+	
 
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
@@ -349,7 +349,6 @@ void ACharacterController::StartCrouch() {
 		}
 		else {
 			ACharacter::Crouch();
-			UE_LOG(LogTemp, Display, TEXT("CROUCH"));
 		}
 	}
 }
@@ -363,9 +362,14 @@ void ACharacterController::OnStartCrouch(float HalfHeightAdjust, float ScaledHal
 	float StartBaseEyeHeight = BaseEyeHeight;
 	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
 	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight + HalfHeightAdjust;
+	GetCapsuleComponent()->InitCapsuleSize(40.f, 32.f);
+	SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 	if (PlayerCamera) {
 		PlayerCamera->SetRelativeLocation(FVector(CameraInitalPos, BaseEyeHeight), false);
 	}
+
+	
+	
 }
 
 void ACharacterController::OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust)
@@ -377,9 +381,14 @@ void ACharacterController::OnEndCrouch(float HalfHeightAdjust, float ScaledHalfH
 	float StartBaseEyeHeight = BaseEyeHeight;
 	Super::OnStartCrouch(HalfHeightAdjust, ScaledHalfHeightAdjust);
 	CrouchEyeOffset.Z += StartBaseEyeHeight - BaseEyeHeight - HalfHeightAdjust;
+	GetCapsuleComponent()->InitCapsuleSize(40.f, 90.f);
+	SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 	if (PlayerCamera) {
 		PlayerCamera->SetRelativeLocation(FVector(CameraInitalPos, BaseEyeHeight), false);
 	}
+
+	
+	
 }
 
 void ACharacterController::CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult)
@@ -465,6 +474,11 @@ void ACharacterController::Interact() {
 void ACharacterController::AddToInventory(class APickup* actor) {
 	_inventory.Add(actor);
 }
+
+void ACharacterController::RemoveFromInventory(class APickup* actor) {
+	_inventory.Remove(actor);
+}
+
 
 void ACharacterController::PrintInventory() {
 	FString sInventory = "";

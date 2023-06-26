@@ -20,15 +20,25 @@ public:
 
 
 protected:
-
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 private:
 
 public:	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* Door;
 
+
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* MyBoxComponent;
+
+	UPROPERTY(EditAnywhere)
+	bool bIsDoorLocked;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(EditCondition="bIsDoorLocked"))
+	FString KeyName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(EditCondition="bIsDoorLocked"))
+	class APickup* PickupObject;
 
 	bool Open;
 	float RotateValue;
@@ -43,5 +53,5 @@ public:
 protected:
 
 private:
-
+	class ACharacterController* Character;
 };

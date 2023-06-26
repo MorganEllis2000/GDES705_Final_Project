@@ -36,6 +36,7 @@ public:
 
 	// Inventory Functions
 	void AddToInventory(class APickup* actor);
+	void RemoveFromInventory(class APickup* actor);
 	void OpenInventory();
 	void UpdateInventoryDelegate();
 	void AddItemToInventory();

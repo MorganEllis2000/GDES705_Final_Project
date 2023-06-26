@@ -8,6 +8,8 @@
 #include "Internationalization/Text.h"
 #include "CharacterController.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
+#include "Codename_LostGameModeBase.h"
+#include "Containers/UnrealString.h"
 
 // Sets default values
 APickup::APickup()
@@ -85,6 +87,12 @@ void APickup::OnInteract()
 		Show(false);
 
 		player->AddToInventory(this);
+		ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+		for (auto& Elem : GameMode->TMapOfKeys) {
+			if (ObjectName.ToString() == Elem.Key) {
+				Elem.Value = true;
+			}
+		}
 	}
 	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
 }
