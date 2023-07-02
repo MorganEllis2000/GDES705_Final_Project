@@ -16,6 +16,7 @@ class CODENAME_LOST_API APickup : public AActor
 public:	
 	// Sets default values for this actor's properties
 	APickup();
+	UFUNCTION(BlueprintCallable)
 	virtual void Show(bool visible);
 
 protected:

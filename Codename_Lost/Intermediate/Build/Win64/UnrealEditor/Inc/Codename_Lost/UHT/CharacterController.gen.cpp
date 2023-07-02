@@ -85,6 +85,20 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		P_THIS->AddItemToInventory();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ACharacterController::execUpdateInventoryDelegate)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->UpdateInventoryDelegate();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ACharacterController::execClearInventory)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ClearInventory();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ACharacterController::execAddToInventory)
 	{
 		P_GET_OBJECT(APickup,Z_Param_actor);
@@ -99,7 +113,9 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "AddItemToInventory", &ACharacterController::execAddItemToInventory },
 			{ "AddToInventory", &ACharacterController::execAddToInventory },
+			{ "ClearInventory", &ACharacterController::execClearInventory },
 			{ "PrintInventory", &ACharacterController::execPrintInventory },
+			{ "UpdateInventoryDelegate", &ACharacterController::execUpdateInventoryDelegate },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -157,6 +173,28 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ACharacterController_ClearInventory_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "ClearInventory", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACharacterController_ClearInventory()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ACharacterController_PrintInventory_Statics
 	{
 #if WITH_METADATA
@@ -176,6 +214,28 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACharacterController_PrintInventory_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "UpdateInventoryDelegate", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -348,7 +408,9 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACharacterController_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ACharacterController_AddItemToInventory, "AddItemToInventory" }, // 2201839976
 		{ &Z_Construct_UFunction_ACharacterController_AddToInventory, "AddToInventory" }, // 3523651720
+		{ &Z_Construct_UFunction_ACharacterController_ClearInventory, "ClearInventory" }, // 3398088592
 		{ &Z_Construct_UFunction_ACharacterController_PrintInventory, "PrintInventory" }, // 2165920787
+		{ &Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate, "UpdateInventoryDelegate" }, // 2546535799
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::Class_MetaDataParams[] = {
@@ -702,9 +764,9 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 2736027283U) },
+		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 2424756139U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_2708527307(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_2845290180(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -104,7 +104,9 @@ void APickup::Show(bool visible) {
 	this->SetActorTickEnabled(visible);
 
 	this->ObjectMesh->SetVisibility(visible);
+	this->ObjectMesh->SetSimulatePhysics(visible);
 	this->ObjectMesh->SetCollisionEnabled(collision);
+	
 	
 }
 

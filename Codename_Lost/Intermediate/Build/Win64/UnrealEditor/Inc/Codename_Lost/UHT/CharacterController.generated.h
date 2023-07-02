@@ -33,6 +33,8 @@ static inline void FUpdateIventoryDelegate_DelegateWrapper(const FMulticastScrip
  \
 	DECLARE_FUNCTION(execPrintInventory); \
 	DECLARE_FUNCTION(execAddItemToInventory); \
+	DECLARE_FUNCTION(execUpdateInventoryDelegate); \
+	DECLARE_FUNCTION(execClearInventory); \
 	DECLARE_FUNCTION(execAddToInventory);
 
 
@@ -40,6 +42,8 @@ static inline void FUpdateIventoryDelegate_DelegateWrapper(const FMulticastScrip
  \
 	DECLARE_FUNCTION(execPrintInventory); \
 	DECLARE_FUNCTION(execAddItemToInventory); \
+	DECLARE_FUNCTION(execUpdateInventoryDelegate); \
+	DECLARE_FUNCTION(execClearInventory); \
 	DECLARE_FUNCTION(execAddToInventory);
 
 

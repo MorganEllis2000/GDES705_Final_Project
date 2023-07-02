@@ -493,11 +493,19 @@ void ACharacterController::RemoveFromInventory(class APickup* actor) {
 	_inventory.Remove(actor);
 }
 
+void ACharacterController::ClearInventory() {
+	for (APickup* elem : _inventory) {
+		_inventory.Remove(elem);
+	}
+
+	UpdateInventoryDelegate();
+}
+
 void ACharacterController::PrintInventory() {
 	FString sInventory = "";
 
 	for (APickup* actor : _inventory) {
-		sInventory.Append(actor->Name);
+		sInventory.Append(actor->ObjectName.ToString());
 		sInventory.Append(" | ");
 	}
 
@@ -529,7 +537,6 @@ void ACharacterController::UpdateInventoryDelegate() {
 void ACharacterController::AddItemToInventory() {
 	CurrentItem->OnInteract();
 	OnInspectReleased();
-	UpdateInventoryDelegate(); 
 }
 #pragma endregion
 

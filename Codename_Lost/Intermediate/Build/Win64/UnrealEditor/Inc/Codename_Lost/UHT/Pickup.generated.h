@@ -17,12 +17,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_14_SPARSE_DATA
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_14_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execOnInteract);
+	DECLARE_FUNCTION(execOnInteract); \
+	DECLARE_FUNCTION(execShow);
 
 
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execOnInteract);
+	DECLARE_FUNCTION(execOnInteract); \
+	DECLARE_FUNCTION(execShow);
 
 
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_14_ACCESSORS

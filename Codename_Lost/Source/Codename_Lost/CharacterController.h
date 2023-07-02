@@ -38,7 +38,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddToInventory(class APickup* actor);
 	void RemoveFromInventory(class APickup* actor);
+	UFUNCTION(BlueprintCallable)
+	void ClearInventory();
 	void OpenInventory();
+	UFUNCTION(BlueprintCallable)
 	void UpdateInventoryDelegate();
 	UFUNCTION(BlueprintCallable)
 	void AddItemToInventory();

@@ -26,11 +26,20 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		P_THIS->OnInteract();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(APickup::execShow)
+	{
+		P_GET_UBOOL(Z_Param_visible);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->Show(Z_Param_visible);
+		P_NATIVE_END;
+	}
 	void APickup::StaticRegisterNativesAPickup()
 	{
 		UClass* Class = APickup::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "OnInteract", &APickup::execOnInteract },
+			{ "Show", &APickup::execShow },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -53,6 +62,43 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_APickup_OnInteract_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_APickup_Show_Statics
+	{
+		struct Pickup_eventShow_Parms
+		{
+			bool visible;
+		};
+		static void NewProp_visible_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_visible;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_APickup_Show_Statics::NewProp_visible_SetBit(void* Obj)
+	{
+		((Pickup_eventShow_Parms*)Obj)->visible = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_APickup_Show_Statics::NewProp_visible = { "visible", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(Pickup_eventShow_Parms), &Z_Construct_UFunction_APickup_Show_Statics::NewProp_visible_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_APickup_Show_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APickup_Show_Statics::NewProp_visible,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_APickup_Show_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Pickup.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_APickup_Show_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APickup, nullptr, "Show", nullptr, nullptr, sizeof(Z_Construct_UFunction_APickup_Show_Statics::Pickup_eventShow_Parms), Z_Construct_UFunction_APickup_Show_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_APickup_Show_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_APickup_Show_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_APickup_Show_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_APickup_Show()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_APickup_Show_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -115,6 +161,7 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_APickup_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_APickup_OnInteract, "OnInteract" }, // 233007891
+		{ &Z_Construct_UFunction_APickup_Show, "Show" }, // 3488858461
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APickup_Statics::Class_MetaDataParams[] = {
@@ -239,9 +286,9 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_APickup, APickup::StaticClass, TEXT("APickup"), &Z_Registration_Info_UClass_APickup, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APickup), 1055902510U) },
+		{ Z_Construct_UClass_APickup, APickup::StaticClass, TEXT("APickup"), &Z_Registration_Info_UClass_APickup, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APickup), 1484037739U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_926690405(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_1043353554(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Pickup_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
