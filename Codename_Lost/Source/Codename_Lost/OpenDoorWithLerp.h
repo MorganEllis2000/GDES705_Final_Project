@@ -28,7 +28,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* Door;
 
-
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* MyBoxComponent;
 

@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#pragma region Includes
 #include "CharacterController.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
@@ -21,6 +21,7 @@
 #include "Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
+#pragma endregion
 
 #pragma region Constructors/Setup
 // Sets default values
@@ -64,8 +65,6 @@ ACharacterController::ACharacterController()
 	MouseLookRotationY = MouseLookRotationRateY;
 }
 
-
-
 // Called when the game starts or when spawned
 void ACharacterController::BeginPlay()
 {
@@ -74,6 +73,8 @@ void ACharacterController::BeginPlay()
 	Health = MaxHealth;
 
 	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
+	//GetMesh()->HideBoneByName(TEXT("upperarm_l"), EPhysBodyOp::PBO_None);
+	//GetMesh()->HideBoneByName(TEXT("upperarm_r"), EPhysBodyOp::PBO_None);
 	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("middle_01_l"));
 	Glock->SetOwner(this);
 
@@ -217,7 +218,7 @@ float ACharacterController::TakeDamage(float DamageAmount, struct FDamageEvent c
 #pragma region Player Movement
 void ACharacterController::Move(const FInputActionValue& Value) {
 	if (Controller != nullptr && bCanMove) {
-		const FVector2D MoveValue = Value.Get<FVector2D>();
+		MoveValue = Value.Get<FVector2D>();
 		const FRotator MovementRotation(0, Controller->GetControlRotation().Yaw, 0);
 		// Forward/Backward direction
 		if (MoveValue.Y != 0.0f) {
@@ -267,7 +268,7 @@ void ACharacterController::ControllerLook(const FInputActionValue& Value) {
 }
 
 void ACharacterController::StartSprint() {
-	if (GetCharacterMovement() && bIsZoomedIn == false && CurrentStamina > 0) {
+	if (GetCharacterMovement() && bIsZoomedIn == false && CurrentStamina > 0 && MoveValue.Y > 0) {
 		GetCharacterMovement()->MaxWalkSpeed = 250.f;
 		bIsSprinting = true;
 		CurrentStamina -= StaminaDrainPerTick;
@@ -492,7 +493,6 @@ void ACharacterController::RemoveFromInventory(class APickup* actor) {
 	_inventory.Remove(actor);
 }
 
-
 void ACharacterController::PrintInventory() {
 	FString sInventory = "";
 
@@ -503,8 +503,6 @@ void ACharacterController::PrintInventory() {
 
 	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *sInventory);
 }
-
-
 
 void ACharacterController::OpenInventory() {
 	bIsInventoryOpen = !bIsInventoryOpen;

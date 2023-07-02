@@ -31,12 +31,16 @@ static inline void FUpdateIventoryDelegate_DelegateWrapper(const FMulticastScrip
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_SPARSE_DATA
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execPrintInventory);
+	DECLARE_FUNCTION(execPrintInventory); \
+	DECLARE_FUNCTION(execAddItemToInventory); \
+	DECLARE_FUNCTION(execAddToInventory);
 
 
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execPrintInventory);
+	DECLARE_FUNCTION(execPrintInventory); \
+	DECLARE_FUNCTION(execAddItemToInventory); \
+	DECLARE_FUNCTION(execAddToInventory);
 
 
 #define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ACCESSORS

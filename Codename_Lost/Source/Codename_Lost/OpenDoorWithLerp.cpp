@@ -73,25 +73,30 @@ void AOpenDoorWithLerp::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp
 
     if (OtherActor != nullptr && OtherActor != this && OtherComp != nullptr)
     {
-        for (auto& Elem : GameMode->TMapOfKeys) {
-            if (KeyName == Elem.Key && Elem.Value == true) {
-                
-                FVector PawnLocation = OtherActor->GetActorLocation();
-                FVector Direction = GetActorLocation() - PawnLocation;
-                Direction = UKismetMathLibrary::LessLess_VectorRotator(Direction, GetActorRotation());
+        FVector PawnLocation = OtherActor->GetActorLocation();
+        FVector Direction = GetActorLocation() - PawnLocation;
+        Direction = UKismetMathLibrary::LessLess_VectorRotator(Direction, GetActorRotation());
 
-                if (Direction.X > 0.0f)
-                {
-                    RotateValue = 90.0f;
-                }
-                else
-                {
-                    RotateValue = -90.0f;
-                }
+        if (Direction.X > 0.0f)
+        {
+            RotateValue = 90.0f;
+        }
+        else
+        {
+            RotateValue = -90.0f;
+        }
 
-                Open = true;
+        if (bIsDoorLocked == true) {
+            for (auto& Elem : GameMode->TMapOfKeys) {
+                if (KeyName == Elem.Key && Elem.Value == true) {
+                    Open = true;
+                }
             }
         }
+        else {
+            Open = true;
+        }
+
     }
 }
 

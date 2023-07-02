@@ -78,13 +78,84 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		P_THIS->PrintInventory();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ACharacterController::execAddItemToInventory)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AddItemToInventory();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ACharacterController::execAddToInventory)
+	{
+		P_GET_OBJECT(APickup,Z_Param_actor);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AddToInventory(Z_Param_actor);
+		P_NATIVE_END;
+	}
 	void ACharacterController::StaticRegisterNativesACharacterController()
 	{
 		UClass* Class = ACharacterController::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "AddItemToInventory", &ACharacterController::execAddItemToInventory },
+			{ "AddToInventory", &ACharacterController::execAddToInventory },
 			{ "PrintInventory", &ACharacterController::execPrintInventory },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "AddItemToInventory", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACharacterController_AddItemToInventory()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ACharacterController_AddToInventory_Statics
+	{
+		struct CharacterController_eventAddToInventory_Parms
+		{
+			APickup* actor;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_actor;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::NewProp_actor = { "actor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CharacterController_eventAddToInventory_Parms, actor), Z_Construct_UClass_APickup_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::NewProp_actor,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "AddToInventory", nullptr, nullptr, sizeof(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::CharacterController_eventAddToInventory_Parms), Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACharacterController_AddToInventory()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ACharacterController_PrintInventory_Statics
 	{
@@ -275,6 +346,8 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Codename_Lost,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACharacterController_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ACharacterController_AddItemToInventory, "AddItemToInventory" }, // 2201839976
+		{ &Z_Construct_UFunction_ACharacterController_AddToInventory, "AddToInventory" }, // 3523651720
 		{ &Z_Construct_UFunction_ACharacterController_PrintInventory, "PrintInventory" }, // 2165920787
 	};
 #if WITH_METADATA
@@ -629,9 +702,9 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 1225680679U) },
+		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 2736027283U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_585551055(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_2708527307(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

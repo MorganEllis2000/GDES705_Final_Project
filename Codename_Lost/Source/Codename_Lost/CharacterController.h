@@ -27,7 +27,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-#pragma region Movement Functions
+#pragma region Crouch Functions
 	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
@@ -35,10 +35,12 @@ public:
 #pragma endregion
 
 #pragma region Inventory Functions
+	UFUNCTION(BlueprintCallable)
 	void AddToInventory(class APickup* actor);
 	void RemoveFromInventory(class APickup* actor);
 	void OpenInventory();
 	void UpdateInventoryDelegate();
+	UFUNCTION(BlueprintCallable)
 	void AddItemToInventory();
 	UFUNCTION(BlueprintCallable)
 	void PrintInventory();
@@ -110,6 +112,8 @@ public:
 	float PitchMin;
 	float RollMax;
 	float RollMin;
+
+	FVector2D MoveValue;
 #pragma endregion
 
 #pragma region Flashlight Variables
