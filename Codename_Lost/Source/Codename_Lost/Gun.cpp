@@ -84,40 +84,6 @@ void AGun::PullTrigger()
 	}
 }
 
-void AGun::PullTrigger(FVector End)
-{
-	if (CurrentAmmo > 0 && bIsReloading == false) {
-		CurrentAmmo -= 1;
-		UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, MuzzleComponent, TEXT("MuzzleComponent"));
-
-		UE_LOG(LogTemp, Warning, TEXT("You've Been Shot"));
-		APawn* OwnerPawn = Cast<APawn>(GetOwner());
-
-		if (OwnerPawn == nullptr) return;
-		AController* OwnerController = OwnerPawn->GetController();
-		if (OwnerController == nullptr) return;
-
-		FVector Location;
-		FRotator Rotation;
-		OwnerController->GetPlayerViewPoint(Location, Rotation);
-
-		//DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2, FColor::Red, true);
-
-		//FVector End = LaserSight->GetRelativeLocation() + LaserSight->GetRelativeRotation().Vector() * MaxRange;
-
-		FHitResult Hit;
-		bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1);
-		if (bSuccess) {
-			FVector ShotDirection = -Rotation.Vector();
-			DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
-			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, Hit.Location, ShotDirection.Rotation());
-		}
-	}
-	else {
-		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, TEXT("RELOAD"));
-	}
-}
-
 void AGun::Reload() {
 	
 	if (CurrentAmmo != MagazineSize && CurrentReserveAmmo > 0 && bIsReloading == false) {

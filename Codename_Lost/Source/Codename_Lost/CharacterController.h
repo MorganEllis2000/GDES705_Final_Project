@@ -27,20 +27,27 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	// Movement Functions
-
+#pragma region Crouch Functions
 	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void OnEndCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
 	void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
 	void LookAt(FVector LookAtTarget);
+#pragma endregion
 
-	// Inventory Functions
+#pragma region Inventory Functions
+	UFUNCTION(BlueprintCallable)
 	void AddToInventory(class APickup* actor);
+	void RemoveFromInventory(class APickup* actor);
+	UFUNCTION(BlueprintCallable)
+	void ClearInventory();
 	void OpenInventory();
+	UFUNCTION(BlueprintCallable)
 	void UpdateInventoryDelegate();
+	UFUNCTION(BlueprintCallable)
 	void AddItemToInventory();
 	UFUNCTION(BlueprintCallable)
 	void PrintInventory();
+#pragma endregion
 
 	// Damage Functions
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
@@ -49,26 +56,17 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
-    class UInputMappingContext* InputMapping;
-
-	
-	APlayerController* PlayerController;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera")
-	class UCameraComponent* PlayerCamera;
-
-	// Pickup Functions
-
+#pragma region Inspect Functions
 	void OnInspect();
 	void OnInspectReleased();
 	void Interact();
 
 	void ToggleMovement();
 	void ToggleItemPickup();
+#pragma endregion
 
 private:
-	// Movement Functions
+#pragma region Movement Functions
 	void Move(const FInputActionValue& Value);
 	void StartPlayerMovingCameraShake();
 	void StopPlayerMovingCameraShake();
@@ -79,19 +77,22 @@ private:
 	void FinishLean(const FInputActionValue& Value);
 	void StartSprint();
 	void FinishSprint();
-	
+#pragma endregion
+
 	// Flashlight Functions
 	void ToggleFlashlight();
 
-	// Gun Functions
+#pragma region Shooting Functions
 	void Shoot();
 	void Reload();
 	void Aim();
 	void ZoomIn();
 	void ZoomOut();
+#pragma endregion
+
 public:	
 
-	// Movement Variables
+#pragma region Movement Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	FRotator OriginalRotation;
 
@@ -110,12 +111,21 @@ public:
 
 	bool bCanSprint;
 
-	// Flashlight Variables
+	float PitchMax;
+	float PitchMin;
+	float RollMax;
+	float RollMin;
+
+	FVector2D MoveValue;
+#pragma endregion
+
+#pragma region Flashlight Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")
 	TSubclassOf<class AFlashlight> FlashlightClass;
 	class AFlashlight* Flashlight;
+#pragma endregion
 
-	// Pickup Variables
+#pragma region Pickup Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	class APickup* CurrentItem;
 
@@ -126,11 +136,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bInspecting;
-
-	float PitchMax;
-	float PitchMin;
-	float RollMax;
-	float RollMin;
+#pragma endregion
 
 	FVector HoldingComp;
 	FRotator LastRotation;
@@ -145,13 +151,14 @@ public:
 	FCollisionResponseParams DefaultResponseParams;
 
 
-	// Inventory Variables
+#pragma region Inventory Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bIsInventoryOpen;
 	UPROPERTY(BlueprintAssignable, Category = "Pickup")
 	FUpdateIventoryDelegate OnUpdateInventory;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<APickup*> _inventory;
+#pragma endregion
 
 	// World Variables
 	bool GamePaused;
@@ -160,7 +167,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> MyShake;
 
-	// Components and Setup
+#pragma region Components and Setup
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	class UMyInputConfigData* InputActions;
 
@@ -171,30 +178,73 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	class USkeletalMeshComponent* PlayerMesh;
+#pragma endregion
 
-
-	// Gun Variables
+#pragma region Gun Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool bIsSprinting;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool bIsZoomedIn;
+#pragma endregion
 
-	UPROPERTY(EditDefaultsOnly)
+#pragma region Player Stats
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
 	float MaxHealth = 100.f;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
 	float Health;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
+	float MaxStamina;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
+	float CurrentStamina;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
+	float DrainStaminaTickTime;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
+	float StaminaDrainPerTick;
+
+#pragma endregion
+
+#pragma region Timer Handles
+	FTimerHandle StaminaRechargeTimerHandle;
+#pragma endregion
+
+
 protected:
 
+#pragma region Input Mapping
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+    class UInputMappingContext* InputMapping;
+#pragma endregion
+	
+#pragma region Player Components
+	APlayerController* PlayerController;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera")
+	class UCameraComponent* PlayerCamera;
+
+	class USkeletalMeshComponent* SkeletalMesh;
+#pragma endregion
+
 private:
+
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
 
 	UPROPERTY()
 	AGun* Glock;
 
-	class USkeletalMeshComponent* SkeletalMesh;
+#pragma region Mouse Input Variables
+
+	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
+	float MouseLookRotationX= 1.f;
+
+	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
+	float MouseLookRotationY = 1.f;
 
 	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
 	float MouseLookRotationRateX = 1.f;
@@ -207,6 +257,5 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
 	float ControllerLookRotationRateY = 10.f;
-
-
+#pragma endregion
 };

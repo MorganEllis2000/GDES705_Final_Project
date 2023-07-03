@@ -12,6 +12,7 @@ void EmptyLinkFunctionForGeneratedCodeOpenDoorWithLerp() {}
 // Cross Module References
 	CODENAME_LOST_API UClass* Z_Construct_UClass_AOpenDoorWithLerp();
 	CODENAME_LOST_API UClass* Z_Construct_UClass_AOpenDoorWithLerp_NoRegister();
+	CODENAME_LOST_API UClass* Z_Construct_UClass_APickup_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
@@ -214,6 +215,19 @@ void EmptyLinkFunctionForGeneratedCodeOpenDoorWithLerp() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MyBoxComponent_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_MyBoxComponent;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bIsDoorLocked_MetaData[];
+#endif
+		static void NewProp_bIsDoorLocked_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsDoorLocked;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_KeyName_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_KeyName;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_PickupObject_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_PickupObject;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -248,9 +262,39 @@ void EmptyLinkFunctionForGeneratedCodeOpenDoorWithLerp() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_MyBoxComponent = { "MyBoxComponent", nullptr, (EPropertyFlags)0x0010000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AOpenDoorWithLerp, MyBoxComponent), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_MyBoxComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_MyBoxComponent_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_bIsDoorLocked_MetaData[] = {
+		{ "Category", "OpenDoorWithLerp" },
+		{ "ModuleRelativePath", "OpenDoorWithLerp.h" },
+	};
+#endif
+	void Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_bIsDoorLocked_SetBit(void* Obj)
+	{
+		((AOpenDoorWithLerp*)Obj)->bIsDoorLocked = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_bIsDoorLocked = { "bIsDoorLocked", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(AOpenDoorWithLerp), &Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_bIsDoorLocked_SetBit, METADATA_PARAMS(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_bIsDoorLocked_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_bIsDoorLocked_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_KeyName_MetaData[] = {
+		{ "Category", "OpenDoorWithLerp" },
+		{ "EditCondition", "bIsDoorLocked" },
+		{ "ModuleRelativePath", "OpenDoorWithLerp.h" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_KeyName = { "KeyName", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AOpenDoorWithLerp, KeyName), METADATA_PARAMS(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_KeyName_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_KeyName_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_PickupObject_MetaData[] = {
+		{ "Category", "OpenDoorWithLerp" },
+		{ "EditCondition", "bIsDoorLocked" },
+		{ "ModuleRelativePath", "OpenDoorWithLerp.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_PickupObject = { "PickupObject", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AOpenDoorWithLerp, PickupObject), Z_Construct_UClass_APickup_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_PickupObject_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_PickupObject_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AOpenDoorWithLerp_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_Door,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_MyBoxComponent,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_bIsDoorLocked,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_KeyName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AOpenDoorWithLerp_Statics::NewProp_PickupObject,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AOpenDoorWithLerp_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AOpenDoorWithLerp>::IsAbstract,
@@ -284,15 +328,15 @@ void EmptyLinkFunctionForGeneratedCodeOpenDoorWithLerp() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AOpenDoorWithLerp);
 	AOpenDoorWithLerp::~AOpenDoorWithLerp() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AOpenDoorWithLerp, AOpenDoorWithLerp::StaticClass, TEXT("AOpenDoorWithLerp"), &Z_Registration_Info_UClass_AOpenDoorWithLerp, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AOpenDoorWithLerp), 100862815U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AOpenDoorWithLerp, AOpenDoorWithLerp::StaticClass, TEXT("AOpenDoorWithLerp"), &Z_Registration_Info_UClass_AOpenDoorWithLerp, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AOpenDoorWithLerp), 234174946U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_4187315591(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_4054474950(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_OpenDoorWithLerp_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

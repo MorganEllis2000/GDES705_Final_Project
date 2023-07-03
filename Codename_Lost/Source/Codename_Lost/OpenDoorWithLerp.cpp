@@ -4,6 +4,12 @@
 #include "OpenDoorWithLerp.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "Containers/UnrealString.h"
+#include "Codename_LostGameModeBase.h"
+#include "CharacterController.h"
+#include "Pickup.h"
+#include "EngineUtils.h"
 
 // Sets default values
 AOpenDoorWithLerp::AOpenDoorWithLerp()
@@ -24,6 +30,22 @@ AOpenDoorWithLerp::AOpenDoorWithLerp()
     MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AOpenDoorWithLerp::OnOverlapBegin);
     MyBoxComponent->OnComponentEndOverlap.AddDynamic(this, &AOpenDoorWithLerp::OnOverlapEnd);
 
+    Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+
+}
+
+// Called when the game starts or when spawned
+void AOpenDoorWithLerp::BeginPlay()
+{
+    Super::BeginPlay();
+
+    //for (TActorIterator<APickup> ObstacleItr(GetWorld()); ObstacleItr; ++ObstacleItr)
+    //{
+    //    if (ObstacleItr->ObjectName.ToString() == KeyName)
+    //    {
+    //        PickupObject = *ObstacleItr;
+    //    }
+    //}
 }
 
 // Called every frame
@@ -42,10 +64,13 @@ void AOpenDoorWithLerp::Tick(float DeltaTime)
         Door->SetRelativeRotation(FMath::Lerp(FQuat(DoorRotation), FQuat(FRotator(0.0f, 0.0f, 0.0f)), 0.1f));
     }
 
+
 }
 
 void AOpenDoorWithLerp::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+    ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
     if (OtherActor != nullptr && OtherActor != this && OtherComp != nullptr)
     {
         FVector PawnLocation = OtherActor->GetActorLocation();
@@ -61,7 +86,17 @@ void AOpenDoorWithLerp::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp
             RotateValue = -90.0f;
         }
 
-        Open = true;
+        if (bIsDoorLocked == true) {
+            for (auto& Elem : GameMode->TMapOfKeys) {
+                if (KeyName == Elem.Key && Elem.Value == true) {
+                    Open = true;
+                }
+            }
+        }
+        else {
+            Open = true;
+        }
+
     }
 }
 
