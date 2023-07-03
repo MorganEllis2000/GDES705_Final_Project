@@ -15,7 +15,7 @@ class APickup;
 #endif
 #define CODENAME_LOST_CharacterController_generated_h
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_13_DELEGATE \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_13_DELEGATE \
 struct _Script_Codename_Lost_eventUpdateIventoryDelegate_Parms \
 { \
 	TArray<APickup*> IventoryItems; \
@@ -28,8 +28,8 @@ static inline void FUpdateIventoryDelegate_DelegateWrapper(const FMulticastScrip
 }
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_SPARSE_DATA
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_SPARSE_DATA
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execPrintInventory); \
 	DECLARE_FUNCTION(execAddItemToInventory); \
@@ -38,7 +38,7 @@ static inline void FUpdateIventoryDelegate_DelegateWrapper(const FMulticastScrip
 	DECLARE_FUNCTION(execAddToInventory);
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execPrintInventory); \
 	DECLARE_FUNCTION(execAddItemToInventory); \
@@ -47,8 +47,8 @@ static inline void FUpdateIventoryDelegate_DelegateWrapper(const FMulticastScrip
 	DECLARE_FUNCTION(execAddToInventory);
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ACCESSORS
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS_NO_PURE_DECLS \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ACCESSORS
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACharacterController(); \
 	friend struct Z_Construct_UClass_ACharacterController_Statics; \
@@ -57,7 +57,7 @@ public: \
 	DECLARE_SERIALIZER(ACharacterController)
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS \
 private: \
 	static void StaticRegisterNativesACharacterController(); \
 	friend struct Z_Construct_UClass_ACharacterController_Statics; \
@@ -66,7 +66,7 @@ public: \
 	DECLARE_SERIALIZER(ACharacterController)
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_STANDARD_CONSTRUCTORS \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACharacterController(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACharacterController) \
@@ -80,7 +80,7 @@ public: \
 	NO_API virtual ~ACharacterController();
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ENHANCED_CONSTRUCTORS \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACharacterController(ACharacterController&&); \
@@ -92,27 +92,27 @@ public: \
 	NO_API virtual ~ACharacterController();
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_15_PROLOG
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_GENERATED_BODY_LEGACY \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_15_PROLOG
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_SPARSE_DATA \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ACCESSORS \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_STANDARD_CONSTRUCTORS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_SPARSE_DATA \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ACCESSORS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_GENERATED_BODY \
+#define FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_SPARSE_DATA \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ACCESSORS \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS_NO_PURE_DECLS \
-	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ENHANCED_CONSTRUCTORS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_SPARSE_DATA \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ACCESSORS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_INCLASS_NO_PURE_DECLS \
+	FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -120,7 +120,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> CODENAME_LOST_API UClass* StaticClass<class ACharacterController>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_CharacterController_h
+#define CURRENT_FILE_ID FID_Codename_Lost_Source_Codename_Lost_CharacterController_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
