@@ -1,0 +1,17 @@
+﻿  Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" Codename_LostEditor Win64 Development -Project="C:\Github\GDES705_Final_Project\Codename_Lost\Codename_Lost.uproject" -WaitMutex -FromMsBuild
+  Log file: C:\Users\morga\AppData\Local\UnrealBuildTool\Log.txt
+  Using 'git status' to determine working set for adaptive non-unity build (C:\Github\GDES705_Final_Project).
+  Building Codename_LostEditor...
+  Using Visual Studio 2019 14.29.30151 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133) and Windows 10.0.19041.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+  [Adaptive Build] Excluded from Codename_Lost unity file: BTS_PlayerLocation.cpp, BTT_Attack.cpp, BTT_ClearBlackboardValue.cpp, CharacterController.cpp, HealthComponent.cpp, WraithAIController.cpp
+  Determining max actions to execute in parallel (8 physical cores, 16 logical cores)
+    Executing up to 8 processes, one per physical core
+  Building 4 actions with 4 processes...
+  [1/4] Compile BTT_ClearBlackboardValue.cpp
+  [2/4] Link UnrealEditor-Codename_Lost.lib
+     Creating library C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.lib and object C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.exp
+  [3/4] Link UnrealEditor-Codename_Lost.dll
+     Creating library C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.suppressed.lib and object C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.suppressed.exp
+  [4/4] WriteMetadata Codename_LostEditor.target
+  Total time in Parallel executor: 30.77 seconds
+  Total execution time: 31.44 seconds

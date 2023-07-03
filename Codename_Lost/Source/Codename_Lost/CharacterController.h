@@ -49,9 +49,6 @@ public:
 	void PrintInventory();
 #pragma endregion
 
-	// Damage Functions
-	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -190,10 +187,10 @@ public:
 
 #pragma region Player Stats
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
-	float MaxHealth = 100.f;
+	float MaxHealth;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
-	float Health;
+	float CurrentHealth;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
 	float MaxStamina;

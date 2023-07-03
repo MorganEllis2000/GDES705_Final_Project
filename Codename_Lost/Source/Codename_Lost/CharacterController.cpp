@@ -70,7 +70,7 @@ void ACharacterController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Health = MaxHealth;
+	CurrentHealth = MaxHealth;
 
 	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
 	//GetMesh()->HideBoneByName(TEXT("upperarm_l"), EPhysBodyOp::PBO_None);
@@ -204,15 +204,6 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::ZoomOut);
 }
 
-float ACharacterController::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
-{
-	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	DamageToApply = FMath::Min(Health, DamageToApply);
-	Health -= DamageToApply;
-	UE_LOG(LogTemp, Warning, TEXT("Health Left %f"), Health);
-
-	return DamageToApply;
-}
 #pragma endregion
 
 #pragma region Player Movement
