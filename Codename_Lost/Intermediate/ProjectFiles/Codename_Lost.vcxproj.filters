@@ -42,6 +42,12 @@
     <ClInclude Include="..\..\Source\Codename_Lost\BTS_PlayerLocationIfSeen.h">
       <Filter>Source\Codename_Lost</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\BTS_SetPatrolLocation.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\BTS_SetPatrolLocation.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Codename_Lost\BTT_Attack.cpp">
       <Filter>Source\Codename_Lost</Filter>
     </ClCompile>
@@ -52,6 +58,30 @@
       <Filter>Source\Codename_Lost</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Codename_Lost\BTT_ClearBlackboardValue.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\BTT_FindPatrolPathPoint.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\BTT_FindPatrolPathPoint.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\BTT_FindPlayerLocation.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\BTT_FindPlayerLocation.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\BTT_IncrementPathIndex.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\BTT_IncrementPathIndex.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\BTT_SetPatrolLocation.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\BTT_SetPatrolLocation.h">
       <Filter>Source\Codename_Lost</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Codename_Lost\CharacterController.cpp">
@@ -117,6 +147,12 @@
     <ClInclude Include="..\..\Source\Codename_Lost\OpenDoorWithLerp.h">
       <Filter>Source\Codename_Lost</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\PatrolPath.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\PatrolPath.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Codename_Lost\Pickup.cpp">
       <Filter>Source\Codename_Lost</Filter>
     </ClCompile>
@@ -127,6 +163,12 @@
       <Filter>Source\Codename_Lost</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Codename_Lost\WraithAIController.h">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\WraithController.cpp">
+      <Filter>Source\Codename_Lost</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\WraithController.h">
       <Filter>Source\Codename_Lost</Filter>
     </ClInclude>
   </ItemGroup>

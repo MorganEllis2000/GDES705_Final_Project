@@ -21,6 +21,8 @@
 #include "Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
 #pragma endregion
 
 #pragma region Constructors/Setup
@@ -567,4 +569,3 @@ void ACharacterController::ToggleFlashlight() {
 		Flashlight->ToggleLight();
 	}
 }
-

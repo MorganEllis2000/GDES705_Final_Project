@@ -255,4 +255,5 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
 	float ControllerLookRotationRateY = 10.f;
 #pragma endregion
+
 };

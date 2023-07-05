@@ -8,7 +8,11 @@
 				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Levels/Level1.umap",
 				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/AI/BT_WraithAI.uasset",
 				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/AI/BP_Wraith.uasset",
-				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/AI/BB_WraithAI.uasset"
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/AI/BB_WraithAI.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Blueprints/BP_Character.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/AI/BP_PatrolPath.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Widgets/WBP_UIHUD.uasset",
+				"C:/Github/GDES705_Final_Project/Codename_Lost/Content/Widgets/WBP_PauseMenu.uasset"
 			]
 		}
 	]

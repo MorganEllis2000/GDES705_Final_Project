@@ -33,6 +33,9 @@ EBTNodeResult::Type UBTT_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 			UE_LOG(LogTemp, Warning, TEXT("Attacking"));
 			UGameplayStatics::ApplyDamage(Character, 10.f, WraithController->GetInstigatorController(), WraithActor, UDamageType::StaticClass());
 		}
+		else {
+			return EBTNodeResult::Failed;
+		}
 	}
 
 	return EBTNodeResult::Succeeded;
