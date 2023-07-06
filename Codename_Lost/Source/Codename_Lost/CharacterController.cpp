@@ -262,14 +262,14 @@ void ACharacterController::ControllerLook(const FInputActionValue& Value) {
 
 void ACharacterController::StartSprint() {
 	if (GetCharacterMovement() && bIsZoomedIn == false && CurrentStamina > 0 && MoveValue.Y > 0) {
-		GetCharacterMovement()->MaxWalkSpeed = 250.f;
+		GetCharacterMovement()->MaxWalkSpeed = 300.f;
 		bIsSprinting = true;
 		CurrentStamina -= StaminaDrainPerTick;
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
 	}
 	else {
 		bIsSprinting = false;
-		GetCharacterMovement()->MaxWalkSpeed = 125.f;
+		GetCharacterMovement()->MaxWalkSpeed = 175.f;
 	}
 }
 
