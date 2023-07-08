@@ -203,15 +203,15 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWraithAIController);
 	AWraithAIController::~AWraithAIController() {}
-	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics
+	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo[] = {
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_AWraithAIController, AWraithAIController::StaticClass, TEXT("AWraithAIController"), &Z_Registration_Info_UClass_AWraithAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithAIController), 2690025686U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_WraithAIController_h_3817288981(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_3817288981(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
