@@ -21,8 +21,6 @@
 #include "Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
-#include "Perception/AIPerceptionStimuliSourceComponent.h"
-#include "Perception/AISense_Sight.h"
 #pragma endregion
 
 #pragma region Constructors/Setup
@@ -179,7 +177,7 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	// Movement
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &ACharacterController::Move);
-	EnhancedInputComponent->BindAction(InputActions->InputLean, ETriggerEvent::Triggered, this, &ACharacterController::Lean);
+	//EnhancedInputComponent->BindAction(InputActions->InputLean, ETriggerEvent::Triggered, this, &ACharacterController::Lean);
 	EnhancedInputComponent->BindAction(InputActions->InputLean, ETriggerEvent::Completed, this, &ACharacterController::FinishLean);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Started, this, &ACharacterController::StartPlayerMovingCameraShake);
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Completed, this, &ACharacterController::StopPlayerMovingCameraShake);
@@ -539,6 +537,7 @@ void ACharacterController::Shoot()
 	if (!bInspecting) {
 		FVector EndPos = PlayerCamera->GetForwardVector() * 10000.f * PlayerCamera->GetComponentLocation();
 		Glock->PullTrigger();
+
 	}
 }
 

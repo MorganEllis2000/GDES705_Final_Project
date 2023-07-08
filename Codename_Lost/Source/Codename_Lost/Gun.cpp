@@ -8,6 +8,7 @@
 #include "NiagaraComponent.h"
 #include "Engine/DamageEvents.h"
 #include "GameFramework/DamageType.h"
+#include "CharacterController.h"
 
 // Sets default values
 AGun::AGun()
@@ -22,7 +23,7 @@ AGun::AGun()
 	Mesh->SetupAttachment(RootComponent);
 
 	MuzzleComponent = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleComponent"));
-	MuzzleComponent->SetupAttachment(RootComponent);
+	MuzzleComponent->SetupAttachment(Mesh);
 
 	LaserSight = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Laser Sight"));
 	LaserSight->SetupAttachment(MuzzleComponent);
@@ -36,7 +37,8 @@ AGun::AGun()
 void AGun::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	CharacterController = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	SetupRecoil();
 }
 
 // Called every frame
@@ -44,11 +46,24 @@ void AGun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if(RecoilTimeLine.IsPlaying())
+	{
+		RecoilTimeLine.TickTimeline((DeltaTime));
+	}
+
+	if(RecoilTimeLine.IsReversing())
+	{
+		RecoilTimeLine.TickTimeline(DeltaTime);
+	}
 }
 
 void AGun::PullTrigger()
 {
-	if (CurrentAmmo > 0 && bIsReloading == false) {
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, FString::Printf(TEXT("Bool: %s"), bCanShoot ? TEXT("true") : TEXT("false")));
+	if (CurrentAmmo > 0 && bIsReloading == false && bCanShoot == true) {
+		bCanShoot = false;
+		StartRecoil();
+		GetWorld()->GetTimerManager().SetTimer(FireRateTimerHandle, this, &AGun::FireRateTimer, FireRate);
 		CurrentAmmo -= 1;
 		UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, MuzzleComponent, TEXT("MuzzleComponent"));
 
@@ -60,7 +75,10 @@ void AGun::PullTrigger()
 
 		FVector Location;
 		FRotator Rotation;
-		OwnerController->GetPlayerViewPoint(Location, Rotation);
+		//OwnerController->GetPlayerViewPoint(Location, Rotation);
+
+		Location = MuzzleComponent->GetComponentLocation();
+		Rotation = MuzzleComponent->GetComponentRotation();
 
 		//DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2, FColor::Red, true);
 
@@ -79,9 +97,16 @@ void AGun::PullTrigger()
 				//HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
 			}
 		}
+		OwnerPawn->AddControllerPitchInput(FMath::RandRange(0.f, -1.f));
+		OwnerPawn->AddControllerYawInput(FMath::RandRange(0.f, 1.f));
 	} else {
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, TEXT("RELOAD"));
 	}
+}
+
+void AGun::FireRateTimer() {
+	bCanShoot = true;
+	//ReverseRecoil();
 }
 
 void AGun::Reload() {
@@ -108,5 +133,42 @@ void AGun::ReloadTimer() {
 void AGun::ToggleLaserSight() {
 	bIsLaserOn = !bIsLaserOn;
 	LaserSight->ToggleVisibility(bIsLaserOn);
+}
+
+void AGun::StartHorizontalRecoil(float value)
+{
+	CharacterController->AddControllerYawInput(value);
+}
+
+void AGun::StartVerticalRecoil(float value)
+{
+	CharacterController->AddControllerPitchInput(value);
+}
+
+void AGun::StartRecoil()
+{
+	RecoilTimeLine.PlayFromStart();
+}
+
+void AGun::ReverseRecoil()
+{
+	RecoilTimeLine.Reverse();
+}
+
+void AGun::SetupRecoil()
+{
+	FOnTimelineFloat XRecoilCurve;
+	FOnTimelineFloat YRecoilCurve;
+
+	XRecoilCurve.BindUFunction(this, FName("StartHorizontalRecoil"));
+	YRecoilCurve.BindUFunction(this, FName("StartVerticalRecoil"));
+
+	if (!HorizontalCurve || !VerticalCurve)
+	{
+		return;
+	}
+
+	RecoilTimeLine.AddInterpFloat(HorizontalCurve, XRecoilCurve);
+	RecoilTimeLine.AddInterpFloat(VerticalCurve, YRecoilCurve);
 }
 

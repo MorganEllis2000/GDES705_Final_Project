@@ -1,9 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/TimelineComponent.h"
 #include "Gun.generated.h"
 
 UCLASS()
@@ -25,7 +26,21 @@ public:
 
 	void ReloadTimer();
 
+	void FireRateTimer();
+
 	void ToggleLaserSight();
+
+	UFUNCTION()
+	void StartHorizontalRecoil(float value);
+
+	UFUNCTION()
+	void StartVerticalRecoil(float value);
+
+	void StartRecoil();
+
+	void ReverseRecoil();
+
+	void SetupRecoil();
 
 protected:
 	// Called when the game starts or when spawned
@@ -56,14 +71,29 @@ public:
 	float ReloadTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
 	float Damage = 10.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
+	float FireRate;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsReloading;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsLaserOn;
+
+	bool bCanShoot = true;
+
+	FTimeline RecoilTimeLine;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Advanced Recoil")
+	class UCurveFloat* VerticalCurve;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Advanced Recoil")
+	class UCurveFloat* HorizontalCurve;
 protected:
 	FTimerHandle ReloadTimerHandle;
+	FTimerHandle FireRateTimerHandle;
+
+	class ACharacterController* CharacterController;
 
 private:
 	UPROPERTY(VisibleAnywhere)
