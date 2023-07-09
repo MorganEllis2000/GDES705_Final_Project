@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Codename_Lost/Flashlight.h"
+#include "Codename_Lost/Actors/Flashlight.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 // Cross Module References
@@ -42,7 +42,7 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Codename_Lost, nullptr, "FlashLightToggled__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature_Statics::_Script_Codename_Lost_eventFlashLightToggled_Parms), Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature_Statics::Function_MetaDataParams)) };
@@ -74,7 +74,7 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Codename_Lost, nullptr, "FlashLightDrained__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature_Statics::_Script_Codename_Lost_eventFlashLightDrained_Parms), Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature_Statics::Function_MetaDataParams)) };
@@ -148,15 +148,15 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::Class_MetaDataParams[] = {
-		{ "IncludePath", "Flashlight.h" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "IncludePath", "Actors/Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_Mesh_MetaData[] = {
 		{ "Category", "Flashlight" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_Mesh = { "Mesh", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, Mesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_Mesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_Mesh_MetaData)) };
@@ -164,42 +164,42 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_Light_MetaData[] = {
 		{ "Category", "Flashlight" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_Light = { "Light", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, Light), Z_Construct_UClass_USpotLightComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_Light_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_Light_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_MaxBatteryLife_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_MaxBatteryLife = { "MaxBatteryLife", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, MaxBatteryLife), METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_MaxBatteryLife_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_MaxBatteryLife_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_CurrentBatteryLife_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_CurrentBatteryLife = { "CurrentBatteryLife", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, CurrentBatteryLife), METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_CurrentBatteryLife_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_CurrentBatteryLife_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_DrainBatteryLifeTickTime_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_DrainBatteryLifeTickTime = { "DrainBatteryLifeTickTime", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, DrainBatteryLifeTickTime), METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_DrainBatteryLifeTickTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_DrainBatteryLifeTickTime_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_BatteryDrainPerTick_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_BatteryDrainPerTick = { "BatteryDrainPerTick", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, BatteryDrainPerTick), METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_BatteryDrainPerTick_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_BatteryDrainPerTick_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_bIsLightOn_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
 	void Z_Construct_UClass_AFlashlight_Statics::NewProp_bIsLightOn_SetBit(void* Obj)
@@ -210,17 +210,17 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled = { "LightToggled", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, LightToggled), Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled_MetaData)) }; // 1858050441
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled = { "LightToggled", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, LightToggled), Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled_MetaData)) }; // 3826504103
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "Flashlight.h" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained = { "LightDrained", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, LightDrained), Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained_MetaData)) }; // 4086551542
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained = { "LightDrained", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, LightDrained), Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained_MetaData)) }; // 2308093050
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AFlashlight_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_Mesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_Light,
@@ -264,15 +264,15 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AFlashlight);
 	AFlashlight::~AFlashlight() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Flashlight_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Flashlight_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AFlashlight, AFlashlight::StaticClass, TEXT("AFlashlight"), &Z_Registration_Info_UClass_AFlashlight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFlashlight), 894231232U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AFlashlight, AFlashlight::StaticClass, TEXT("AFlashlight"), &Z_Registration_Info_UClass_AFlashlight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFlashlight), 1484980713U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Flashlight_h_218612177(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Flashlight_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Flashlight_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_535817995(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

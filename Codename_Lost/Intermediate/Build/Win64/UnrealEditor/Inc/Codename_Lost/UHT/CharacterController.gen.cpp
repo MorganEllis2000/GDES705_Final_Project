@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Codename_Lost/CharacterController.h"
+#include "Codename_Lost/Actors/Controllers/CharacterController.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 // Cross Module References
@@ -58,7 +58,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Codename_Lost, nullptr, "UpdateIventoryDelegate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature_Statics::_Script_Codename_Lost_eventUpdateIventoryDelegate_Parms), Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
@@ -128,7 +128,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "AddItemToInventory", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_AddItemToInventory_Statics::Function_MetaDataParams)) };
@@ -160,7 +160,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "AddToInventory", nullptr, nullptr, sizeof(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::CharacterController_eventAddToInventory_Parms), Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_AddToInventory_Statics::Function_MetaDataParams)) };
@@ -182,7 +182,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "ClearInventory", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_ClearInventory_Statics::Function_MetaDataParams)) };
@@ -204,7 +204,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_PrintInventory_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_PrintInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "PrintInventory", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_PrintInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_PrintInventory_Statics::Function_MetaDataParams)) };
@@ -226,7 +226,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACharacterController, nullptr, "UpdateInventoryDelegate", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate_Statics::Function_MetaDataParams)) };
@@ -406,79 +406,79 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Codename_Lost,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACharacterController_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ACharacterController_AddItemToInventory, "AddItemToInventory" }, // 2201839976
-		{ &Z_Construct_UFunction_ACharacterController_AddToInventory, "AddToInventory" }, // 3523651720
-		{ &Z_Construct_UFunction_ACharacterController_ClearInventory, "ClearInventory" }, // 3398088592
-		{ &Z_Construct_UFunction_ACharacterController_PrintInventory, "PrintInventory" }, // 2165920787
-		{ &Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate, "UpdateInventoryDelegate" }, // 2546535799
+		{ &Z_Construct_UFunction_ACharacterController_AddItemToInventory, "AddItemToInventory" }, // 769957971
+		{ &Z_Construct_UFunction_ACharacterController_AddToInventory, "AddToInventory" }, // 1741591324
+		{ &Z_Construct_UFunction_ACharacterController_ClearInventory, "ClearInventory" }, // 4212383022
+		{ &Z_Construct_UFunction_ACharacterController_PrintInventory, "PrintInventory" }, // 2175066670
+		{ &Z_Construct_UFunction_ACharacterController_UpdateInventoryDelegate, "UpdateInventoryDelegate" }, // 3778961138
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::Class_MetaDataParams[] = {
 		{ "HideCategories", "Navigation" },
-		{ "IncludePath", "CharacterController.h" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "IncludePath", "Actors/Controllers/CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_OriginalRotation_MetaData[] = {
 		{ "Category", "Enhanced Input" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_OriginalRotation = { "OriginalRotation", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, OriginalRotation), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_OriginalRotation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_OriginalRotation_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchEyeOffset_MetaData[] = {
 		{ "Category", "Crouch" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchEyeOffset = { "CrouchEyeOffset", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, CrouchEyeOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchEyeOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchEyeOffset_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchSpeed_MetaData[] = {
 		{ "Category", "Crouch" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchSpeed = { "CrouchSpeed", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, CrouchSpeed), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_CrouchSpeed_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MinLean_MetaData[] = {
 		{ "Category", "Lean" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MinLean = { "MinLean", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MinLean), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MinLean_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MinLean_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxLean_MetaData[] = {
 		{ "Category", "Lean" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxLean = { "MaxLean", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MaxLean), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxLean_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxLean_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_CameraInitalPos_MetaData[] = {
 		{ "Category", "CharacterController" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_CameraInitalPos = { "CameraInitalPos", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, CameraInitalPos), Z_Construct_UScriptStruct_FVector2D, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_CameraInitalPos_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_CameraInitalPos_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_FlashlightClass_MetaData[] = {
 		{ "Category", "Flashlight" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_FlashlightClass = { "FlashlightClass", nullptr, (EPropertyFlags)0x0014000000010015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, FlashlightClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AFlashlight_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_FlashlightClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_FlashlightClass_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem_MetaData[] = {
 		{ "Category", "CharacterController" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem = { "CurrentItem", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, CurrentItem), Z_Construct_UClass_APickup_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bShowCanInspectWidget_MetaData[] = {
 		{ "Category", "Bools" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bShowCanInspectWidget_SetBit(void* Obj)
@@ -489,7 +489,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bInspecting_MetaData[] = {
 		{ "Category", "Bools" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bInspecting_SetBit(void* Obj)
@@ -500,7 +500,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsInventoryOpen_MetaData[] = {
 		{ "Category", "Bools" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsInventoryOpen_SetBit(void* Obj)
@@ -511,15 +511,15 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory_MetaData[] = {
 		{ "Category", "Pickup" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory = { "OnUpdateInventory", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, OnUpdateInventory), Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory_MetaData)) }; // 2147995970
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory = { "OnUpdateInventory", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, OnUpdateInventory), Z_Construct_UDelegateFunction_Codename_Lost_UpdateIventoryDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory_MetaData)) }; // 1095202753
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp__inventory_Inner = { "_inventory", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, 0, Z_Construct_UClass_APickup_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp__inventory_MetaData[] = {
 		{ "Category", "CharacterController" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp__inventory = { "_inventory", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, _inventory), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp__inventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp__inventory_MetaData)) };
@@ -527,7 +527,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MyShake_MetaData[] = {
 		{ "Category", "CharacterController" },
 		{ "Comment", "// Camera Shake\n" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 		{ "ToolTip", "Camera Shake" },
 	};
 #endif
@@ -535,7 +535,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_InputActions_MetaData[] = {
 		{ "Category", "Enhanced Input" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_InputActions = { "InputActions", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, InputActions), Z_Construct_UClass_UMyInputConfigData_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_InputActions_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_InputActions_MetaData)) };
@@ -543,7 +543,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_HoldingComponent_MetaData[] = {
 		{ "Category", "CharacterController" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_HoldingComponent = { "HoldingComponent", nullptr, (EPropertyFlags)0x00100000000b001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, HoldingComponent), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_HoldingComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_HoldingComponent_MetaData)) };
@@ -551,14 +551,14 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerMesh_MetaData[] = {
 		{ "Category", "Mesh" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerMesh = { "PlayerMesh", nullptr, (EPropertyFlags)0x001000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, PlayerMesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerMesh_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsSprinting_MetaData[] = {
 		{ "Category", "Gameplay" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsSprinting_SetBit(void* Obj)
@@ -569,7 +569,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsZoomedIn_MetaData[] = {
 		{ "Category", "Gameplay" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsZoomedIn_SetBit(void* Obj)
@@ -580,49 +580,49 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxHealth_MetaData[] = {
 		{ "Category", "Player Stats" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxHealth = { "MaxHealth", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MaxHealth), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxHealth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxHealth_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentHealth_MetaData[] = {
 		{ "Category", "Player Stats" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentHealth = { "CurrentHealth", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, CurrentHealth), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentHealth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentHealth_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxStamina_MetaData[] = {
 		{ "Category", "Player Stats" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxStamina = { "MaxStamina", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MaxStamina), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxStamina_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxStamina_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentStamina_MetaData[] = {
 		{ "Category", "Player Stats" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentStamina = { "CurrentStamina", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, CurrentStamina), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentStamina_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentStamina_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_DrainStaminaTickTime_MetaData[] = {
 		{ "Category", "Player Stats" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_DrainStaminaTickTime = { "DrainStaminaTickTime", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, DrainStaminaTickTime), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_DrainStaminaTickTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_DrainStaminaTickTime_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick_MetaData[] = {
 		{ "Category", "Player Stats" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick = { "StaminaDrainPerTick", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, StaminaDrainPerTick), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_InputMapping_MetaData[] = {
 		{ "Category", "Enhanced Input" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_InputMapping = { "InputMapping", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, InputMapping), Z_Construct_UClass_UInputMappingContext_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_InputMapping_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_InputMapping_MetaData)) };
@@ -630,62 +630,62 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerCamera_MetaData[] = {
 		{ "Category", "Camera" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerCamera = { "PlayerCamera", nullptr, (EPropertyFlags)0x002008000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, PlayerCamera), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerCamera_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerCamera_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass_MetaData[] = {
 		{ "Category", "CharacterController" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass = { "GunClass", nullptr, (EPropertyFlags)0x0044000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, GunClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AGun_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData[] = {
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock = { "Glock", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, Glock), Z_Construct_UClass_AGun_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationX_MetaData[] = {
 		{ "Category", "Mouse Inputs" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationX = { "MouseLookRotationX", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MouseLookRotationX), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationX_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationX_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationY_MetaData[] = {
 		{ "Category", "Mouse Inputs" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationY = { "MouseLookRotationY", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MouseLookRotationY), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationY_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationY_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateX_MetaData[] = {
 		{ "Category", "Mouse Inputs" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateX = { "MouseLookRotationRateX", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MouseLookRotationRateX), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateX_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateX_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateY_MetaData[] = {
 		{ "Category", "Mouse Inputs" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateY = { "MouseLookRotationRateY", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, MouseLookRotationRateY), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateY_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateY_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateX_MetaData[] = {
 		{ "Category", "Controller Inputs" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateX = { "ControllerLookRotationRateX", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, ControllerLookRotationRateX), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateX_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateX_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateY_MetaData[] = {
 		{ "Category", "Controller Inputs" },
-		{ "ModuleRelativePath", "CharacterController.h" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateY = { "ControllerLookRotationRateY", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, ControllerLookRotationRateY), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateY_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_ControllerLookRotationRateY_MetaData)) };
@@ -759,15 +759,15 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACharacterController);
 	ACharacterController::~ACharacterController() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 1587935879U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 1108558218U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_3367308011(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_CharacterController_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_4229859498(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

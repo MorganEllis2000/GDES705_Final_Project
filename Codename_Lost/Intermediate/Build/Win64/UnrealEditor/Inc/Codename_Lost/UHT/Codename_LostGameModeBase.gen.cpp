@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Codename_Lost/Codename_LostGameModeBase.h"
+#include "Codename_Lost/Actors/GameModes/Codename_LostGameModeBase.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCodename_LostGameModeBase() {}
 // Cross Module References
@@ -56,15 +56,15 @@ void EmptyLinkFunctionForGeneratedCodeCodename_LostGameModeBase() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACodename_LostGameModeBase_Statics::Class_MetaDataParams[] = {
 		{ "Comment", "/**\n * \n */" },
 		{ "HideCategories", "Info Rendering MovementReplication Replication Actor Input Movement Collision Rendering HLOD WorldPartition DataLayers Transformation" },
-		{ "IncludePath", "Codename_LostGameModeBase.h" },
-		{ "ModuleRelativePath", "Codename_LostGameModeBase.h" },
+		{ "IncludePath", "Actors/GameModes/Codename_LostGameModeBase.h" },
+		{ "ModuleRelativePath", "Actors/GameModes/Codename_LostGameModeBase.h" },
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 #endif
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_bHasFirstKey_MetaData[] = {
 		{ "Category", "Codename_LostGameModeBase" },
-		{ "ModuleRelativePath", "Codename_LostGameModeBase.h" },
+		{ "ModuleRelativePath", "Actors/GameModes/Codename_LostGameModeBase.h" },
 	};
 #endif
 	void Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_bHasFirstKey_SetBit(void* Obj)
@@ -76,7 +76,7 @@ void EmptyLinkFunctionForGeneratedCodeCodename_LostGameModeBase() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_ArrayOfKeys_MetaData[] = {
 		{ "Category", "Codename_LostGameModeBase" },
-		{ "ModuleRelativePath", "Codename_LostGameModeBase.h" },
+		{ "ModuleRelativePath", "Actors/GameModes/Codename_LostGameModeBase.h" },
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_ArrayOfKeys = { "ArrayOfKeys", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACodename_LostGameModeBase, ArrayOfKeys), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_ArrayOfKeys_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_ArrayOfKeys_MetaData)) };
@@ -85,7 +85,7 @@ void EmptyLinkFunctionForGeneratedCodeCodename_LostGameModeBase() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_TMapOfKeys_MetaData[] = {
 		{ "Category", "Codename_LostGameModeBase" },
-		{ "ModuleRelativePath", "Codename_LostGameModeBase.h" },
+		{ "ModuleRelativePath", "Actors/GameModes/Codename_LostGameModeBase.h" },
 	};
 #endif
 	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_TMapOfKeys = { "TMapOfKeys", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACodename_LostGameModeBase, TMapOfKeys), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_TMapOfKeys_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACodename_LostGameModeBase_Statics::NewProp_TMapOfKeys_MetaData)) };
@@ -129,15 +129,15 @@ void EmptyLinkFunctionForGeneratedCodeCodename_LostGameModeBase() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACodename_LostGameModeBase);
 	ACodename_LostGameModeBase::~ACodename_LostGameModeBase() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Codename_LostGameModeBase_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_GameModes_Codename_LostGameModeBase_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Codename_LostGameModeBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACodename_LostGameModeBase, ACodename_LostGameModeBase::StaticClass, TEXT("ACodename_LostGameModeBase"), &Z_Registration_Info_UClass_ACodename_LostGameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACodename_LostGameModeBase), 2099960110U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_GameModes_Codename_LostGameModeBase_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACodename_LostGameModeBase, ACodename_LostGameModeBase::StaticClass, TEXT("ACodename_LostGameModeBase"), &Z_Registration_Info_UClass_ACodename_LostGameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACodename_LostGameModeBase), 503242298U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Codename_LostGameModeBase_h_4176734439(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Codename_LostGameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Codename_LostGameModeBase_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_GameModes_Codename_LostGameModeBase_h_4218339221(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_GameModes_Codename_LostGameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_GameModes_Codename_LostGameModeBase_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -1,12 +1,12 @@
 {
     "Version": "1.1",
     "Data": {
-        "Source": "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\gun.cpp",
+        "Source": "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\actors\\gun.cpp",
         "ProvidedModule": "",
         "PCH": "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\codename_losteditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
         "Includes": [
             "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\development\\codename_lost\\definitions.codename_lost.h",
-            "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\gun.h",
+            "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\actors\\gun.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\engine\\classes\\components\\timelinecomponent.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\timelinecomponent.generated.h",
             "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\inc\\codename_lost\\uht\\gun.generated.h",
@@ -165,7 +165,7 @@
             "c:\\program files\\epic games\\ue_5.1\\engine\\plugins\\fx\\niagara\\intermediate\\build\\win64\\unrealeditor\\inc\\niagara\\uht\\niagaracomponent.generated.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\engine\\classes\\engine\\damageevents.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\damageevents.generated.h",
-            "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\charactercontroller.h",
+            "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\actors\\controllers\\charactercontroller.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",

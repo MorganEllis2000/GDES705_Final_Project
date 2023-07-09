@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Codename_Lost/WraithController.h"
+#include "Codename_Lost/AI/WraithController.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWraithController() {}
 // Cross Module References
@@ -50,15 +50,15 @@ void EmptyLinkFunctionForGeneratedCodeWraithController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWraithController_Statics::Class_MetaDataParams[] = {
 		{ "HideCategories", "Navigation" },
-		{ "IncludePath", "WraithController.h" },
-		{ "ModuleRelativePath", "WraithController.h" },
+		{ "IncludePath", "AI/WraithController.h" },
+		{ "ModuleRelativePath", "AI/WraithController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPoints_Inner = { "PatrolPoints", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, 0, Z_Construct_UClass_ATargetPoint_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPoints_MetaData[] = {
 		{ "Category", "Patrol Points" },
-		{ "ModuleRelativePath", "WraithController.h" },
+		{ "ModuleRelativePath", "AI/WraithController.h" },
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPoints = { "PatrolPoints", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AWraithController, PatrolPoints), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPoints_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPoints_MetaData)) };
@@ -66,7 +66,7 @@ void EmptyLinkFunctionForGeneratedCodeWraithController() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPath_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "AI" },
-		{ "ModuleRelativePath", "WraithController.h" },
+		{ "ModuleRelativePath", "AI/WraithController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPath = { "PatrolPath", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AWraithController, PatrolPath), Z_Construct_UClass_APatrolPath_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPath_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWraithController_Statics::NewProp_PatrolPath_MetaData)) };
@@ -107,15 +107,15 @@ void EmptyLinkFunctionForGeneratedCodeWraithController() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWraithController);
 	AWraithController::~AWraithController() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithController_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithController_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AWraithController, AWraithController::StaticClass, TEXT("AWraithController"), &Z_Registration_Info_UClass_AWraithController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithController), 2504068313U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithController_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AWraithController, AWraithController::StaticClass, TEXT("AWraithController"), &Z_Registration_Info_UClass_AWraithController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithController), 2396154259U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithController_h_283394764(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithController_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithController_h_3904710244(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

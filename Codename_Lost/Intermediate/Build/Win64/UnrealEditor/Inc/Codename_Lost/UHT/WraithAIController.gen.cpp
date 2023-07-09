@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Codename_Lost/WraithAIController.h"
+#include "Codename_Lost/AI/WraithAIController.h"
 #include "AIModule/Classes/Perception/AIPerceptionTypes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
@@ -75,7 +75,7 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "WraithAIController.h" },
+		{ "ModuleRelativePath", "AI/WraithAIController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWraithAIController, nullptr, "OnTargetDetected", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::WraithAIController_eventOnTargetDetected_Parms), Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams)) };
@@ -97,7 +97,7 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWraithAIController_SetupPerceptionSystem_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "WraithAIController.h" },
+		{ "ModuleRelativePath", "AI/WraithAIController.h" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWraithAIController_SetupPerceptionSystem_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWraithAIController, nullptr, "SetupPerceptionSystem", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWraithAIController_SetupPerceptionSystem_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_SetupPerceptionSystem_Statics::Function_MetaDataParams)) };
@@ -140,21 +140,21 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Codename_Lost,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWraithAIController_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AWraithAIController_OnTargetDetected, "OnTargetDetected" }, // 2502148534
-		{ &Z_Construct_UFunction_AWraithAIController_SetupPerceptionSystem, "SetupPerceptionSystem" }, // 1257992561
+		{ &Z_Construct_UFunction_AWraithAIController_OnTargetDetected, "OnTargetDetected" }, // 386865074
+		{ &Z_Construct_UFunction_AWraithAIController_SetupPerceptionSystem, "SetupPerceptionSystem" }, // 2274044460
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWraithAIController_Statics::Class_MetaDataParams[] = {
 		{ "Comment", "/**\n * \n */" },
 		{ "HideCategories", "Collision Rendering Transformation" },
-		{ "IncludePath", "WraithAIController.h" },
-		{ "ModuleRelativePath", "WraithAIController.h" },
+		{ "IncludePath", "AI/WraithAIController.h" },
+		{ "ModuleRelativePath", "AI/WraithAIController.h" },
 	};
 #endif
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWraithAIController_Statics::NewProp_AIBehaviorTree_MetaData[] = {
 		{ "Category", "WraithAIController" },
-		{ "ModuleRelativePath", "WraithAIController.h" },
+		{ "ModuleRelativePath", "AI/WraithAIController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWraithAIController_Statics::NewProp_AIBehaviorTree = { "AIBehaviorTree", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AWraithAIController, AIBehaviorTree), Z_Construct_UClass_UBehaviorTree_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWraithAIController_Statics::NewProp_AIBehaviorTree_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWraithAIController_Statics::NewProp_AIBehaviorTree_MetaData)) };
@@ -162,7 +162,7 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints_MetaData[] = {
 		{ "Category", "Patrol Points" },
-		{ "ModuleRelativePath", "WraithAIController.h" },
+		{ "ModuleRelativePath", "AI/WraithAIController.h" },
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints = { "PatrolPoints", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AWraithAIController, PatrolPoints), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints_MetaData)) };
@@ -203,15 +203,15 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWraithAIController);
 	AWraithAIController::~AWraithAIController() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AWraithAIController, AWraithAIController::StaticClass, TEXT("AWraithAIController"), &Z_Registration_Info_UClass_AWraithAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithAIController), 2690025686U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AWraithAIController, AWraithAIController::StaticClass, TEXT("AWraithAIController"), &Z_Registration_Info_UClass_AWraithAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithAIController), 2611854596U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_3817288981(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_WraithAIController_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_24052583(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

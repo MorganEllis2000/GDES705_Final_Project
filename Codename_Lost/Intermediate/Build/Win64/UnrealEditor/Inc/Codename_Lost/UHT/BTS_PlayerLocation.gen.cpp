@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Codename_Lost/BTS_PlayerLocation.h"
+#include "Codename_Lost/AI/Services/BTS_PlayerLocation.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeBTS_PlayerLocation() {}
 // Cross Module References
@@ -38,8 +38,8 @@ void EmptyLinkFunctionForGeneratedCodeBTS_PlayerLocation() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UBTS_PlayerLocation_Statics::Class_MetaDataParams[] = {
 		{ "Comment", "/**\n * \n */" },
-		{ "IncludePath", "BTS_PlayerLocation.h" },
-		{ "ModuleRelativePath", "BTS_PlayerLocation.h" },
+		{ "IncludePath", "AI/Services/BTS_PlayerLocation.h" },
+		{ "ModuleRelativePath", "AI/Services/BTS_PlayerLocation.h" },
 	};
 #endif
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UBTS_PlayerLocation_Statics::StaticCppClassTypeInfo = {
@@ -74,15 +74,15 @@ void EmptyLinkFunctionForGeneratedCodeBTS_PlayerLocation() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UBTS_PlayerLocation);
 	UBTS_PlayerLocation::~UBTS_PlayerLocation() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_BTS_PlayerLocation_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_Services_BTS_PlayerLocation_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_BTS_PlayerLocation_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UBTS_PlayerLocation, UBTS_PlayerLocation::StaticClass, TEXT("UBTS_PlayerLocation"), &Z_Registration_Info_UClass_UBTS_PlayerLocation, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTS_PlayerLocation), 3629631666U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_Services_BTS_PlayerLocation_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UBTS_PlayerLocation, UBTS_PlayerLocation::StaticClass, TEXT("UBTS_PlayerLocation"), &Z_Registration_Info_UClass_UBTS_PlayerLocation, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTS_PlayerLocation), 1640554693U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_BTS_PlayerLocation_h_3878799045(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_BTS_PlayerLocation_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_BTS_PlayerLocation_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_Services_BTS_PlayerLocation_h_2460610508(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_Services_BTS_PlayerLocation_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_Services_BTS_PlayerLocation_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

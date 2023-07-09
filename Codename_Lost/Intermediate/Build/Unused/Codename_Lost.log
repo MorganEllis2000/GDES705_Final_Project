@@ -1,79 +1,37 @@
 ﻿  Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" Codename_LostEditor Win64 Development -Project="C:\Github\GDES705_Final_Project\Codename_Lost\Codename_Lost.uproject" -WaitMutex -FromMsBuild
   Log file: C:\Users\morga\AppData\Local\UnrealBuildTool\Log.txt
   Using 'git status' to determine working set for adaptive non-unity build (C:\Github\GDES705_Final_Project).
+  Waiting for 'git status' command to complete
   Invalidating makefile for Codename_LostEditor (working set of source files changed)
   Parsing headers for Codename_LostEditor
     Running Internal UnrealHeaderTool C:\Github\GDES705_Final_Project\Codename_Lost\Codename_Lost.uproject C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\Codename_LostEditor\Development\Codename_LostEditor.uhtmanifest -WarningsAsErrors -installed
   Total of 0 written
-  Reflection code generated for Codename_LostEditor in 0.9128182 seconds
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-0196.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-0196.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-0257.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-0257.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-1366.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-1366.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-1539.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-1539.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-1839.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-2156.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-2156.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-3963.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-3963.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-5315.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-5315.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-6128.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-6128.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-7061.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-7061.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8240.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8240.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8291.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8291.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8428.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8428.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8728.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8728.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8752.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-8752.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-9400.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-9400.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-9578.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-9578.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-9752.dll
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Binaries\Win64\UnrealEditor-Codename_Lost-9752.pdb
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-0196.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-0257.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-1366.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-1539.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-1839.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-2156.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-3963.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-5315.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-6128.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-7061.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-8240.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-8291.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-8428.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-8728.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-8752.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-9400.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-9578.lib
-  Deleted hot-reload file: C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost-9752.lib
+  Reflection code generated for Codename_LostEditor in 0.876767 seconds
   Building Codename_LostEditor...
   Using Visual Studio 2019 14.29.30151 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133) and Windows 10.0.19041.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-  [Adaptive Build] Excluded from Codename_Lost unity file: CharacterController.cpp, WraithAIController.cpp, WraithController.cpp
+  [Adaptive Build] Excluded from Codename_Lost unity file: Flashlight.cpp, Gun.cpp, OpenDoorWithLerp.cpp, PatrolPath.cpp, Pickup.cpp, CharacterController.cpp, Codename_LostGameModeBase.cpp, WraithAIController.cpp, WraithController.cpp, BTS_PlayerLocation.cpp, BTS_PlayerLocationIfSeen.cpp, BTS_SetPatrolLocation.cpp, BTT_Attack.cpp, BTT_ClearBlackboardValue.cpp, BTT_FindPatrolPathPoint.cpp, BTT_FindPlayerLocation.cpp, BTT_IncrementPathIndex.cpp, BTT_SetPatrolLocation.cpp, HealthComponent.cpp
   Determining max actions to execute in parallel (8 physical cores, 16 logical cores)
     Executing up to 8 processes, one per physical core
-    Requested 1.5 GB free memory per action, 3.97 GB available: limiting max parallel actions to 2
-  Building 7 actions with 2 processes...
-  [1/7] Compile WraithAIController.gen.cpp
-  [2/7] Compile WraithController.cpp
-  [3/7] Compile WraithController.gen.cpp
-  [4/7] Compile WraithAIController.cpp
-C:\Github\GDES705_Final_Project\Codename_Lost\Source\Codename_Lost\WraithAIController.cpp(51): error C2146: syntax error: missing ';' before identifier 'SetPerceptionComponent'
-C:\Github\GDES705_Final_Project\Codename_Lost\Source\Codename_Lost\WraithAIController.cpp(51): error C2664: 'void AAIController::SetPerceptionComponent(UAIPerceptionComponent &)': cannot convert argument 1 from 'UAIPerceptionComponent *' to 'UAIPerceptionComponent &'
-  C:\Program Files\Epic Games\UE_5.1\Engine\Source\Runtime\AIModule\Classes\AIController.h(378): note: see declaration of 'AAIController::SetPerceptionComponent'
-  [5/7] Link UnrealEditor-Codename_Lost.dll cancelled
-  [6/7] Link UnrealEditor-Codename_Lost.lib cancelled
-  [7/7] WriteMetadata Codename_LostEditor.target cancelled
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.MakeFile.Targets(45,5): error MSB3073: The command ""C:\Program Files\Epic Games\UE_5.1\Engine\Build\BatchFiles\Build.bat" Codename_LostEditor Win64 Development -Project="C:\Github\GDES705_Final_Project\Codename_Lost\Codename_Lost.uproject" -WaitMutex -FromMsBuild" exited with code 6.
+    Requested 1.5 GB free memory per action, 3.49 GB available: limiting max parallel actions to 2
+  Building 17 actions with 2 processes...
+  [1/17] Compile BTT_SetPatrolLocation.cpp
+  [2/17] Compile BTT_IncrementPathIndex.cpp
+  [3/17] Compile HealthComponent.cpp
+  [4/17] Compile Pickup.cpp
+  [5/17] Compile BTT_Attack.cpp
+  [6/17] Compile WraithAIController.cpp
+  [7/17] Compile CharacterController.cpp
+  [8/17] Compile BTT_FindPatrolPathPoint.cpp
+  [9/17] Compile BTT_FindPlayerLocation.cpp
+  [10/17] Compile WraithController.gen.cpp
+  [11/17] Compile BTS_SetPatrolLocation.cpp
+  [12/17] Compile Gun.cpp
+  [13/17] Compile WraithController.cpp
+  [14/17] Compile OpenDoorWithLerp.cpp
+  [15/17] Link UnrealEditor-Codename_Lost.lib
+     Creating library C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.lib and object C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.exp
+  [16/17] Link UnrealEditor-Codename_Lost.dll
+     Creating library C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.suppressed.lib and object C:\Github\GDES705_Final_Project\Codename_Lost\Intermediate\Build\Win64\UnrealEditor\Development\Codename_Lost\UnrealEditor-Codename_Lost.suppressed.exp
+  [17/17] WriteMetadata Codename_LostEditor.target
+  Total time in Parallel executor: 26.40 seconds
+  Total execution time: 31.56 seconds
