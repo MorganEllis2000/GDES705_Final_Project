@@ -131,6 +131,11 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 		static void NewProp_bIsLightOn_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsLightOn;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bCanBeSwitchedOn_MetaData[];
+#endif
+		static void NewProp_bCanBeSwitchedOn_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bCanBeSwitchedOn;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LightToggled_MetaData[];
 #endif
 		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_LightToggled;
@@ -208,6 +213,17 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_bIsLightOn = { "bIsLightOn", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(AFlashlight), &Z_Construct_UClass_AFlashlight_Statics::NewProp_bIsLightOn_SetBit, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_bIsLightOn_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_bIsLightOn_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn_MetaData[] = {
+		{ "Category", "Flashlight" },
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
+	};
+#endif
+	void Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn_SetBit(void* Obj)
+	{
+		((AFlashlight*)Obj)->bCanBeSwitchedOn = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn = { "bCanBeSwitchedOn", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(AFlashlight), &Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn_SetBit, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled_MetaData[] = {
 		{ "Category", "Flashlight" },
 		{ "ModuleRelativePath", "Actors/Flashlight.h" },
@@ -229,6 +245,7 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_DrainBatteryLifeTickTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_BatteryDrainPerTick,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_bIsLightOn,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained,
 	};
@@ -269,9 +286,9 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AFlashlight, AFlashlight::StaticClass, TEXT("AFlashlight"), &Z_Registration_Info_UClass_AFlashlight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFlashlight), 1484980713U) },
+		{ Z_Construct_UClass_AFlashlight, AFlashlight::StaticClass, TEXT("AFlashlight"), &Z_Registration_Info_UClass_AFlashlight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFlashlight), 3520156329U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_535817995(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_2124141696(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

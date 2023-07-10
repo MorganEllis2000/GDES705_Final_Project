@@ -150,6 +150,8 @@ void ACharacterController::Tick(float DeltaTime)
 			SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 		}
 	}
+
+	bIsReloading = Glock->bIsReloading;
 }
 
 // Called to bind functionality to input
@@ -186,8 +188,8 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Triggered, this, &ACharacterController::StartSprint);
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Completed, this, &ACharacterController::FinishSprint);
 
-	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
-	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::ToggleFlashlight);
+	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::FlashlightOn);
+	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
@@ -565,5 +567,19 @@ void ACharacterController::StopPlayerMovingCameraShake()
 void ACharacterController::ToggleFlashlight() {
 	if (bCanMove) {
 		Flashlight->ToggleLight();
+	}
+}
+
+void ACharacterController::FlashlightOn()
+{
+	if (bCanMove) {
+		Flashlight->TurnLightOn();
+	}
+}
+
+void ACharacterController::FlashlightOff()
+{
+	if (bCanMove) {
+		Flashlight->TurnLightOff();
 	}
 }

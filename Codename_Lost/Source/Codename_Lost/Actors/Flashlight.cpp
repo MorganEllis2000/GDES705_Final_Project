@@ -26,6 +26,7 @@ AFlashlight::AFlashlight()
 	BatteryDrainPerTick = 1.f;
 
 	bIsLightOn = false;
+	
 
 }
 
@@ -35,7 +36,7 @@ void AFlashlight::BeginPlay()
 {
 	Super::BeginPlay();
 	GetWorld()->GetTimerManager().SetTimer(FlashlightRechargeTimerHandle, this, &AFlashlight::BatteryDrain, DrainBatteryLifeTickTime, true);
-	
+	bCanBeSwitchedOn = true;
 }
 
 // Called every frame
@@ -48,7 +49,7 @@ void AFlashlight::Tick(float DeltaTime)
 void AFlashlight::TurnLightOn()
 {
 	if (Light) {
-		if (CanTurnOn()) {
+		if (CanTurnOn() && bCanBeSwitchedOn) {
 			bIsLightOn = true;
 			Light->SetIntensity(250000.f);
 			LightToggled.Broadcast(bIsLightOn);
@@ -63,13 +64,15 @@ void AFlashlight::TurnLightOff()
 			bIsLightOn = false;
 			Light->SetIntensity(0.f);
 			LightToggled.Broadcast(bIsLightOn);
+			bCanBeSwitchedOn = false;
+			GetWorld()->GetTimerManager().SetTimer(FlashlightToggleTimerHandle, this, &AFlashlight::CanSwitchLightOn, 1.5f);
 		}
 	}
 }
 
 void AFlashlight::ToggleLight()
 {
-	if (CanTurnOn())
+	if (CanTurnOn() && bCanBeSwitchedOn)
 	{
 		TurnLightOn();
 	}
@@ -77,6 +80,11 @@ void AFlashlight::ToggleLight()
 	{
 		TurnLightOff();
 	}
+}
+
+void AFlashlight::CanSwitchLightOn()
+{
+	bCanBeSwitchedOn = true;
 }
 
 void AFlashlight::BatteryDrain()

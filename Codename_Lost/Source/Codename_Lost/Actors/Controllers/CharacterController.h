@@ -78,6 +78,8 @@ private:
 
 	// Flashlight Functions
 	void ToggleFlashlight();
+	void FlashlightOn();
+	void FlashlightOff();
 
 #pragma region Shooting Functions
 	void Shoot();
@@ -184,6 +186,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool bIsZoomedIn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool bIsReloading;
 #pragma endregion
 
 #pragma region Player Stats
@@ -214,6 +219,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "SFX")
 	class USoundCue* DamagedSoundCue;
 
+	UPROPERTY()
+	AGun* Glock;
 protected:
 
 #pragma region Input Mapping
@@ -235,8 +242,7 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
 
-	UPROPERTY()
-	AGun* Glock;
+
 
 #pragma region Mouse Input Variables
 
