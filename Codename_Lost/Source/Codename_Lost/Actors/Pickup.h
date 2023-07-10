@@ -28,7 +28,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeAddedToInventory;
 
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* ObjectMesh;

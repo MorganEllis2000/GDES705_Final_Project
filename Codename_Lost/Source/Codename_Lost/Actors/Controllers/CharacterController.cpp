@@ -468,7 +468,7 @@ void ACharacterController::ToggleItemPickup() {
 }
 
 void ACharacterController::Interact() {
-	if (bInspecting && PlayerController) {
+	if (bInspecting && PlayerController && CurrentItem->bCanBeAddedToInventory == true) {
 		AddItemToInventory();
 	}
 }

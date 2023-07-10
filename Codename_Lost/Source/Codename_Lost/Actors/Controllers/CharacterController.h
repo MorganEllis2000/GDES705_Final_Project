@@ -127,6 +127,7 @@ public:
 	class APickup* CurrentItem;
 
 	bool bCanMove;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bHoldingItem;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bShowCanInspectWidget;
