@@ -40,6 +40,8 @@ public:
 	ATargetPoint* CurrentPatrolPoint;
 	FVector CurrentPatrolPointLocation;
 
+	class USoundCue* PlayerDamagedSoundCue;
+
 protected:
 
 

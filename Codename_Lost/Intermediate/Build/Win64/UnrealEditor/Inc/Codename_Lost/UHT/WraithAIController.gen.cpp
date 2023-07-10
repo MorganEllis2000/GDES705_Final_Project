@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	CODENAME_LOST_API UClass* Z_Construct_UClass_AWraithAIController_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_ATargetPoint_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_Codename_Lost();
 // End Cross Module References
 	DEFINE_FUNCTION(AWraithAIController::execOnTargetDetected)
@@ -131,6 +132,10 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_PatrolPoints_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_PatrolPoints;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HitSoundFX_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_HitSoundFX;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -166,10 +171,18 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints = { "PatrolPoints", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AWraithAIController, PatrolPoints), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWraithAIController_Statics::NewProp_HitSoundFX_MetaData[] = {
+		{ "Category", "SFX" },
+		{ "ModuleRelativePath", "AI/WraithAIController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWraithAIController_Statics::NewProp_HitSoundFX = { "HitSoundFX", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AWraithAIController, HitSoundFX), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWraithAIController_Statics::NewProp_HitSoundFX_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWraithAIController_Statics::NewProp_HitSoundFX_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWraithAIController_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWraithAIController_Statics::NewProp_AIBehaviorTree,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWraithAIController_Statics::NewProp_PatrolPoints,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWraithAIController_Statics::NewProp_HitSoundFX,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AWraithAIController_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AWraithAIController>::IsAbstract,
@@ -208,9 +221,9 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AWraithAIController, AWraithAIController::StaticClass, TEXT("AWraithAIController"), &Z_Registration_Info_UClass_AWraithAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithAIController), 2611854596U) },
+		{ Z_Construct_UClass_AWraithAIController, AWraithAIController::StaticClass, TEXT("AWraithAIController"), &Z_Registration_Info_UClass_AWraithAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithAIController), 3275512146U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_24052583(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_154784306(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -26,8 +26,4 @@ void UBTS_SetPatrolLocation::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* 
 	//	OwnerController->CurrentPatrolPointLocation = OwnerController->PatrolPoints[FMath::RandRange(0, PatrolPoints.Num())]->GetActorLocation()
 	//	OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), OwnerController->CurrentPatrolPointLocationd);
 	//}
-
-	
-
-	
 }

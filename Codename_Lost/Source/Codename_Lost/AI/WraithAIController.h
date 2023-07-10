@@ -47,6 +47,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Patrol Points")
 	TArray<ATargetPoint*> PatrolPoints;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SFX")
+	class USoundCue* HitSoundFX;
+
 protected:
 
 private:

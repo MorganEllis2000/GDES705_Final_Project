@@ -22,6 +22,7 @@ EBTNodeResult::Type UBTT_FindPlayerLocation::ExecuteTask(UBehaviorTreeComponent&
 	// get player location to use as an origin
 	FVector const player_location = player->GetActorLocation();
 	cont->GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), player_location);
+	cont->GetBlackboardComponent()->ClearValue("LastKnownPlayerLoc");
 
 
 	// finish with success

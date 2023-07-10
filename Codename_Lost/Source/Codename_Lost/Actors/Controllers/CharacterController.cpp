@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#pragma region Includes
 #include "CharacterController.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
@@ -21,7 +20,7 @@
 #include "Codename_Lost/Actors/Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
-#pragma endregion
+#include "Sound/SoundCue.h"
 
 #pragma region Constructors/Setup
 // Sets default values

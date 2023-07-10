@@ -41,8 +41,8 @@ void AWraithAIController::OnTargetDetected(AActor* actor, FAIStimulus const stim
 {
 	if (auto const character = Cast<ACharacterController>(actor)) {
 		GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), stimulus.WasSuccessfullySensed());
-
 		GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
+		GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
 	}
 }
 

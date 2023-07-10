@@ -17,11 +17,11 @@ class CODENAME_LOST_API UBTT_Attack : public UBTTaskNode
 public:
 	UBTT_Attack();
 protected:
+	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory) override;
 private:
 
 public:
-
 protected:
 
 private:

@@ -210,6 +210,8 @@ public:
 	FTimerHandle StaminaRechargeTimerHandle;
 #pragma endregion
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "SFX")
+	class USoundCue* DamagedSoundCue;
 
 protected:
 

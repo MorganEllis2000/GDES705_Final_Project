@@ -114,7 +114,12 @@
             "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\actors\\gun.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\engine\\classes\\components\\timelinecomponent.h",
             "c:\\program files\\epic games\\ue_5.1\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\timelinecomponent.generated.h",
-            "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\inc\\codename_lost\\uht\\gun.generated.h"
+            "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\inc\\codename_lost\\uht\\gun.generated.h",
+            "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\engine\\classes\\sound\\soundcue.h",
+            "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\audioextensions\\public\\iaudioparametertransmitter.h",
+            "c:\\program files\\epic games\\ue_5.1\\engine\\source\\runtime\\engine\\classes\\sound\\soundnode.h",
+            "c:\\program files\\epic games\\ue_5.1\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\soundnode.generated.h",
+            "c:\\program files\\epic games\\ue_5.1\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\soundcue.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
