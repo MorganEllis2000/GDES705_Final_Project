@@ -9,7 +9,8 @@
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Codename_Lost/Actors/Controllers/CharacterController.h"
-#include "WraithController.h"
+#include "Codename_Lost/AI/WraithController.h"
+#include "Perception/AISenseConfig_Hearing.h"
 
 
 AWraithAIController::AWraithAIController()
@@ -28,21 +29,54 @@ void AWraithAIController::BeginPlay()
 		GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
 		GetBlackboardComponent()->SetValueAsVector(TEXT("StartLocation"), GetPawn()->GetActorLocation());
 	}
-
 	//GetBlackboardComponent()->SetValueAsVector(TEXT("PatrolLocation"), )
+
+	WraithController = Cast<AWraithController>(this->GetCharacter());
 }
 
 void AWraithAIController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	if(WraithController)
+	{
+		GetBlackboardComponent()->SetValueAsFloat(TEXT("LightDamage"), WraithController->TimeLightShinedOnSelf);
+	} else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("NO CONTROLLER"));
+	}
+	
 }
 
-void AWraithAIController::OnTargetDetected(AActor* actor, FAIStimulus const stimulus)
+/*void AWraithAIController::OnTargetDetected(AActor* actor, FAIStimulus const stimulus)
 {
-	if (auto const character = Cast<ACharacterController>(actor)) {
+	if (auto const character = Cast<ACharacterController>(actor))
+	{
 		GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), stimulus.WasSuccessfullySensed());
 		GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
 		GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
+	}
+}*/
+void AWraithAIController::OnTargetDetected(TArray<AActor*> const& UpdatedActors)
+{
+	for(int i = 0; i < UpdatedActors.Num(); i++)
+	{
+		FActorPerceptionBlueprintInfo info;
+		GetPerceptionComponent()->GetActorsPerception(UpdatedActors[i], info);
+		for(int j = 0; j < info.LastSensedStimuli.Num(); ++j)
+		{
+			FAIStimulus const Stimulus = info.LastSensedStimuli[j];
+			if(Stimulus.Tag == "Noise")
+			{
+				GetBlackboardComponent()->SetValueAsBool(TEXT("SoundWasHeard"), Stimulus.WasSuccessfullySensed());
+				GetBlackboardComponent()->SetValueAsVector(TEXT("SoundLocation"), Stimulus.StimulusLocation);
+			} else if(Stimulus.Type.Name == "Default__AISense_Sight")
+			{
+				GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), Stimulus.WasSuccessfullySensed());
+				GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
+				GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
+			}
+			
+		}
 	}
 }
 
@@ -53,18 +87,32 @@ void AWraithAIController::SetupPerceptionSystem()
 	perceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("Perception Component"));
 	SetPerceptionComponent(*perceptionComponent);
 
-	SightConfig->SightRadius = 500.f;
-	SightConfig->LoseSightRadius = SightConfig->SightRadius + 800.f;
-	SightConfig->PeripheralVisionAngleDegrees = 90.f;
-	SightConfig->SetMaxAge(5.f);
-	SightConfig->AutoSuccessRangeFromLastSeenLocation = 800.f;
-	SightConfig->DetectionByAffiliation.bDetectEnemies = true;
-	SightConfig->DetectionByAffiliation.bDetectFriendlies = true;
-	SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
+	if(SightConfig)
+	{
+		SightConfig->SightRadius = 500.f;
+		SightConfig->LoseSightRadius = SightConfig->SightRadius + 50.f;
+		SightConfig->PeripheralVisionAngleDegrees = 90.f;
+		SightConfig->SetMaxAge(1.f);
+		SightConfig->AutoSuccessRangeFromLastSeenLocation = 520.f;
+		SightConfig->DetectionByAffiliation.bDetectEnemies = true;
+		SightConfig->DetectionByAffiliation.bDetectFriendlies = true;
+		SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
 
-	GetPerceptionComponent()->SetDominantSense(*SightConfig->GetSenseImplementation());
-	GetPerceptionComponent()->OnTargetPerceptionUpdated.AddDynamic(this, &AWraithAIController::OnTargetDetected);
-	GetPerceptionComponent()->ConfigureSense(*SightConfig);
+		GetPerceptionComponent()->SetDominantSense(*SightConfig->GetSenseImplementation());
+		//GetPerceptionComponent()->OnTargetPerceptionUpdated.AddDynamic(this, &AWraithAIController::OnTargetDetected);
+		GetPerceptionComponent()->ConfigureSense(*SightConfig);
+	}
+
+	HearingConfig = CreateDefaultSubobject<UAISenseConfig_Hearing>(TEXT("Hearing Config"));
+	if(HearingConfig)
+	{
+		HearingConfig->HearingRange = 3000.f;
+		HearingConfig->DetectionByAffiliation.bDetectEnemies = true;
+		HearingConfig->DetectionByAffiliation.bDetectFriendlies = true;
+		HearingConfig->DetectionByAffiliation.bDetectNeutrals = true;
+		GetPerceptionComponent()->OnPerceptionUpdated.AddDynamic(this, &AWraithAIController::OnTargetDetected);
+		GetPerceptionComponent()->ConfigureSense((*HearingConfig));
+	}
 }
 
 

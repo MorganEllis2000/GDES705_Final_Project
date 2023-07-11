@@ -244,6 +244,7 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APickup_Statics::NewProp_ObjectDescription_MetaData[] = {
 		{ "Category", "Item Info" },
 		{ "ModuleRelativePath", "Actors/Pickup.h" },
+		{ "MultiLine", "TRUE" },
 	};
 #endif
 	const UECodeGen_Private::FTextPropertyParams Z_Construct_UClass_APickup_Statics::NewProp_ObjectDescription = { "ObjectDescription", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(APickup, ObjectDescription), METADATA_PARAMS(Z_Construct_UClass_APickup_Statics::NewProp_ObjectDescription_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_APickup_Statics::NewProp_ObjectDescription_MetaData)) };
@@ -303,9 +304,9 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Pickup_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_APickup, APickup::StaticClass, TEXT("APickup"), &Z_Registration_Info_UClass_APickup, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APickup), 2339913625U) },
+		{ Z_Construct_UClass_APickup, APickup::StaticClass, TEXT("APickup"), &Z_Registration_Info_UClass_APickup, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APickup), 3103258196U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Pickup_h_1247785819(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Pickup_h_3684514757(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Pickup_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Pickup_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

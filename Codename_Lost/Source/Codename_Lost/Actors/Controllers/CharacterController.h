@@ -18,7 +18,7 @@ class CODENAME_LOST_API ACharacterController : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
+	// Sets default values for this character's propertiesMOO
 	ACharacterController();
 
 	// Called every frame
@@ -26,6 +26,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	void SetupStimulus();
 
 #pragma region Crouch Functions
 	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
@@ -89,7 +91,8 @@ private:
 	void ZoomOut();
 #pragma endregion
 
-public:	
+public:
+	class UAIPerceptionStimuliSourceComponent* stimulus;
 
 #pragma region Movement Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")

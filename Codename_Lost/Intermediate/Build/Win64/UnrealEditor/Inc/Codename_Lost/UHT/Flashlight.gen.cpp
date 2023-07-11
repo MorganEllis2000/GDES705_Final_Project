@@ -11,6 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 // Cross Module References
 	CODENAME_LOST_API UClass* Z_Construct_UClass_AFlashlight();
 	CODENAME_LOST_API UClass* Z_Construct_UClass_AFlashlight_NoRegister();
+	CODENAME_LOST_API UClass* Z_Construct_UClass_AWraithController_NoRegister();
 	CODENAME_LOST_API UFunction* Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature();
 	CODENAME_LOST_API UFunction* Z_Construct_UDelegateFunction_Codename_Lost_FlashLightToggled__DelegateSignature();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
@@ -143,6 +144,10 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LightDrained_MetaData[];
 #endif
 		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_LightDrained;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_WraithController_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_WraithController;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -237,6 +242,12 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 	};
 #endif
 	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained = { "LightDrained", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, LightDrained), Z_Construct_UDelegateFunction_Codename_Lost_FlashLightDrained__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained_MetaData)) }; // 2308093050
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFlashlight_Statics::NewProp_WraithController_MetaData[] = {
+		{ "ModuleRelativePath", "Actors/Flashlight.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFlashlight_Statics::NewProp_WraithController = { "WraithController", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AFlashlight, WraithController), Z_Construct_UClass_AWraithController_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AFlashlight_Statics::NewProp_WraithController_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFlashlight_Statics::NewProp_WraithController_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AFlashlight_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_Mesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_Light,
@@ -248,6 +259,7 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_bCanBeSwitchedOn,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_LightToggled,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_LightDrained,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFlashlight_Statics::NewProp_WraithController,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AFlashlight_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AFlashlight>::IsAbstract,
@@ -286,9 +298,9 @@ void EmptyLinkFunctionForGeneratedCodeFlashlight() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AFlashlight, AFlashlight::StaticClass, TEXT("AFlashlight"), &Z_Registration_Info_UClass_AFlashlight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFlashlight), 3520156329U) },
+		{ Z_Construct_UClass_AFlashlight, AFlashlight::StaticClass, TEXT("AFlashlight"), &Z_Registration_Info_UClass_AFlashlight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFlashlight), 1507342586U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_2124141696(TEXT("/Script/Codename_Lost"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_3244134298(TEXT("/Script/Codename_Lost"),
 		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

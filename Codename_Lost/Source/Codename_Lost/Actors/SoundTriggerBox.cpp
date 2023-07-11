@@ -4,6 +4,7 @@
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
+#include "Perception/AISense_Hearing.h"
 
 ASoundTriggerBox::ASoundTriggerBox()
 {
@@ -17,6 +18,7 @@ void ASoundTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActo
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Overlap begin"));
 		UGameplayStatics::PlaySoundAtLocation(this, SoundFX, GetActorLocation());
+		//UAISense_Hearing::ReportNoiseEvent(GetWorld(), this->GetActorLocation(), 1.f, this, 0.f, "Noise");
 	}
 }
 

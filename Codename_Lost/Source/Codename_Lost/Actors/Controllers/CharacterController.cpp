@@ -21,6 +21,9 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
 #include "Sound/SoundCue.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
+#include "Perception/AISense_Hearing.h"
 
 #pragma region Constructors/Setup
 // Sets default values
@@ -205,6 +208,14 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::ZoomOut);
 }
 
+
+void ACharacterController::SetupStimulus()
+{
+	stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
+	stimulus->RegisterWithPerceptionSystem();
+}
+
 #pragma endregion
 
 #pragma region Player Movement
@@ -226,6 +237,11 @@ void ACharacterController::Move(const FInputActionValue& Value) {
 			const FVector Direction = MovementRotation.RotateVector(FVector::RightVector);
 			AddMovementInput(Direction, MoveValue.X);
 		}
+	}
+
+	if(bIsSprinting)
+	{
+		UAISense_Hearing::ReportNoiseEvent(GetWorld(), this->GetActorLocation(), 1.f, this, 1500.f, "Noise");
 	}
 }
 
@@ -265,6 +281,7 @@ void ACharacterController::StartSprint() {
 		bIsSprinting = true;
 		CurrentStamina -= StaminaDrainPerTick;
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
+		
 	}
 	else {
 		bIsSprinting = false;

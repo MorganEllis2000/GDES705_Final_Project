@@ -10,7 +10,6 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AActor;
-struct FAIStimulus;
 #ifdef CODENAME_LOST_WraithAIController_generated_h
 #error "WraithAIController.generated.h already included, missing '#pragma once' in WraithAIController.h"
 #endif

@@ -60,7 +60,7 @@ public:
 	FText ObjectName;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
 	FText ObjectType;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info", meta=(MultiLine=true))
 	FText ObjectDescription;
 
 	
