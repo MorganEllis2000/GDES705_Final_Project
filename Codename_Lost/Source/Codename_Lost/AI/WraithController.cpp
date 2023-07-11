@@ -2,6 +2,8 @@
 
 
 #include "WraithController.h"
+
+#include "Codename_Lost/Components/HealthComponent.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
 
@@ -13,7 +15,7 @@ AWraithController::AWraithController()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SetupStimulus();
-
+	TimeLightShinedOnSelf = 0.f;
 }
 
 // Called when the game starts or when spawned
@@ -28,7 +30,6 @@ void AWraithController::BeginPlay()
 void AWraithController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -45,8 +46,8 @@ APatrolPath* AWraithController::GetPatrolPath()
 
 void AWraithController::SetupStimulus()
 {
-	stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	/*stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
 	stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
-	stimulus->RegisterWithPerceptionSystem();
+	stimulus->RegisterWithPerceptionSystem();*/
 }
 

@@ -18,7 +18,7 @@ class CODENAME_LOST_API ACharacterController : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
+	// Sets default values for this character's propertiesMOO
 	ACharacterController();
 
 	// Called every frame
@@ -26,6 +26,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	void SetupStimulus();
 
 #pragma region Crouch Functions
 	void OnStartCrouch(float HalfHeightAdjust, float ScaledHalfHeightAdjust) override;
@@ -78,6 +80,8 @@ private:
 
 	// Flashlight Functions
 	void ToggleFlashlight();
+	void FlashlightOn();
+	void FlashlightOff();
 
 #pragma region Shooting Functions
 	void Shoot();
@@ -87,7 +91,8 @@ private:
 	void ZoomOut();
 #pragma endregion
 
-public:	
+public:
+	class UAIPerceptionStimuliSourceComponent* stimulus;
 
 #pragma region Movement Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
@@ -127,6 +132,7 @@ public:
 	class APickup* CurrentItem;
 
 	bool bCanMove;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bHoldingItem;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bShowCanInspectWidget;
@@ -183,6 +189,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool bIsZoomedIn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool bIsReloading;
 #pragma endregion
 
 #pragma region Player Stats
@@ -213,6 +222,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "SFX")
 	class USoundCue* DamagedSoundCue;
 
+	UPROPERTY()
+	AGun* Glock;
 protected:
 
 #pragma region Input Mapping
@@ -234,8 +245,7 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
 
-	UPROPERTY()
-	AGun* Glock;
+
 
 #pragma region Mouse Input Variables
 

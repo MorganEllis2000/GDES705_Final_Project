@@ -28,7 +28,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeAddedToInventory;
 
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* ObjectMesh;
@@ -58,7 +60,7 @@ public:
 	FText ObjectName;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
 	FText ObjectType;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info", meta=(MultiLine=true))
 	FText ObjectDescription;
 
 	

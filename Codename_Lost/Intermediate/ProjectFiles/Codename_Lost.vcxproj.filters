@@ -132,6 +132,12 @@
     <Filter Include="Source\Codename_Lost\AI\Services">
       <UniqueIdentifier>{01E9EDB3-FF18-35CF-885B-80A62A0CEF77}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Codename_Lost\AI\Services\BTS_FlashlightDamage.cpp">
+      <Filter>Source\Codename_Lost\AI\Services</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\AI\Services\BTS_FlashlightDamage.h">
+      <Filter>Source\Codename_Lost\AI\Services</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Codename_Lost\AI\Services\BTS_PlayerLocation.cpp">
       <Filter>Source\Codename_Lost\AI\Services</Filter>
     </ClCompile>
@@ -148,6 +154,12 @@
       <Filter>Source\Codename_Lost\AI\Services</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Codename_Lost\AI\Services\BTS_SetPatrolLocation.h">
+      <Filter>Source\Codename_Lost\AI\Services</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\AI\Services\BTS_UpdatePlayerSeen.cpp">
+      <Filter>Source\Codename_Lost\AI\Services</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\AI\Services\BTS_UpdatePlayerSeen.h">
       <Filter>Source\Codename_Lost\AI\Services</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Codename_Lost\AI\Services\BTT_DistanceFromPlayer.cpp">
@@ -205,6 +217,18 @@
       <Filter>Source\Codename_Lost\AI\Tasks</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Codename_Lost\AI\Tasks\BTT_SetPatrolLocation.h">
+      <Filter>Source\Codename_Lost\AI\Tasks</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\AI\Tasks\BTT_TeleportToRandomLocation.cpp">
+      <Filter>Source\Codename_Lost\AI\Tasks</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\AI\Tasks\BTT_TeleportToRandomLocation.h">
+      <Filter>Source\Codename_Lost\AI\Tasks</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\AI\Tasks\BTT_UpdatePlayerSeen.cpp">
+      <Filter>Source\Codename_Lost\AI\Tasks</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\AI\Tasks\BTT_UpdatePlayerSeen.h">
       <Filter>Source\Codename_Lost\AI\Tasks</Filter>
     </ClInclude>
     <Filter Include="Source\Codename_Lost\Components">

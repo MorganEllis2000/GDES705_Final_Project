@@ -42,8 +42,13 @@ public:
 
 	void ToggleLight();
 
+	void CanSwitchLightOn();
+
 	UPROPERTY(BlueprintReadOnly, Category = "Flashlight")
 	bool bIsLightOn;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Flashlight")
+	bool bCanBeSwitchedOn = true;
 
 	UPROPERTY(BlueprintAssignable, Category = "Flashlight")
 	FFlashLightToggled LightToggled;
@@ -52,6 +57,12 @@ public:
 	FFlashLightDrained LightDrained;
 
 	FTimerHandle FlashlightRechargeTimerHandle;
+	FTimerHandle FlashlightToggleTimerHandle;
+
+	float Time;
+
+	UPROPERTY()
+	class AWraithController* WraithController;
 
 protected:
 	// Called when the game starts or when spawned

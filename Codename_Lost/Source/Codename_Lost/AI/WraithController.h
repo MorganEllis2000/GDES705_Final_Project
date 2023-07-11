@@ -42,6 +42,8 @@ public:
 
 	class USoundCue* PlayerDamagedSoundCue;
 
+	float TimeLightShinedOnSelf;
+
 protected:
 
 

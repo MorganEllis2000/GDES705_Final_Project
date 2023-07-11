@@ -21,6 +21,9 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
 #include "Sound/SoundCue.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
+#include "Perception/AISense_Hearing.h"
 
 #pragma region Constructors/Setup
 // Sets default values
@@ -150,6 +153,8 @@ void ACharacterController::Tick(float DeltaTime)
 			SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 		}
 	}
+
+	bIsReloading = Glock->bIsReloading;
 }
 
 // Called to bind functionality to input
@@ -186,8 +191,8 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Triggered, this, &ACharacterController::StartSprint);
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Completed, this, &ACharacterController::FinishSprint);
 
-	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
-	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::ToggleFlashlight);
+	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::FlashlightOn);
+	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
@@ -201,6 +206,14 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputReload, ETriggerEvent::Started, this, &ACharacterController::Reload);
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Triggered, this, &ACharacterController::ZoomIn);
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::ZoomOut);
+}
+
+
+void ACharacterController::SetupStimulus()
+{
+	stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
+	stimulus->RegisterWithPerceptionSystem();
 }
 
 #pragma endregion
@@ -224,6 +237,11 @@ void ACharacterController::Move(const FInputActionValue& Value) {
 			const FVector Direction = MovementRotation.RotateVector(FVector::RightVector);
 			AddMovementInput(Direction, MoveValue.X);
 		}
+	}
+
+	if(bIsSprinting)
+	{
+		UAISense_Hearing::ReportNoiseEvent(GetWorld(), this->GetActorLocation(), 1.f, this, 1500.f, "Noise");
 	}
 }
 
@@ -263,6 +281,7 @@ void ACharacterController::StartSprint() {
 		bIsSprinting = true;
 		CurrentStamina -= StaminaDrainPerTick;
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
+		
 	}
 	else {
 		bIsSprinting = false;
@@ -468,7 +487,7 @@ void ACharacterController::ToggleItemPickup() {
 }
 
 void ACharacterController::Interact() {
-	if (bInspecting && PlayerController) {
+	if (bInspecting && PlayerController && CurrentItem->bCanBeAddedToInventory == true) {
 		AddItemToInventory();
 	}
 }
@@ -565,5 +584,19 @@ void ACharacterController::StopPlayerMovingCameraShake()
 void ACharacterController::ToggleFlashlight() {
 	if (bCanMove) {
 		Flashlight->ToggleLight();
+	}
+}
+
+void ACharacterController::FlashlightOn()
+{
+	if (bCanMove) {
+		Flashlight->TurnLightOn();
+	}
+}
+
+void ACharacterController::FlashlightOff()
+{
+	if (bCanMove) {
+		Flashlight->TurnLightOff();
 	}
 }

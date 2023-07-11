@@ -33,7 +33,8 @@ private:
 	void SetupPerceptionSystem();
 
 	UFUNCTION()
-	void OnTargetDetected(AActor* actor, FAIStimulus const stimulus);
+	//void OnTargetDetected(AActor* actor, FAIStimulus const stimulus);
+	void OnTargetDetected(TArray<AActor*> const& UpdatedActors);
 
 public:
 	class APawn* PlayerPawn;
@@ -42,6 +43,7 @@ public:
 	class UBehaviorTree* AIBehaviorTree;
 
 	class UAISenseConfig_Sight* SightConfig;
+	class UAISenseConfig_Hearing* HearingConfig;
 	class UAIPerceptionComponent* perceptionComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Patrol Points")
@@ -49,6 +51,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SFX")
 	class USoundCue* HitSoundFX;
+	
+	class AWraithController* WraithController;
 
 protected:
 

@@ -4,7 +4,11 @@
 #include "Flashlight.h"
 #include "Components/SpotLightComponent.h"
 #include "TimerManager.h"
+#include "Controllers/CharacterController.h"
 #include "Engine/EngineTypes.h"
+#include "GenericPlatform/GenericPlatformCrashContext.h"
+#include "Codename_Lost/AI/WraithController.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AFlashlight::AFlashlight()
@@ -26,16 +30,19 @@ AFlashlight::AFlashlight()
 	BatteryDrainPerTick = 1.f;
 
 	bIsLightOn = false;
-
+	Time = 0.f;
 }
-
 
 // Called when the game starts or when spawned
 void AFlashlight::BeginPlay()
 {
 	Super::BeginPlay();
 	GetWorld()->GetTimerManager().SetTimer(FlashlightRechargeTimerHandle, this, &AFlashlight::BatteryDrain, DrainBatteryLifeTickTime, true);
+	bCanBeSwitchedOn = true;
 	
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AWraithController::StaticClass(), FoundActors);
+	WraithController = Cast<AWraithController>(FoundActors[0]);
 }
 
 // Called every frame
@@ -43,12 +50,79 @@ void AFlashlight::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FVector Location = GetActorLocation();
+	FRotator Rotation = GetActorRotation();
+
+	//DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2, FColor::Red, true);
+
+	FVector End = Location + Rotation.Vector() * 2000;
+	
+	FHitResult Hit;
+	GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_Visibility);
+	
+
+	if(WraithController)
+	{
+		if(bIsLightOn)
+		{
+			if(Cast<AWraithController>(Hit.GetActor()))
+			{
+			
+				if(WraithController->TimeLightShinedOnSelf < 5.f)
+				{
+					WraithController->TimeLightShinedOnSelf += DeltaTime;
+				
+				}
+			} else
+			{
+				if(WraithController->TimeLightShinedOnSelf > 0.f)
+				{
+					WraithController->TimeLightShinedOnSelf -= DeltaTime;
+				}
+			}
+			DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
+		} else
+		{
+			if(WraithController->TimeLightShinedOnSelf > 0.f)
+			{
+				WraithController->TimeLightShinedOnSelf -= DeltaTime;
+			}
+		}
+		UE_LOG(LogTemp, Warning, TEXT("%f"), WraithController->TimeLightShinedOnSelf);
+	}
+	
+	// if(bIsLightOn)
+	// {
+	// 	if(Cast<AWraithController>(Hit.GetActor()))
+	// 	{
+	// 		AWraithController* WraithController = Cast<AWraithController>(Hit.GetActor());
+	// 		if(Time < 5.f)
+	// 		{
+	// 			Time += DeltaTime;
+	// 			
+	// 		}
+	// 	} else
+	// 	{
+	// 		if(Time > 0.f)
+	// 		{
+	// 			Time -= DeltaTime;
+	// 		}
+	// 	}
+	// 	DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
+	// } else
+	// {
+	// 	if(Time > 0.f)
+	// 	{
+	// 		Time -= DeltaTime;
+	// 	}
+	// }
+	// UE_LOG(LogTemp, Warning, TEXT("%f"), Time);
 }
 
 void AFlashlight::TurnLightOn()
 {
 	if (Light) {
-		if (CanTurnOn()) {
+		if (CanTurnOn() && bCanBeSwitchedOn) {
 			bIsLightOn = true;
 			Light->SetIntensity(250000.f);
 			LightToggled.Broadcast(bIsLightOn);
@@ -63,13 +137,15 @@ void AFlashlight::TurnLightOff()
 			bIsLightOn = false;
 			Light->SetIntensity(0.f);
 			LightToggled.Broadcast(bIsLightOn);
+			bCanBeSwitchedOn = false;
+			GetWorld()->GetTimerManager().SetTimer(FlashlightToggleTimerHandle, this, &AFlashlight::CanSwitchLightOn, 1.5f);
 		}
 	}
 }
 
 void AFlashlight::ToggleLight()
 {
-	if (CanTurnOn())
+	if (CanTurnOn() && bCanBeSwitchedOn)
 	{
 		TurnLightOn();
 	}
@@ -77,6 +153,11 @@ void AFlashlight::ToggleLight()
 	{
 		TurnLightOff();
 	}
+}
+
+void AFlashlight::CanSwitchLightOn()
+{
+	bCanBeSwitchedOn = true;
 }
 
 void AFlashlight::BatteryDrain()
