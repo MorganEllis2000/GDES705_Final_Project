@@ -57,8 +57,8 @@ ACharacterController::ACharacterController()
 	bCanMove = true;
 	bInspecting = false;
 
-	PitchMax = 15.f;
-	PitchMin = -15.f;
+	PitchMax = 25.f;
+	PitchMin = -25.f;
 	RollMax = 10.f;
 	RollMin = -10.f;
 

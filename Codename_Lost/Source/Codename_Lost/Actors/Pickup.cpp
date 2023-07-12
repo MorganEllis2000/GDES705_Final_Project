@@ -93,6 +93,11 @@ void APickup::OnInteract()
 				Elem.Value = true;
 			}
 		}
+
+		if(ObjectName.ToString() == "Lighter")
+		{
+			GameMode->bHasLighter = true;
+		}
 	}
 	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
 }
