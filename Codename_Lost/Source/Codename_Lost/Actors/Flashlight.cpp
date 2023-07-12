@@ -80,7 +80,7 @@ void AFlashlight::Tick(float DeltaTime)
 					WraithController->TimeLightShinedOnSelf -= DeltaTime;
 				}
 			}
-			DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
+			//DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
 		} else
 		{
 			if(WraithController->TimeLightShinedOnSelf > 0.f)
@@ -89,33 +89,6 @@ void AFlashlight::Tick(float DeltaTime)
 			}
 		}
 	}
-	
-	// if(bIsLightOn)
-	// {
-	// 	if(Cast<AWraithController>(Hit.GetActor()))
-	// 	{
-	// 		AWraithController* WraithController = Cast<AWraithController>(Hit.GetActor());
-	// 		if(Time < 5.f)
-	// 		{
-	// 			Time += DeltaTime;
-	// 			
-	// 		}
-	// 	} else
-	// 	{
-	// 		if(Time > 0.f)
-	// 		{
-	// 			Time -= DeltaTime;
-	// 		}
-	// 	}
-	// 	DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
-	// } else
-	// {
-	// 	if(Time > 0.f)
-	// 	{
-	// 		Time -= DeltaTime;
-	// 	}
-	// }
-	// UE_LOG(LogTemp, Warning, TEXT("%f"), Time);
 }
 
 void AFlashlight::TurnLightOn()
@@ -123,7 +96,7 @@ void AFlashlight::TurnLightOn()
 	if (Light) {
 		if (CanTurnOn() && bCanBeSwitchedOn) {
 			bIsLightOn = true;
-			Light->SetIntensity(250000.f);
+			Light->SetIntensity(175000.f);
 			LightToggled.Broadcast(bIsLightOn);
 			UGameplayStatics::PlaySoundAtLocation(this, FlashlightOnSoundCue, this->GetActorLocation());
 		}

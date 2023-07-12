@@ -128,6 +128,11 @@ void ACharacterController::Tick(float DeltaTime)
 			{
 				ABook* Book = Cast<ABook>(Hit.GetActor());
 				bCanInteract = !Book->bWasBookInteractedWith;
+			} else
+			{
+				bShowCanInspectWidget = false;
+				bCanInteract = false;
+				CurrentItem = NULL;
 			}
 		}
 		else

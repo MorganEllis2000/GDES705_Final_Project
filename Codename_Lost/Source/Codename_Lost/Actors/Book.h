@@ -35,4 +35,10 @@ public:
 	class ABookshelfPuzzle* BookshelfPuzzle;
 
 	bool bWasBookInteractedWith;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Books")
+	FRotator OriginalRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Books")
+	FRotator NewRotation;
 };

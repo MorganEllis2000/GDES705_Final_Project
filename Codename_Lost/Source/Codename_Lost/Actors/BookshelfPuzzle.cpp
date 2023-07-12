@@ -28,6 +28,12 @@ void ABookshelfPuzzle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	CheckPuzzleCombination();
+
+	if(bIsBookshelfOpen)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Moving Bookshelf"));
+		BookShelf->SetRelativeLocation(FMath::Lerp(GetActorLocation(), FVector(-1100.f, 3530.0f, 0.f), 0.01f));
+	}
 }
 
 void ABookshelfPuzzle::CheckPuzzleCombination()

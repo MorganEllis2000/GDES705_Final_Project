@@ -25,6 +25,15 @@ void ABook::BeginPlay()
 void ABook::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if(bWasBookInteractedWith)
+	{
+		BookMesh->SetRelativeRotation(FMath::Lerp(FQuat(NewRotation), FQuat(OriginalRotation), DeltaTime));
+	} else
+	{
+		BookMesh->SetRelativeRotation(FMath::Lerp(FQuat(OriginalRotation), FQuat(NewRotation), DeltaTime));
+		
+	}
 }
 
 void ABook::OnInteract()

@@ -4,6 +4,7 @@
 #include "WraithController.h"
 
 #include "Codename_Lost/Components/HealthComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
 
@@ -22,8 +23,6 @@ AWraithController::AWraithController()
 void AWraithController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	
 }
 
 // Called every frame
@@ -36,6 +35,14 @@ void AWraithController::Tick(float DeltaTime)
 void AWraithController::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	if(TimeLightShinedOnSelf > 1.f)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 100.f / TimeLightShinedOnSelf;
+	} else
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 100;
+	}
 
 }
 
