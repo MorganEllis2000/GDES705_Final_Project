@@ -42,7 +42,7 @@ public:
     UInputAction* InputInspect;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-    UInputAction* InputInteract;
+    UInputAction* InputPickup;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
     UInputAction* InputOpenInventory;

@@ -64,6 +64,14 @@ public:
 	UPROPERTY()
 	class AWraithController* WraithController;
 
+#pragma region SoundFX
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "SoundFX")
+	class USoundCue* FlashlightOnSoundCue;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "SoundFX")
+	class USoundCue* FlashlightOffSoundCue;;
+#pragma endregion 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

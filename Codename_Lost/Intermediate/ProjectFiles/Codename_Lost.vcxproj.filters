@@ -60,6 +60,18 @@
     <Filter Include="Source\Codename_Lost\Actors">
       <UniqueIdentifier>{55FD4209-704F-379D-8CDD-888B189C8FBD}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Codename_Lost\Actors\Book.cpp">
+      <Filter>Source\Codename_Lost\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\Actors\Book.h">
+      <Filter>Source\Codename_Lost\Actors</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Codename_Lost\Actors\BookshelfPuzzle.cpp">
+      <Filter>Source\Codename_Lost\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Codename_Lost\Actors\BookshelfPuzzle.h">
+      <Filter>Source\Codename_Lost\Actors</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Codename_Lost\Actors\Flashlight.cpp">
       <Filter>Source\Codename_Lost\Actors</Filter>
     </ClCompile>

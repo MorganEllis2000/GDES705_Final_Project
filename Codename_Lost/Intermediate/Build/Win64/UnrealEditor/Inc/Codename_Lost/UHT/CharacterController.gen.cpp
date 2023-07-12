@@ -21,6 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector2D();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
+	ENGINE_API UClass* Z_Construct_UClass_UAudioComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraShakeBase_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
@@ -285,6 +286,11 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_CurrentItem;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bHoldingItem_MetaData[];
+#endif
+		static void NewProp_bHoldingItem_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bHoldingItem;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_bShowCanInspectWidget_MetaData[];
 #endif
 		static void NewProp_bShowCanInspectWidget_SetBit(void* Obj);
@@ -294,6 +300,11 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #endif
 		static void NewProp_bInspecting_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_bInspecting;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bCanInteract_MetaData[];
+#endif
+		static void NewProp_bCanInteract_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bCanInteract;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_bIsInventoryOpen_MetaData[];
 #endif
@@ -335,6 +346,11 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		static void NewProp_bIsZoomedIn_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsZoomedIn;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bIsReloading_MetaData[];
+#endif
+		static void NewProp_bIsReloading_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsReloading;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxHealth_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
@@ -359,9 +375,33 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_StaminaDrainPerTick;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HeartRate_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_HeartRate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_BaseHeartRate_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_BaseHeartRate;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DamagedSoundCue_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_DamagedSoundCue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_WalkingBreathingSoundCue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_WalkingBreathingSoundCue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RunningBreathingSoundCue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_RunningBreathingSoundCue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RunningAudioComponent_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_RunningAudioComponent;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Glock_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Glock;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputMapping_MetaData[];
 #endif
@@ -374,10 +414,6 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_GunClass_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_GunClass;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Glock_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_Glock;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MouseLookRotationX_MetaData[];
 #endif
@@ -481,6 +517,17 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem = { "CurrentItem", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, CurrentItem), Z_Construct_UClass_APickup_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bHoldingItem_MetaData[] = {
+		{ "Category", "Bools" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bHoldingItem_SetBit(void* Obj)
+	{
+		((ACharacterController*)Obj)->bHoldingItem = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_bHoldingItem = { "bHoldingItem", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(ACharacterController), &Z_Construct_UClass_ACharacterController_Statics::NewProp_bHoldingItem_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_bHoldingItem_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_bHoldingItem_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bShowCanInspectWidget_MetaData[] = {
 		{ "Category", "Bools" },
 		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
@@ -502,6 +549,17 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		((ACharacterController*)Obj)->bInspecting = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_bInspecting = { "bInspecting", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(ACharacterController), &Z_Construct_UClass_ACharacterController_Statics::NewProp_bInspecting_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_bInspecting_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_bInspecting_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bCanInteract_MetaData[] = {
+		{ "Category", "Bools" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bCanInteract_SetBit(void* Obj)
+	{
+		((ACharacterController*)Obj)->bCanInteract = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_bCanInteract = { "bCanInteract", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(ACharacterController), &Z_Construct_UClass_ACharacterController_Statics::NewProp_bCanInteract_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_bCanInteract_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_bCanInteract_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsInventoryOpen_MetaData[] = {
 		{ "Category", "Bools" },
@@ -583,6 +641,17 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsZoomedIn = { "bIsZoomedIn", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(ACharacterController), &Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsZoomedIn_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsZoomedIn_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsZoomedIn_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsReloading_MetaData[] = {
+		{ "Category", "Gameplay" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	void Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsReloading_SetBit(void* Obj)
+	{
+		((ACharacterController*)Obj)->bIsReloading = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsReloading = { "bIsReloading", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(ACharacterController), &Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsReloading_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsReloading_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsReloading_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxHealth_MetaData[] = {
 		{ "Category", "Player Stats" },
 		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
@@ -625,12 +694,54 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick = { "StaminaDrainPerTick", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, StaminaDrainPerTick), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_HeartRate_MetaData[] = {
+		{ "Category", "Player Stats" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_HeartRate = { "HeartRate", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, HeartRate), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_HeartRate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_HeartRate_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_BaseHeartRate_MetaData[] = {
+		{ "Category", "Player Stats" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_BaseHeartRate = { "BaseHeartRate", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, BaseHeartRate), METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_BaseHeartRate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_BaseHeartRate_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_DamagedSoundCue_MetaData[] = {
 		{ "Category", "SFX" },
 		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_DamagedSoundCue = { "DamagedSoundCue", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, DamagedSoundCue), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_DamagedSoundCue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_DamagedSoundCue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_WalkingBreathingSoundCue_MetaData[] = {
+		{ "Category", "SFX" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_WalkingBreathingSoundCue = { "WalkingBreathingSoundCue", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, WalkingBreathingSoundCue), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_WalkingBreathingSoundCue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_WalkingBreathingSoundCue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningBreathingSoundCue_MetaData[] = {
+		{ "Category", "SFX" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningBreathingSoundCue = { "RunningBreathingSoundCue", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, RunningBreathingSoundCue), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningBreathingSoundCue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningBreathingSoundCue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningAudioComponent_MetaData[] = {
+		{ "Category", "SFX" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningAudioComponent = { "RunningAudioComponent", nullptr, (EPropertyFlags)0x001000000009000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, RunningAudioComponent), Z_Construct_UClass_UAudioComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningAudioComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningAudioComponent_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData[] = {
+		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock = { "Glock", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, Glock), Z_Construct_UClass_AGun_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_InputMapping_MetaData[] = {
 		{ "Category", "Enhanced Input" },
@@ -653,12 +764,6 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass = { "GunClass", nullptr, (EPropertyFlags)0x0044000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, GunClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AGun_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData[] = {
-		{ "ModuleRelativePath", "Actors/Controllers/CharacterController.h" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock = { "Glock", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(ACharacterController, Glock), Z_Construct_UClass_AGun_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationX_MetaData[] = {
 		{ "Category", "Mouse Inputs" },
@@ -710,8 +815,10 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_CameraInitalPos,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_FlashlightClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentItem,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bHoldingItem,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bShowCanInspectWidget,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bInspecting,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bCanInteract,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsInventoryOpen,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_OnUpdateInventory,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp__inventory_Inner,
@@ -722,17 +829,23 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsSprinting,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsZoomedIn,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_bIsReloading,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxHealth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentHealth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_MaxStamina,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_CurrentStamina,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_DrainStaminaTickTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_StaminaDrainPerTick,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_HeartRate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_BaseHeartRate,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_DamagedSoundCue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_WalkingBreathingSoundCue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningBreathingSoundCue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_RunningAudioComponent,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_InputMapping,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_PlayerCamera,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_GunClass,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_Glock,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationX,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationY,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACharacterController_Statics::NewProp_MouseLookRotationRateX,
@@ -772,15 +885,15 @@ void EmptyLinkFunctionForGeneratedCodeCharacterController() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACharacterController);
 	ACharacterController::~ACharacterController() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 3999883445U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACharacterController, ACharacterController::StaticClass, TEXT("ACharacterController"), &Z_Registration_Info_UClass_ACharacterController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterController), 1306421027U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_2289818763(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_946117397(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Controllers_CharacterController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

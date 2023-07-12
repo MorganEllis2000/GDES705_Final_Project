@@ -89,6 +89,20 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Advanced Recoil")
 	class UCurveFloat* HorizontalCurve;
+
+#pragma region SoundFX
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category= "SoundFX")
+	class USoundCue* GunFiringSoundCue;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category= "SoundFX")
+	class USoundCue* GunReloadingSoundCue;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category= "SoundFX")
+	class USoundCue* GunDryFireSoundCue;
+#pragma endregion 
+
+	
+
 protected:
 	FTimerHandle ReloadTimerHandle;
 	FTimerHandle FireRateTimerHandle;

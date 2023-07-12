@@ -24,8 +24,9 @@
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
 #include "Perception/AISense_Hearing.h"
+#include "Components/AudioComponent.h"
+#include "Codename_Lost/Actors/Book.h"
 
-#pragma region Constructors/Setup
 // Sets default values
 ACharacterController::ACharacterController()
 {
@@ -65,13 +66,15 @@ ACharacterController::ACharacterController()
 
 	MouseLookRotationX = MouseLookRotationRateX;
 	MouseLookRotationY = MouseLookRotationRateY;
+	
+	
 }
 
 // Called when the game starts or when spawned
 void ACharacterController::BeginPlay()
 {
 	Super::BeginPlay();
-
+	HeartRate = BaseHeartRate;
 	CurrentHealth = MaxHealth;
 
 	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
@@ -98,6 +101,8 @@ void ACharacterController::BeginPlay()
 	Flashlight->TurnLightOff();
 
 	GetWorld()->GetTimerManager().SetTimer(StaminaRechargeTimerHandle, this, &ACharacterController::FinishSprint, DrainStaminaTickTime, true);
+
+	RunningAudioComponent = UGameplayStatics::SpawnSoundAtLocation(GetWorld(), RunningBreathingSoundCue, GetActorLocation());
 }
 
 // Called every frame
@@ -119,15 +124,19 @@ void ACharacterController::Tick(float DeltaTime)
 			if (Cast<APickup>(Hit.GetActor())) {
 				CurrentItem = Cast<APickup>(Hit.GetActor());
 				bShowCanInspectWidget = true;
+			} else if(Cast<ABook>(Hit.GetActor()))
+			{
+				ABook* Book = Cast<ABook>(Hit.GetActor());
+				bCanInteract = !Book->bWasBookInteractedWith;
 			}
 		}
 		else
 		{
 			bShowCanInspectWidget = false;
+			bCanInteract = false;
 			CurrentItem = NULL;
 		}
 	}
-
 
 	if (bInspecting) {
 		bShowCanInspectWidget = false;
@@ -155,6 +164,22 @@ void ACharacterController::Tick(float DeltaTime)
 	}
 
 	bIsReloading = Glock->bIsReloading;
+
+	if(bIsSprinting)
+	{
+		if(HeartRate < 130.f)
+		{
+			HeartRate += DeltaTime * 2.f;
+		}
+	} else
+	{
+		if(HeartRate > 70.f)
+		{
+			HeartRate -= DeltaTime;
+		}
+	}
+
+	BreathingSFX();
 }
 
 // Called to bind functionality to input
@@ -195,9 +220,10 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
 
-	EnhancedInputComponent->BindAction(InputActions->InputInteract, ETriggerEvent::Started, this, &ACharacterController::Interact);
+	EnhancedInputComponent->BindAction(InputActions->InputPickup, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
 
 	EnhancedInputComponent->BindAction(InputActions->InputOpenInventory, ETriggerEvent::Started, this, &ACharacterController::OpenInventory);
 
@@ -207,7 +233,6 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Triggered, this, &ACharacterController::ZoomIn);
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::ZoomOut);
 }
-
 
 void ACharacterController::SetupStimulus()
 {
@@ -431,6 +456,37 @@ void ACharacterController::LookAt(FVector LookAtTarget)
 }
 #pragma endregion
 
+#pragma region Breathing
+void ACharacterController::BreathingManager()
+{
+	BreathingSFX();
+}
+
+void ACharacterController::BreathingSFX()
+{
+	if(RunningAudioComponent)
+	{
+		if(HeartRate >= 100)
+		{
+			if(!RunningAudioComponent->IsPlaying())
+			{
+				RunningAudioComponent->Play();
+			} else
+			{
+				RunningAudioComponent->SetPaused(false);
+			}
+		} else if (HeartRate < 100 && RunningAudioComponent->IsPlaying())
+		{
+			RunningAudioComponent->SetPaused(true);
+		} 
+	} else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("NO AUDIO COMPONENT"));
+	}
+
+}
+#pragma endregion
+
 #pragma region Pickup System
 
 void ACharacterController::OnInspect()
@@ -486,9 +542,28 @@ void ACharacterController::ToggleItemPickup() {
 	}
 }
 
-void ACharacterController::Interact() {
+void ACharacterController::OnPickup() {
 	if (bInspecting && PlayerController && CurrentItem->bCanBeAddedToInventory == true) {
 		AddItemToInventory();
+	}
+}
+
+void ACharacterController::OnInteract()
+{
+	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
+	{
+		if(Cast<ABook>(Hit.GetActor()))
+		{
+			ABook* book = Cast<ABook>(Hit.GetActor());
+			if(!book->bWasBookInteractedWith)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Is A BOOK"));
+			}
+			book->OnInteract();
+		} else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("NOT A BOOK"));
+		}
 	}
 }
 #pragma endregion
@@ -552,10 +627,9 @@ void ACharacterController::AddItemToInventory() {
 #pragma region Shooting
 void ACharacterController::Shoot()
 {
-	if (!bInspecting) {
+	if (!bInspecting && Glock && Glock->bCanShoot) {
 		FVector EndPos = PlayerCamera->GetForwardVector() * 10000.f * PlayerCamera->GetComponentLocation();
 		Glock->PullTrigger();
-
 	}
 }
 
@@ -589,8 +663,11 @@ void ACharacterController::ToggleFlashlight() {
 
 void ACharacterController::FlashlightOn()
 {
-	if (bCanMove) {
+	if (bCanMove && Flashlight->bCanBeSwitchedOn) {
 		Flashlight->TurnLightOn();
+		SkeletalMesh->SetVisibility(false);
+		Glock->Mesh->SetVisibility(false);
+		Glock->bCanShoot = false;
 	}
 }
 
@@ -598,5 +675,8 @@ void ACharacterController::FlashlightOff()
 {
 	if (bCanMove) {
 		Flashlight->TurnLightOff();
+		SkeletalMesh->SetVisibility(true);
+		Glock->Mesh->SetVisibility(true);
+		Glock->bCanShoot = true;
 	}
 }

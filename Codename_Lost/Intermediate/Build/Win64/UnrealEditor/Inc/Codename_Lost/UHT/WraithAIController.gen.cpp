@@ -6,13 +6,11 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "Codename_Lost/AI/WraithAIController.h"
-#include "AIModule/Classes/Perception/AIPerceptionTypes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 // Cross Module References
 	AIMODULE_API UClass* Z_Construct_UClass_AAIController();
 	AIMODULE_API UClass* Z_Construct_UClass_UBehaviorTree_NoRegister();
-	AIMODULE_API UScriptStruct* Z_Construct_UScriptStruct_FAIStimulus();
 	CODENAME_LOST_API UClass* Z_Construct_UClass_AWraithAIController();
 	CODENAME_LOST_API UClass* Z_Construct_UClass_AWraithAIController_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
@@ -22,11 +20,10 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 // End Cross Module References
 	DEFINE_FUNCTION(AWraithAIController::execOnTargetDetected)
 	{
-		P_GET_OBJECT(AActor,Z_Param_actor);
-		P_GET_STRUCT(FAIStimulus,Z_Param_stimulus);
+		P_GET_TARRAY_REF(AActor*,Z_Param_Out_UpdatedActors);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->OnTargetDetected(Z_Param_actor,Z_Param_stimulus);
+		P_THIS->OnTargetDetected(Z_Param_Out_UpdatedActors);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AWraithAIController::execSetupPerceptionSystem)
@@ -49,37 +46,38 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	{
 		struct WraithAIController_eventOnTargetDetected_Parms
 		{
-			AActor* actor;
-			FAIStimulus stimulus;
+			TArray<AActor*> UpdatedActors;
 		};
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_actor;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_UpdatedActors_Inner;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_stimulus_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UpdatedActors_MetaData[];
 #endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_stimulus;
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_UpdatedActors;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_actor = { "actor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(WraithAIController_eventOnTargetDetected_Parms, actor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_UpdatedActors_Inner = { "UpdatedActors", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, 0, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_stimulus_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_UpdatedActors_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_stimulus = { "stimulus", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(WraithAIController_eventOnTargetDetected_Parms, stimulus), Z_Construct_UScriptStruct_FAIStimulus, METADATA_PARAMS(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_stimulus_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_stimulus_MetaData)) }; // 576118341
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_UpdatedActors = { "UpdatedActors", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(WraithAIController_eventOnTargetDetected_Parms, UpdatedActors), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_UpdatedActors_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_UpdatedActors_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_actor,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_stimulus,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_UpdatedActors_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::NewProp_UpdatedActors,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "//void OnTargetDetected(AActor* actor, FAIStimulus const stimulus);\n" },
 		{ "ModuleRelativePath", "AI/WraithAIController.h" },
+		{ "ToolTip", "void OnTargetDetected(AActor* actor, FAIStimulus const stimulus);" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWraithAIController, nullptr, "OnTargetDetected", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::WraithAIController_eventOnTargetDetected_Parms), Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWraithAIController, nullptr, "OnTargetDetected", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::WraithAIController_eventOnTargetDetected_Parms), Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00440401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWraithAIController_OnTargetDetected_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWraithAIController_OnTargetDetected()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -145,7 +143,7 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Codename_Lost,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWraithAIController_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AWraithAIController_OnTargetDetected, "OnTargetDetected" }, // 386865074
+		{ &Z_Construct_UFunction_AWraithAIController_OnTargetDetected, "OnTargetDetected" }, // 2425310976
 		{ &Z_Construct_UFunction_AWraithAIController_SetupPerceptionSystem, "SetupPerceptionSystem" }, // 2274044460
 	};
 #if WITH_METADATA
@@ -216,15 +214,15 @@ void EmptyLinkFunctionForGeneratedCodeWraithAIController() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWraithAIController);
 	AWraithAIController::~AWraithAIController() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AWraithAIController, AWraithAIController::StaticClass, TEXT("AWraithAIController"), &Z_Registration_Info_UClass_AWraithAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithAIController), 3275512146U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AWraithAIController, AWraithAIController::StaticClass, TEXT("AWraithAIController"), &Z_Registration_Info_UClass_AWraithAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWraithAIController), 3269959897U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_154784306(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_131108432(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_AI_WraithAIController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

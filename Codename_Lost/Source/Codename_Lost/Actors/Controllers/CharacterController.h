@@ -58,7 +58,9 @@ protected:
 #pragma region Inspect Functions
 	void OnInspect();
 	void OnInspectReleased();
-	void Interact();
+	void OnPickup();
+
+	void OnInteract();
 
 	void ToggleMovement();
 	void ToggleItemPickup();
@@ -76,6 +78,11 @@ private:
 	void FinishLean(const FInputActionValue& Value);
 	void StartSprint();
 	void FinishSprint();
+#pragma region Breathing
+	void BreathingManager();
+	void BreathingSFX();
+#pragma endregion 
+
 #pragma endregion
 
 	// Flashlight Functions
@@ -139,6 +146,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bInspecting;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool bCanInteract;
 #pragma endregion
 
 	FVector HoldingComp;
@@ -212,15 +222,32 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
 	float StaminaDrainPerTick;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
+	float HeartRate;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Stats")
+	float BaseHeartRate;
 #pragma endregion
 
 #pragma region Timer Handles
 	FTimerHandle StaminaRechargeTimerHandle;
 #pragma endregion
 
+#pragma region SoundFX
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "SFX")
 	class USoundCue* DamagedSoundCue;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "SFX")
+	class USoundCue* WalkingBreathingSoundCue;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "SFX")
+	class USoundCue* RunningBreathingSoundCue;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "SFX")
+	class UAudioComponent* RunningAudioComponent;
+#pragma endregion 
+	
 
 	UPROPERTY()
 	AGun* Glock;

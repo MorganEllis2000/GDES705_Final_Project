@@ -15,6 +15,7 @@ void EmptyLinkFunctionForGeneratedCodeGun() {}
 	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	NIAGARA_API UClass* Z_Construct_UClass_UNiagaraComponent_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_Codename_Lost();
@@ -179,6 +180,18 @@ void EmptyLinkFunctionForGeneratedCodeGun() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_HorizontalCurve;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_GunFiringSoundCue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_GunFiringSoundCue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_GunReloadingSoundCue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_GunReloadingSoundCue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_GunDryFireSoundCue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_GunDryFireSoundCue;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Root_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Root;
@@ -322,6 +335,27 @@ void EmptyLinkFunctionForGeneratedCodeGun() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGun_Statics::NewProp_HorizontalCurve = { "HorizontalCurve", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AGun, HorizontalCurve), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AGun_Statics::NewProp_HorizontalCurve_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AGun_Statics::NewProp_HorizontalCurve_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGun_Statics::NewProp_GunFiringSoundCue_MetaData[] = {
+		{ "Category", "SoundFX" },
+		{ "ModuleRelativePath", "Actors/Gun.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGun_Statics::NewProp_GunFiringSoundCue = { "GunFiringSoundCue", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AGun, GunFiringSoundCue), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AGun_Statics::NewProp_GunFiringSoundCue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AGun_Statics::NewProp_GunFiringSoundCue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGun_Statics::NewProp_GunReloadingSoundCue_MetaData[] = {
+		{ "Category", "SoundFX" },
+		{ "ModuleRelativePath", "Actors/Gun.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGun_Statics::NewProp_GunReloadingSoundCue = { "GunReloadingSoundCue", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AGun, GunReloadingSoundCue), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AGun_Statics::NewProp_GunReloadingSoundCue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AGun_Statics::NewProp_GunReloadingSoundCue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGun_Statics::NewProp_GunDryFireSoundCue_MetaData[] = {
+		{ "Category", "SoundFX" },
+		{ "ModuleRelativePath", "Actors/Gun.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGun_Statics::NewProp_GunDryFireSoundCue = { "GunDryFireSoundCue", nullptr, (EPropertyFlags)0x0010000000010005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AGun, GunDryFireSoundCue), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AGun_Statics::NewProp_GunDryFireSoundCue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AGun_Statics::NewProp_GunDryFireSoundCue_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGun_Statics::NewProp_Root_MetaData[] = {
 		{ "Category", "Gun" },
 		{ "EditInline", "true" },
@@ -365,6 +399,9 @@ void EmptyLinkFunctionForGeneratedCodeGun() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_bIsLaserOn,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_VerticalCurve,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_HorizontalCurve,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_GunFiringSoundCue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_GunReloadingSoundCue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_GunDryFireSoundCue,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_Root,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_MuzzleFlash,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGun_Statics::NewProp_ImpactEffect,
@@ -402,15 +439,15 @@ void EmptyLinkFunctionForGeneratedCodeGun() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AGun);
 	AGun::~AGun() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AGun, AGun::StaticClass, TEXT("AGun"), &Z_Registration_Info_UClass_AGun, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGun), 49247041U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AGun, AGun::StaticClass, TEXT("AGun"), &Z_Registration_Info_UClass_AGun, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGun), 629697099U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_463518945(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_4103277520(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Gun_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

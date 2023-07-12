@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define CODENAME_LOST_Flashlight_generated_h
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_9_DELEGATE \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_9_DELEGATE \
 struct _Script_Codename_Lost_eventFlashLightToggled_Parms \
 { \
 	bool IsOn; \
@@ -27,7 +27,7 @@ static inline void FFlashLightToggled_DelegateWrapper(const FMulticastScriptDele
 }
 
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_10_DELEGATE \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_10_DELEGATE \
 struct _Script_Codename_Lost_eventFlashLightDrained_Parms \
 { \
 	float CurrentBatteryLife; \
@@ -40,11 +40,11 @@ static inline void FFlashLightDrained_DelegateWrapper(const FMulticastScriptDele
 }
 
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_SPARSE_DATA
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS_NO_PURE_DECLS
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ACCESSORS
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_SPARSE_DATA
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ACCESSORS
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAFlashlight(); \
 	friend struct Z_Construct_UClass_AFlashlight_Statics; \
@@ -53,7 +53,7 @@ public: \
 	DECLARE_SERIALIZER(AFlashlight)
 
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS \
 private: \
 	static void StaticRegisterNativesAFlashlight(); \
 	friend struct Z_Construct_UClass_AFlashlight_Statics; \
@@ -62,7 +62,7 @@ public: \
 	DECLARE_SERIALIZER(AFlashlight)
 
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_STANDARD_CONSTRUCTORS \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AFlashlight(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AFlashlight) \
@@ -76,7 +76,7 @@ public: \
 	NO_API virtual ~AFlashlight();
 
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AFlashlight(AFlashlight&&); \
@@ -88,27 +88,27 @@ public: \
 	NO_API virtual ~AFlashlight();
 
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_12_PROLOG
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_GENERATED_BODY_LEGACY \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_12_PROLOG
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_SPARSE_DATA \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ACCESSORS \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_STANDARD_CONSTRUCTORS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_SPARSE_DATA \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ACCESSORS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_GENERATED_BODY \
+#define FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_SPARSE_DATA \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ACCESSORS \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS_NO_PURE_DECLS \
-	FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ENHANCED_CONSTRUCTORS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_SPARSE_DATA \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ACCESSORS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_INCLASS_NO_PURE_DECLS \
+	FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -116,7 +116,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> CODENAME_LOST_API UClass* StaticClass<class AFlashlight>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h
+#define CURRENT_FILE_ID FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_Actors_Flashlight_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

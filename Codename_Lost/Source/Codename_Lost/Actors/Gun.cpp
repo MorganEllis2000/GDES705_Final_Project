@@ -9,6 +9,8 @@
 #include "Engine/DamageEvents.h"
 #include "GameFramework/DamageType.h"
 #include "Codename_Lost/Actors/Controllers/CharacterController.h"
+#include "Sound/SoundCue.h"
+#include "Perception/AISense_Hearing.h"
 
 // Sets default values
 AGun::AGun()
@@ -61,6 +63,8 @@ void AGun::PullTrigger()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, FString::Printf(TEXT("Bool: %s"), bCanShoot ? TEXT("true") : TEXT("false")));
 	if (CurrentAmmo > 0 && bIsReloading == false && bCanShoot == true) {
+		UGameplayStatics::PlaySoundAtLocation(this, GunFiringSoundCue, MuzzleComponent->GetComponentLocation());
+		UAISense_Hearing::ReportNoiseEvent(GetWorld(), this->GetActorLocation(), 1.f, this, 2500.f, "Noise");
 		bCanShoot = false;
 		StartRecoil();
 		GetWorld()->GetTimerManager().SetTimer(FireRateTimerHandle, this, &AGun::FireRateTimer, FireRate);
@@ -99,7 +103,10 @@ void AGun::PullTrigger()
 		}
 		OwnerPawn->AddControllerPitchInput(FMath::RandRange(0.f, -1.f));
 		OwnerPawn->AddControllerYawInput(FMath::RandRange(0.f, 1.f));
-	} else {
+	}
+
+	if (CurrentAmmo == 0) {
+		UGameplayStatics::PlaySoundAtLocation(this, GunDryFireSoundCue, MuzzleComponent->GetComponentLocation());
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, TEXT("RELOAD"));
 	}
 }
@@ -114,11 +121,13 @@ void AGun::Reload() {
 	if (CurrentAmmo != MagazineSize && CurrentReserveAmmo > 0 && bIsReloading == false) {
 		bIsReloading = true;
 		GetWorld()->GetTimerManager().SetTimer(ReloadTimerHandle, this, &AGun::ReloadTimer, ReloadTime);
+		UGameplayStatics::PlaySoundAtLocation(this, GunReloadingSoundCue, MuzzleComponent->GetComponentLocation());
+		
 		float AmmoDifference = MagazineSize - CurrentAmmo;
 		if (CurrentAmmo + CurrentReserveAmmo < 13) {
 			CurrentAmmo += CurrentReserveAmmo;
 			CurrentReserveAmmo = 0;
-		
+			GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, TEXT("RELOAD"));
 		} else {
 			CurrentAmmo += AmmoDifference;
 			CurrentReserveAmmo -= AmmoDifference;

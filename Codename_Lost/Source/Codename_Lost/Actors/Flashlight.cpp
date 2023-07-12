@@ -9,7 +9,7 @@
 #include "GenericPlatform/GenericPlatformCrashContext.h"
 #include "Codename_Lost/AI/WraithController.h"
 #include "Kismet/GameplayStatics.h"
-
+#include "Sound/SoundCue.h"
 // Sets default values
 AFlashlight::AFlashlight()
 {
@@ -88,7 +88,6 @@ void AFlashlight::Tick(float DeltaTime)
 				WraithController->TimeLightShinedOnSelf -= DeltaTime;
 			}
 		}
-		UE_LOG(LogTemp, Warning, TEXT("%f"), WraithController->TimeLightShinedOnSelf);
 	}
 	
 	// if(bIsLightOn)
@@ -126,6 +125,7 @@ void AFlashlight::TurnLightOn()
 			bIsLightOn = true;
 			Light->SetIntensity(250000.f);
 			LightToggled.Broadcast(bIsLightOn);
+			UGameplayStatics::PlaySoundAtLocation(this, FlashlightOnSoundCue, this->GetActorLocation());
 		}
 	}
 }
@@ -139,6 +139,7 @@ void AFlashlight::TurnLightOff()
 			LightToggled.Broadcast(bIsLightOn);
 			bCanBeSwitchedOn = false;
 			GetWorld()->GetTimerManager().SetTimer(FlashlightToggleTimerHandle, this, &AFlashlight::CanSwitchLightOn, 1.5f);
+			UGameplayStatics::PlaySoundAtLocation(this, FlashlightOffSoundCue, this->GetActorLocation());
 		}
 	}
 }

@@ -62,9 +62,9 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputInspect;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputInteract_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputPickup_MetaData[];
 #endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputInteract;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputPickup;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputOpenInventory_MetaData[];
 #endif
@@ -153,12 +153,12 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInspect = { "InputInspect", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputInspect), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInspect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInspect_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInteract_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputPickup_MetaData[] = {
 		{ "Category", "MyInputConfigData" },
 		{ "ModuleRelativePath", "MyInputConfigData.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInteract = { "InputInteract", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputInteract), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInteract_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInteract_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputPickup = { "InputPickup", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(UMyInputConfigData, InputPickup), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputPickup_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputPickup_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputOpenInventory_MetaData[] = {
 		{ "Category", "MyInputConfigData" },
@@ -196,7 +196,7 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputLean,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputFlashlight,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInspect,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputInteract,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputPickup,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputOpenInventory,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputShoot,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyInputConfigData_Statics::NewProp_InputReload,
@@ -234,15 +234,15 @@ void EmptyLinkFunctionForGeneratedCodeMyInputConfigData() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UMyInputConfigData);
 	UMyInputConfigData::~UMyInputConfigData() {}
-	struct Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics
+	struct Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UMyInputConfigData, UMyInputConfigData::StaticClass, TEXT("UMyInputConfigData"), &Z_Registration_Info_UClass_UMyInputConfigData, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyInputConfigData), 2225121109U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UMyInputConfigData, UMyInputConfigData::StaticClass, TEXT("UMyInputConfigData"), &Z_Registration_Info_UClass_UMyInputConfigData, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyInputConfigData), 3583777775U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_760094726(TEXT("/Script/Codename_Lost"),
-		Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_4107938173(TEXT("/Script/Codename_Lost"),
+		Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_GDES705_Final_Project_Codename_Lost_Source_Codename_Lost_MyInputConfigData_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

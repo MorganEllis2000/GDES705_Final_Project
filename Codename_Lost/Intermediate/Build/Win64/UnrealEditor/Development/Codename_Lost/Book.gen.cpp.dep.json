@@ -1,0 +1,15 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\inc\\codename_lost\\uht\\book.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\codename_losteditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\development\\codename_lost\\definitions.codename_lost.h",
+            "c:\\github\\gdes705_final_project\\codename_lost\\source\\codename_lost\\actors\\book.h",
+            "c:\\github\\gdes705_final_project\\codename_lost\\intermediate\\build\\win64\\unrealeditor\\inc\\codename_lost\\uht\\book.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
