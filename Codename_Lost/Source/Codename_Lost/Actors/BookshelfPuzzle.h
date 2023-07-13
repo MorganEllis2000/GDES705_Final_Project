@@ -20,6 +20,10 @@ public:
 
 	void CheckPuzzleCombination();
 
+	void OpenBookshelf();
+
+	void ResetPuzzle();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -45,7 +49,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Books")
 	TArray<FString> UsersBookOrder;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="SFX")
+	class USoundCue* BookshelfOpeningSoundCue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="SFX")
+	class USoundCue* BookshelfLockingSoundCue;
+
 	bool bIsBookshelfOpen;
+
+	FTimerHandle WaitForSecondsTimerHandle;
 protected:
 
 private:

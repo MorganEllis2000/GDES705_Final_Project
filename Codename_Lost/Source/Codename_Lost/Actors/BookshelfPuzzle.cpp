@@ -2,8 +2,9 @@
 
 
 #include "Codename_Lost/Actors/BookshelfPuzzle.h"
-
 #include "Book.h"
+#include "Sound/SoundCue.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABookshelfPuzzle::ABookshelfPuzzle()
@@ -20,7 +21,6 @@ ABookshelfPuzzle::ABookshelfPuzzle()
 void ABookshelfPuzzle::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -50,22 +50,49 @@ void ABookshelfPuzzle::CheckPuzzleCombination()
 					CorrectTally += 1;
 				} else
 				{
-					UE_LOG(LogTemp, Warning, TEXT("WRONG ORDER"));
 					UsersBookOrder.Empty();
-					Book1->bWasBookInteractedWith = false;
-					Book2->bWasBookInteractedWith = false;
-					Book3->bWasBookInteractedWith = false;
-					return;
+					GetWorld()->GetTimerManager().SetTimer(WaitForSecondsTimerHandle, this, &ABookshelfPuzzle::ResetPuzzle, 2.1f);
+					if(BookshelfOpeningSoundCue)
+					{
+						UGameplayStatics::PlaySoundAtLocation(this, BookshelfLockingSoundCue, GetActorLocation());
+					}
+					//ResetPuzzle();
+					//UE_LOG(LogTemp, Warning, TEXT("WRONG ORDER 1"));
+					//return;
 				}
 			}
 		}
-
+		
 		if(CorrectTally == 3)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Bookshelf Open"));
-			bIsBookshelfOpen = true;
+			UsersBookOrder.Empty();
+			CorrectTally = 0;
+			UE_LOG(LogTemp, Warning, TEXT("Bookshelf Open"))
+			GetWorld()->GetTimerManager().SetTimer(WaitForSecondsTimerHandle, this, &ABookshelfPuzzle::OpenBookshelf, 3.f);
+			if(BookshelfOpeningSoundCue)
+			{
+				UGameplayStatics::PlaySoundAtLocation(this, BookshelfOpeningSoundCue, GetActorLocation());
+			}
 		}
 	}
+}
+
+void ABookshelfPuzzle::OpenBookshelf()
+{
+	bIsBookshelfOpen = true;
 
 }
+
+void ABookshelfPuzzle::ResetPuzzle()
+{
+	UE_LOG(LogTemp, Warning, TEXT("WRONG ORDER"));
+	Book1->bWasBookInteractedWith = false;
+	Book2->bWasBookInteractedWith = false;
+	Book3->bWasBookInteractedWith = false;
+	GetWorld()->GetTimerManager().ClearTimer(WaitForSecondsTimerHandle);
+}
+
+
+
+
 

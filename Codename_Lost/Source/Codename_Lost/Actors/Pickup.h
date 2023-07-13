@@ -32,7 +32,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bCanBeAddedToInventory;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* ObjectMesh;
 
 	UPROPERTY(EditAnywhere)
