@@ -26,6 +26,8 @@
 #include "Perception/AISense_Hearing.h"
 #include "Components/AudioComponent.h"
 #include "Codename_Lost/Actors/Book.h"
+#include "Codename_Lost/Actors/OpenDoorWithLerp.h"
+#include "Codename_Lost/Actors/Cobweb.h"
 
 // Sets default values
 ACharacterController::ACharacterController()
@@ -66,8 +68,6 @@ ACharacterController::ACharacterController()
 
 	MouseLookRotationX = MouseLookRotationRateX;
 	MouseLookRotationY = MouseLookRotationRateY;
-	
-	
 }
 
 // Called when the game starts or when spawned
@@ -83,12 +83,14 @@ void ACharacterController::BeginPlay()
 	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("middle_01_l"));
 	Glock->SetOwner(this);
 
-	Glock->MagazineSize = 12;
-	Glock->CurrentReserveAmmo = 24;
-	Glock->MaxReserveAmmo = 36;
-	Glock->CurrentAmmo = Glock->MagazineSize;
-	Glock->ReloadTime = 3.f;
-
+	if(Glock)
+	{
+		Glock->MagazineSize = 12;
+		Glock->CurrentReserveAmmo = 24;
+		Glock->MaxReserveAmmo = 36;
+		Glock->CurrentAmmo = Glock->MagazineSize;
+		Glock->ReloadTime = 3.f;
+	}
 	
 	if (FlashlightClass) {
 		Flashlight = GetWorld()->SpawnActor<AFlashlight>(FlashlightClass);
@@ -97,8 +99,12 @@ void ACharacterController::BeginPlay()
 		}
 	}
 
-	Flashlight->TurnLightOn();
-	Flashlight->TurnLightOff();
+	if(Flashlight)
+	{
+		Flashlight->TurnLightOn();
+		Flashlight->TurnLightOff();
+	}
+	
 
 	GetWorld()->GetTimerManager().SetTimer(StaminaRechargeTimerHandle, this, &ACharacterController::FinishSprint, DrainStaminaTickTime, true);
 
@@ -123,28 +129,42 @@ void ACharacterController::Tick(float DeltaTime)
 		{
 			if (Cast<APickup>(Hit.GetActor())) {
 				CurrentItem = Cast<APickup>(Hit.GetActor());
-				bShowCanInspectWidget = true;
+				bCanInteract = true;
+				InteractText = "Press 'F' to inspect";
 			} else if(Cast<ABook>(Hit.GetActor()))
 			{
 				ABook* Book = Cast<ABook>(Hit.GetActor());
 				bCanInteract = !Book->bWasBookInteractedWith;
+				InteractText = "Press 'F' to interact";
+			} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
+			{
+				AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
+				if(Door->Open)
+				{
+					InteractText = "Press 'F' to Close";
+				} else
+				{
+					InteractText = "Press 'F' to Open";
+				}
+				
+				bCanInteract = true;
+			} else if(Cast<ACobweb>(Hit.GetActor()))
+			{
+				InteractText = "Press 'F' to Burn";
+				bCanInteract = true;
 			} else
 			{
-				bShowCanInspectWidget = false;
 				bCanInteract = false;
 				CurrentItem = NULL;
 			}
-		}
-		else
-		{
-			bShowCanInspectWidget = false;
+		} else {
 			bCanInteract = false;
 			CurrentItem = NULL;
 		}
 	}
 
 	if (bInspecting) {
-		bShowCanInspectWidget = false;
+		bCanInteract = false;
 
 		if (bHoldingItem) {
 			PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
@@ -221,8 +241,8 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Triggered, this, &ACharacterController::StartSprint);
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Completed, this, &ACharacterController::FinishSprint);
 
-	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::FlashlightOn);
-	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
+	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
+	//EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract);
@@ -565,9 +585,14 @@ void ACharacterController::OnInteract()
 				UE_LOG(LogTemp, Warning, TEXT("Is A BOOK"));
 			}
 			book->OnInteract();
-		} else
+		} else if(Cast<ACobweb>(Hit.GetActor()))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("NOT A BOOK"));
+			ACobweb* Cobweb = Cast<ACobweb>(Hit.GetActor());
+			Cobweb->bInteractedWith = true;
+		} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
+		{
+			AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
+			Door->OpenDoor();
 		}
 	}
 }
@@ -663,6 +688,9 @@ void ACharacterController::StopPlayerMovingCameraShake()
 void ACharacterController::ToggleFlashlight() {
 	if (bCanMove) {
 		Flashlight->ToggleLight();
+		SkeletalMesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
+		Glock->Mesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
+		Glock->bCanShoot = !Flashlight->bCanBeSwitchedOn;
 	}
 }
 

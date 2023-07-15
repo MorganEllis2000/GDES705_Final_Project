@@ -141,14 +141,15 @@ public:
 	bool bCanMove;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bHoldingItem;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
-	bool bShowCanInspectWidget;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bInspecting;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bCanInteract;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interact")
+	FString InteractText;
 #pragma endregion
 
 	FVector HoldingComp;

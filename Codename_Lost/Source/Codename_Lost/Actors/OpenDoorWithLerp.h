@@ -29,9 +29,6 @@ public:
 	UStaticMeshComponent* Door;
 
 	UPROPERTY(EditAnywhere)
-	class UBoxComponent* MyBoxComponent;
-
-	UPROPERTY(EditAnywhere)
 	bool bIsDoorLocked;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(EditCondition="bIsDoorLocked"))
@@ -39,18 +36,26 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(EditCondition="bIsDoorLocked"))
 	class APickup* PickupObject;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Door Vectors")
+	FVector DoorClosedPosition;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Door Vectors")
+	FRotator DoorClosedRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Door Vectors")
+	FVector DoorOpenPosition;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Door Vectors")
+	FRotator DoorOpenRotation;
+	
 	bool Open;
 	float RotateValue;
 	FRotator DoorRotation;
 
 	UFUNCTION()
-	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	void OpenDoor();
 
 protected:
 
 private:
-	class ACharacterController* Character;
 };
