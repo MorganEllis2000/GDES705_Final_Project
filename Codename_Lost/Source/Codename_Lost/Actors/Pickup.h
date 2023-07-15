@@ -47,7 +47,7 @@ public:
 	bool bGravity;
 
 	FRotator ControlRotation;
-	class ACharacter* MyCharacter;
+	class ACharacterController* MyCharacter;
 	class UCameraComponent* PlayerCamera;
 	FVector ForwardVector;
 

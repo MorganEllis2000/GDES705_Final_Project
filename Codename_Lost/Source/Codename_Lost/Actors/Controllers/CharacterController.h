@@ -98,6 +98,9 @@ private:
 	void ZoomOut();
 #pragma endregion
 
+	UFUNCTION(BlueprintCallable)
+	void PauseGame();
+
 public:
 	class UAIPerceptionStimuliSourceComponent* stimulus;
 
@@ -176,7 +179,9 @@ public:
 
 	// World Variables
 	bool GamePaused;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bShowPauseMenu;
+	
 	// Camera Shake
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> MyShake;

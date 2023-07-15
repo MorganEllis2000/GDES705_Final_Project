@@ -257,6 +257,8 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputReload, ETriggerEvent::Started, this, &ACharacterController::Reload);
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Triggered, this, &ACharacterController::ZoomIn);
 	EnhancedInputComponent->BindAction(InputActions->InputAim, ETriggerEvent::Completed, this, &ACharacterController::ZoomOut);
+
+	EnhancedInputComponent->BindAction(InputActions->InputPause, ETriggerEvent::Started, this, &ACharacterController::PauseGame);
 }
 
 void ACharacterController::SetupStimulus()
@@ -264,6 +266,21 @@ void ACharacterController::SetupStimulus()
 	stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
 	stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
 	stimulus->RegisterWithPerceptionSystem();
+}
+
+void ACharacterController::PauseGame()
+{
+	bShowPauseMenu = !bShowPauseMenu;
+	PlayerController->SetPause(bShowPauseMenu);
+	PlayerController->bShowMouseCursor = bShowPauseMenu;
+
+	if(bShowPauseMenu)
+	{
+		PlayerController->SetInputMode(FInputModeGameAndUI());
+	} else
+	{
+		PlayerController->SetInputMode(FInputModeGameOnly());
+	}
 }
 
 #pragma endregion

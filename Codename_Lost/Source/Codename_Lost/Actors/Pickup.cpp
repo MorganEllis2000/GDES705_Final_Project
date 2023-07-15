@@ -30,8 +30,7 @@ void APickup::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	MyCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
-	PlayerCamera = MyCharacter->FindComponentByClass<UCameraComponent>();
+	MyCharacter = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(this, 0));
 
 	TArray<USceneComponent*> Components;
 	MyCharacter->GetComponents(Components);
@@ -41,7 +40,6 @@ void APickup::BeginPlay()
 			if (comp->GetName() == "HoldingComponent") {
 				HoldingComp = Cast<USceneComponent>(comp);
 			}
-			
 		}
 	}
 }
