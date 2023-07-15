@@ -2,11 +2,10 @@
 
 
 #include "WraithController.h"
-
-#include "Codename_Lost/Components/HealthComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Perception/AIPerceptionStimuliSourceComponent.h"
-#include "Perception/AISense_Sight.h"
+#include "Sound/SoundCue.h"
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -17,33 +16,42 @@ AWraithController::AWraithController()
 
 	SetupStimulus();
 	TimeLightShinedOnSelf = 0.f;
+	DistBtwnWraithAndPlayer = 0.f;
+
+	WraithWisperingAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("Wispering Audio Component"));
+	WraithWisperingAudioComponent->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
 void AWraithController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UGameplayStatics::SpawnSoundAttached(WraithWisperingSoundCue, RootComponent);
+
+	//WraithWisperingAudioComponent = UGameplayStatics::SpawnSoundAtLocation(GetWorld(), WraithWisperingSoundCue, GetActorLocation());
+	//WraithWisperingAudioComponent->Play();
+	
 }
 
 // Called every frame
 void AWraithController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if(TimeLightShinedOnSelf > 1.f)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 100.f / (TimeLightShinedOnSelf / 2);
+	} else
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 100;
+	}
 }
 
 // Called to bind functionality to input
 void AWraithController::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	if(TimeLightShinedOnSelf > 1.f)
-	{
-		GetCharacterMovement()->MaxWalkSpeed = 100.f / TimeLightShinedOnSelf;
-	} else
-	{
-		GetCharacterMovement()->MaxWalkSpeed = 100;
-	}
-
 }
 
 APatrolPath* AWraithController::GetPatrolPath()

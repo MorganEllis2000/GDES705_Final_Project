@@ -44,6 +44,13 @@ public:
 
 	float TimeLightShinedOnSelf;
 
+	float DistBtwnWraithAndPlayer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound FX")
+	class USoundCue* WraithWisperingSoundCue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound FX")
+	class UAudioComponent* WraithWisperingAudioComponent;
 protected:
 
 
