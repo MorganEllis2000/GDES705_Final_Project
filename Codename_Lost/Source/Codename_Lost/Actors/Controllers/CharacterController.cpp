@@ -28,6 +28,7 @@
 #include "Codename_Lost/Actors/Book.h"
 #include "Codename_Lost/Actors/OpenDoorWithLerp.h"
 #include "Codename_Lost/Actors/Cobweb.h"
+#include "Codename_Lost/Actors/ShadowPuzzle.h"
 
 // Sets default values
 ACharacterController::ACharacterController()
@@ -125,42 +126,7 @@ void ACharacterController::Tick(float DeltaTime)
 
 	if (!bHoldingItem)
 	{
-		if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
-		{
-			if (Cast<APickup>(Hit.GetActor())) {
-				CurrentItem = Cast<APickup>(Hit.GetActor());
-				bCanInteract = true;
-				InteractText = "Press 'F' to inspect";
-			} else if(Cast<ABook>(Hit.GetActor()))
-			{
-				ABook* Book = Cast<ABook>(Hit.GetActor());
-				bCanInteract = !Book->bWasBookInteractedWith;
-				InteractText = "Press 'F' to interact";
-			} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
-			{
-				AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
-				if(Door->Open)
-				{
-					InteractText = "Press 'F' to Close";
-				} else
-				{
-					InteractText = "Press 'F' to Open";
-				}
-				
-				bCanInteract = true;
-			} else if(Cast<ACobweb>(Hit.GetActor()))
-			{
-				InteractText = "Press 'F' to Burn";
-				bCanInteract = true;
-			} else
-			{
-				bCanInteract = false;
-				CurrentItem = NULL;
-			}
-		} else {
-			bCanInteract = false;
-			CurrentItem = NULL;
-		}
+		CheckForInteraction();
 	}
 
 	if (bInspecting) {
@@ -187,8 +153,6 @@ void ACharacterController::Tick(float DeltaTime)
 			SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
 		}
 	}
-
-	bIsReloading = Glock->bIsReloading;
 
 	if(bIsSprinting)
 	{
@@ -610,7 +574,74 @@ void ACharacterController::OnInteract()
 		{
 			AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
 			Door->OpenDoor();
+		}else if(Cast<AShadowPuzzle>(Hit.GetActor()))
+		{
+			AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
+			if(ShadowPuzzle->bIsSolved == false)
+			{
+				ShadowPuzzle->bIsRotating = !ShadowPuzzle->bIsRotating;
+				if(ShadowPuzzle->bIsRotating)
+				{
+					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 179.90000002f;
+					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = -179.90000002f;
+					LastRotation = GetControlRotation();
+					ToggleMovement();
+				} 
+			}
 		}
+	}
+}
+
+void ACharacterController::CheckForInteraction()
+{
+	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
+	{
+		if (Cast<APickup>(Hit.GetActor())) {
+			CurrentItem = Cast<APickup>(Hit.GetActor());
+			bCanInteract = true;
+			InteractText = "Press 'F' to inspect";
+		} else if(Cast<ABook>(Hit.GetActor()))
+		{
+			ABook* Book = Cast<ABook>(Hit.GetActor());
+			bCanInteract = !Book->bWasBookInteractedWith;
+			InteractText = "Press 'F' to interact";
+		} else if(Cast<AShadowPuzzle>(Hit.GetActor()))
+		{
+			AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
+
+			if(ShadowPuzzle->bIsRotating || ShadowPuzzle->bIsSolved)
+			{
+				bCanInteract = false;
+			} else
+			{
+				bCanInteract = true;
+			}
+			
+			InteractText = "Press 'F' to interact";
+		} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
+		{
+			AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
+			if(Door->Open)
+			{
+				InteractText = "Press 'F' to Close";
+			} else
+			{
+				InteractText = "Press 'F' to Open";
+			}
+				
+			bCanInteract = true;
+		} else if(Cast<ACobweb>(Hit.GetActor()))
+		{
+			InteractText = "Press 'F' to Burn";
+			bCanInteract = true;
+		} else
+		{
+			bCanInteract = false;
+			CurrentItem = NULL;
+		}
+	} else {
+		bCanInteract = false;
+		CurrentItem = NULL;
 	}
 }
 #pragma endregion

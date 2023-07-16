@@ -49,6 +49,9 @@ public:
 	void AddItemToInventory();
 	UFUNCTION(BlueprintCallable)
 	void PrintInventory();
+
+	void ToggleMovement();
+	void OnInteract();
 #pragma endregion
 
 protected:
@@ -60,9 +63,10 @@ protected:
 	void OnInspectReleased();
 	void OnPickup();
 
-	void OnInteract();
+	
+	void CheckForInteraction();
 
-	void ToggleMovement();
+
 	void ToggleItemPickup();
 #pragma endregion
 
