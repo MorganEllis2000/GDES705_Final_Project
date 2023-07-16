@@ -13,7 +13,6 @@ AFlickeringLight::AFlickeringLight()
 	Light = CreateDefaultSubobject<USpotLightComponent>(TEXT("Light"));
 	Light->SetupAttachment(RootComponent);
 	Light->Intensity = 0.f;
-
 }
 
 // Called when the game starts or when spawned

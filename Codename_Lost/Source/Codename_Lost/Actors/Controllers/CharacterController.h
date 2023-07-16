@@ -185,6 +185,9 @@ public:
 	bool GamePaused;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bShowPauseMenu;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bInteractingWithShadowPuzzle;
 	
 	// Camera Shake
 	UPROPERTY(EditAnywhere)

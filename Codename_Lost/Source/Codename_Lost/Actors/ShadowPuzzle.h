@@ -22,6 +22,8 @@ public:
 
 	void CheckPuzzle();
 
+	void ChangeCamera();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -35,7 +37,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* ObjectToMove;
-
+	
 	bool bIsRotating;
 
 	bool bIsSolved;

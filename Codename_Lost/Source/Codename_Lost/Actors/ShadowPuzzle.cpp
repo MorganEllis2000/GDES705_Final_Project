@@ -2,6 +2,8 @@
 
 
 #include "Codename_Lost/Actors/ShadowPuzzle.h"
+
+#include "Camera/CameraComponent.h"
 #include "Codename_Lost/Actors/Controllers/CharacterController.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -13,7 +15,6 @@ AShadowPuzzle::AShadowPuzzle()
 
 	ObjectMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Object Mesh"));
 	RootComponent = ObjectMesh;
-	//RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
 
 }
 
@@ -32,13 +33,15 @@ void AShadowPuzzle::Tick(float DeltaTime)
 	if(bIsRotating && bIsSolved == false)
 	{
 		RotateActor();
-		
 	}
 
 	if(bIsSolved)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("SHADOW PUZZLE SOLVED"));
-		
+		if(ObjectToMove)
+		{
+			ObjectToMove->SetActorRelativeLocation(FMath::Lerp(ObjectToMove->GetActorLocation(), MoveToLocation, 0.01f));
+
+		}
 	} else
 	{
 		CheckPuzzle();
@@ -48,7 +51,7 @@ void AShadowPuzzle::Tick(float DeltaTime)
 void AShadowPuzzle::RotateActor()
 {
 	ControlRotation = GetWorld()->GetFirstPlayerController()->GetControlRotation();
-	SetActorRotation(FQuat(ControlRotation));
+	ObjectMesh->SetRelativeRotation(FQuat(ControlRotation));
 }
 
 void AShadowPuzzle::CheckPuzzle()
@@ -60,16 +63,14 @@ void AShadowPuzzle::CheckPuzzle()
 			if(GetActorRotation().Yaw < (CorrectRotation.Yaw + 2) && GetActorRotation().Yaw > (CorrectRotation.Yaw - 2))
 			{
 				bIsSolved = true;
-				if(ObjectToMove)
-				{
-					ObjectToMove->SetActorLocation(MoveToLocation);
-				} else
-				{
-					UE_LOG(LogTemp, Warning, TEXT("Assign an object to move"));
-				}
 				ACharacterController* Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 				Character->ToggleMovement();
 				Character->bInspecting = false;
+				Character->bInteractingWithShadowPuzzle = false;
+				if(!ObjectToMove)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Assign an object to move"));
+				}
 			} else
 			{
 				bIsSolved = false;

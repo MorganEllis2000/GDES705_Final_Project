@@ -577,16 +577,27 @@ void ACharacterController::OnInteract()
 		}else if(Cast<AShadowPuzzle>(Hit.GetActor()))
 		{
 			AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
-			if(ShadowPuzzle->bIsSolved == false)
+			ShadowPuzzle->bIsRotating = !ShadowPuzzle->bIsRotating;
+			bInteractingWithShadowPuzzle = ShadowPuzzle->bIsRotating;
+
+			if (ShadowPuzzle->bIsSolved == false)
 			{
-				ShadowPuzzle->bIsRotating = !ShadowPuzzle->bIsRotating;
 				if(ShadowPuzzle->bIsRotating)
 				{
 					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 179.90000002f;
 					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = -179.90000002f;
 					LastRotation = GetControlRotation();
 					ToggleMovement();
-				} 
+				} else
+				{
+					GetController()->SetControlRotation(LastRotation);
+					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = PitchMax;
+					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = PitchMin;
+					ToggleMovement();
+				}
+			} else
+			{
+				bInteractingWithShadowPuzzle = false;
 			}
 		}
 	}
