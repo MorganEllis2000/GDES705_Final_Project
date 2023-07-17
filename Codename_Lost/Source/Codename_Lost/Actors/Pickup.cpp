@@ -42,6 +42,8 @@ void APickup::BeginPlay()
 			}
 		}
 	}
+
+	Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(this, 0));
 }
 
 // Called every frame
@@ -75,25 +77,28 @@ void APickup::Pickup()
 		ObjectMesh->SetRelativeLocationAndRotation(InitialLocation, InitialRotation);
 	}
 
-	if(this->bCanBeAddedToCodex && this->bHasBeenAddedToCodex == false)
+	if(this->bCanBeAddedToCodex && Character)
 	{
-		this->bHasBeenAddedToCodex = true;
-		ACharacterController* player = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(this, 0));
-		player->AddToCodex(this);
+		for(auto& Elem : Character->_Codex)
+		{
+			if(this->ObjectName.ToString() == Elem->ObjectName.ToString())
+			{
+				return;
+			} 
+		}
+		Character->AddToCodex(this);
 	}
 }
 
 void APickup::OnInteract()
 {
 	FString pickup = FString::Printf(TEXT("Picked up: &s"), *ObjectName.ToString());
-
-	ACharacterController* player = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	if (player) {
+	if (Character) {
 		Show(false);
 
 
 		
-		player->AddToInventory(this);
+		Character->AddToInventory(this);
 		ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 		for (auto& Elem : GameMode->TMapOfKeys) {
 			if (ObjectName.ToString() == Elem.Key) {

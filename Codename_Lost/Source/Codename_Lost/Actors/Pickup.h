@@ -39,6 +39,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	USceneComponent* HoldingComp;
 
+	class ACharacterController* Character;
+
 	void RotateActor();
 
 	void Pickup();
