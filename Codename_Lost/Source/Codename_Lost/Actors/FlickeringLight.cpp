@@ -19,7 +19,6 @@ AFlickeringLight::AFlickeringLight()
 void AFlickeringLight::BeginPlay()
 {
 	Super::BeginPlay();
-	//GetWorld()->GetTimerManager().SetTimer(TurnLightOnTimerHandle, this, &AFlickeringLight::ToggleLight, TimeToStayOn, true);
 }
 
 // Called every frame

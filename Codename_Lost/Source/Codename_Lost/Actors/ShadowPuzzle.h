@@ -23,6 +23,7 @@ public:
 	void CheckPuzzle();
 
 	void ChangeCamera();
+	
 
 protected:
 	// Called when the game starts or when spawned
@@ -40,6 +41,7 @@ public:
 	
 	bool bIsRotating;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsSolved;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -47,4 +49,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector MoveToLocation;
+
+	FVector StartLocation;
+
+	FTimerHandle PlayerCanRotateTimeHandle;
+
+	class ACharacterController* Character;
 };

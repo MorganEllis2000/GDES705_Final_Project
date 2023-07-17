@@ -30,6 +30,7 @@
 #include "Codename_Lost/Actors/Cobweb.h"
 #include "Codename_Lost/Actors/ShadowPuzzle.h"
 
+#pragma region Setup
 // Sets default values
 ACharacterController::ACharacterController()
 {
@@ -124,9 +125,11 @@ void ACharacterController::Tick(float DeltaTime)
 	ForwardVector = PlayerCamera->GetForwardVector();
 	End = ((ForwardVector * 200.f) + Start);
 
+	GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams);
+
 	if (!bHoldingItem)
 	{
-		CheckForInteraction();
+		CheckForInteraction(HitResult);
 	}
 
 	if (bInspecting) {
@@ -209,7 +212,7 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	//EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
-	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract);
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract, HitResult);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
 
 	EnhancedInputComponent->BindAction(InputActions->InputPickup, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
@@ -554,103 +557,97 @@ void ACharacterController::OnPickup() {
 	}
 }
 
-void ACharacterController::OnInteract()
+void ACharacterController::OnInteract(FHitResult Hit)
 {
-	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
+	if(Cast<ABook>(Hit.GetActor()))
 	{
-		if(Cast<ABook>(Hit.GetActor()))
+		ABook* book = Cast<ABook>(Hit.GetActor());
+		if(!book->bWasBookInteractedWith)
 		{
-			ABook* book = Cast<ABook>(Hit.GetActor());
-			if(!book->bWasBookInteractedWith)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Is A BOOK"));
-			}
-			book->OnInteract();
-		} else if(Cast<ACobweb>(Hit.GetActor()))
-		{
-			ACobweb* Cobweb = Cast<ACobweb>(Hit.GetActor());
-			Cobweb->bInteractedWith = true;
-		} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
-		{
-			AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
-			Door->OpenDoor();
-		}else if(Cast<AShadowPuzzle>(Hit.GetActor()))
-		{
-			AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
-			ShadowPuzzle->bIsRotating = !ShadowPuzzle->bIsRotating;
-			bInteractingWithShadowPuzzle = ShadowPuzzle->bIsRotating;
+			UE_LOG(LogTemp, Warning, TEXT("Is A BOOK"));
+		}
+		book->OnInteract();
+	} else if(Cast<ACobweb>(Hit.GetActor()))
+	{
+		ACobweb* Cobweb = Cast<ACobweb>(Hit.GetActor());
+		Cobweb->bInteractedWith = true;
+	} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
+	{
+		AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
+		Door->OpenDoor();
+	}else if(Cast<AShadowPuzzle>(Hit.GetActor()))
+	{
+		AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
+		ShadowPuzzle->bIsRotating = !ShadowPuzzle->bIsRotating;
+		bInteractingWithShadowPuzzle = ShadowPuzzle->bIsRotating;
 
-			if (ShadowPuzzle->bIsSolved == false)
+		if (ShadowPuzzle->bIsSolved == false)
+		{
+			if(ShadowPuzzle->bIsRotating)
 			{
-				if(ShadowPuzzle->bIsRotating)
-				{
-					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 179.90000002f;
-					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = -179.90000002f;
-					LastRotation = GetControlRotation();
-					ToggleMovement();
-				} else
-				{
-					GetController()->SetControlRotation(LastRotation);
-					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = PitchMax;
-					GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = PitchMin;
-					ToggleMovement();
-				}
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 179.90000002f;
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = -179.90000002f;
+				LastRotation = GetControlRotation();
+				ToggleMovement();
 			} else
 			{
-				bInteractingWithShadowPuzzle = false;
+				GetController()->SetControlRotation(LastRotation);
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = PitchMax;
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = PitchMin;
+				ToggleMovement();
 			}
+		} else
+		{
+			bInteractingWithShadowPuzzle = false;
 		}
+	} else
+	{
+		return;
 	}
 }
 
-void ACharacterController::CheckForInteraction()
+void ACharacterController::CheckForInteraction(FHitResult Hit)
 {
-	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, DefaultComponentQueryParams, DefaultResponseParams))
+	if (Cast<APickup>(Hit.GetActor())) {
+		CurrentItem = Cast<APickup>(Hit.GetActor());
+		bCanInteract = true;
+		InteractText = "Press 'F' to inspect";
+	} else if(Cast<ABook>(Hit.GetActor()))
 	{
-		if (Cast<APickup>(Hit.GetActor())) {
-			CurrentItem = Cast<APickup>(Hit.GetActor());
-			bCanInteract = true;
-			InteractText = "Press 'F' to inspect";
-		} else if(Cast<ABook>(Hit.GetActor()))
-		{
-			ABook* Book = Cast<ABook>(Hit.GetActor());
-			bCanInteract = !Book->bWasBookInteractedWith;
-			InteractText = "Press 'F' to interact";
-		} else if(Cast<AShadowPuzzle>(Hit.GetActor()))
-		{
-			AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
+		ABook* Book = Cast<ABook>(Hit.GetActor());
+		bCanInteract = !Book->bWasBookInteractedWith;
+		InteractText = "Press 'F' to interact";
+	} else if(Cast<AShadowPuzzle>(Hit.GetActor()))
+	{
+		AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
 
-			if(ShadowPuzzle->bIsRotating || ShadowPuzzle->bIsSolved)
-			{
-				bCanInteract = false;
-			} else
-			{
-				bCanInteract = true;
-			}
-			
-			InteractText = "Press 'F' to interact";
-		} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
-		{
-			AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
-			if(Door->Open)
-			{
-				InteractText = "Press 'F' to Close";
-			} else
-			{
-				InteractText = "Press 'F' to Open";
-			}
-				
-			bCanInteract = true;
-		} else if(Cast<ACobweb>(Hit.GetActor()))
-		{
-			InteractText = "Press 'F' to Burn";
-			bCanInteract = true;
-		} else
+		if(ShadowPuzzle->bIsRotating || ShadowPuzzle->bIsSolved)
 		{
 			bCanInteract = false;
-			CurrentItem = NULL;
+		} else
+		{
+			bCanInteract = true;
 		}
-	} else {
+		
+		InteractText = "Press 'F' to interact";
+	} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
+	{
+		AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
+		if(Door->Open)
+		{
+			InteractText = "Press 'F' to Close";
+		} else
+		{
+			InteractText = "Press 'F' to Open";
+		}
+			
+		bCanInteract = true;
+	} else if(Cast<ACobweb>(Hit.GetActor()))
+	{
+		InteractText = "Press 'F' to Burn";
+		bCanInteract = true;
+	} else
+	{
 		bCanInteract = false;
 		CurrentItem = NULL;
 	}

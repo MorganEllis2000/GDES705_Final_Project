@@ -51,7 +51,7 @@ public:
 	void PrintInventory();
 
 	void ToggleMovement();
-	void OnInteract();
+	void OnInteract(FHitResult Hit);
 #pragma endregion
 
 protected:
@@ -64,7 +64,7 @@ protected:
 	void OnPickup();
 
 	
-	void CheckForInteraction();
+	void CheckForInteraction(FHitResult Hit);
 
 
 	void ToggleItemPickup();
@@ -166,7 +166,7 @@ public:
 	FVector ForwardVector;
 	FVector End;
 
-	FHitResult Hit;
+	FHitResult HitResult;
 
 	FComponentQueryParams DefaultComponentQueryParams;
 	FCollisionResponseParams DefaultResponseParams;

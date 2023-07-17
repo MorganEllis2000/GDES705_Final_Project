@@ -22,7 +22,8 @@ AShadowPuzzle::AShadowPuzzle()
 void AShadowPuzzle::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	StartLocation = ObjectToMove->GetActorLocation();
 }
 
 // Called every frame
@@ -63,7 +64,7 @@ void AShadowPuzzle::CheckPuzzle()
 			if(GetActorRotation().Yaw < (CorrectRotation.Yaw + 2) && GetActorRotation().Yaw > (CorrectRotation.Yaw - 2))
 			{
 				bIsSolved = true;
-				ACharacterController* Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+				
 				Character->ToggleMovement();
 				Character->bInspecting = false;
 				Character->bInteractingWithShadowPuzzle = false;
@@ -84,4 +85,6 @@ void AShadowPuzzle::CheckPuzzle()
 		bIsSolved = false;
 	}
 }
+
+
 
