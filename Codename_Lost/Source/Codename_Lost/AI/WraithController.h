@@ -51,6 +51,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound FX")
 	class UAudioComponent* WraithWisperingAudioComponent;
+
+	bool bIsFleeing;
 protected:
 
 

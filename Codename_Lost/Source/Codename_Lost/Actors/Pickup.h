@@ -6,8 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "Pickup.generated.h"
 
-
-
 UCLASS()
 class CODENAME_LOST_API APickup : public AActor
 {
@@ -33,6 +31,9 @@ public:
 	bool bCanBeAddedToInventory;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeAddedToCodex;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* ObjectMesh;
 
 	UPROPERTY(EditAnywhere)
@@ -45,6 +46,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bHolding;
 	bool bGravity;
+	bool bHasBeenAddedToCodex;
 
 	FRotator ControlRotation;
 	class ACharacterController* MyCharacter;

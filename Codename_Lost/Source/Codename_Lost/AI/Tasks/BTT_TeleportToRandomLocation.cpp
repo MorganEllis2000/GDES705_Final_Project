@@ -8,6 +8,8 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Codename_Lost/Actors/Controllers/CharacterController.h"
 #include "Kismet/GameplayStatics.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 UBTT_TeleportToRandomLocation::UBTT_TeleportToRandomLocation()
 {
@@ -28,7 +30,12 @@ EBTNodeResult::Type UBTT_TeleportToRandomLocation::ExecuteTask(UBehaviorTreeComp
 		nav_sys->GetRandomReachablePointInRadius(StartPosition, 5000.f, EndPosition);
 	}
 
-	WraithController->SetActorLocation(EndPosition.Location);
+	//WraithController->SetActorLocation(EndPosition.Location);
+
+	//WraithController->GetCharacterMovement()->MaxWalkSpeed = 1000;
+	//UAIBlueprintHelperLibrary::SimpleMoveToLocation(OwnerComp.GetAIOwner(), EndPosition.Location);
+
+	OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), EndPosition.Location);
 	
 	return EBTNodeResult::Succeeded;
 	

@@ -39,13 +39,13 @@ void AWraithController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if(TimeLightShinedOnSelf > 1.f)
+	/*if(TimeLightShinedOnSelf > 1.f && TimeLightShinedOnSelf < 5.f)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = 100.f / (TimeLightShinedOnSelf / 2);
 	} else
 	{
-		GetCharacterMovement()->MaxWalkSpeed = 100;
-	}
+		//GetCharacterMovement()->MaxWalkSpeed = 100;
+	}*/
 }
 
 // Called to bind functionality to input

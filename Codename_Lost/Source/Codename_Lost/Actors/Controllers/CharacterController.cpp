@@ -692,7 +692,8 @@ void ACharacterController::OpenInventory() {
 	}
 
 	if (bIsInventoryOpen == true) {
-		UpdateInventoryDelegate();		
+		UpdateInventoryDelegate();
+		UpdateCodexDelegate();
 		PlayerController->SetInputMode(FInputModeGameAndUI());
 	}
 	else {
@@ -707,6 +708,20 @@ void ACharacterController::UpdateInventoryDelegate() {
 void ACharacterController::AddItemToInventory() {
 	CurrentItem->OnInteract();
 	OnInspectReleased();
+}
+
+void ACharacterController::AddToCodex(APickup* actor)
+{
+	_Codex.Add(actor);
+}
+
+void ACharacterController::AddItemToCodex()
+{
+}
+
+void ACharacterController::UpdateCodexDelegate()
+{
+	OnUpdateCodex.Broadcast(_Codex);
 }
 #pragma endregion
 

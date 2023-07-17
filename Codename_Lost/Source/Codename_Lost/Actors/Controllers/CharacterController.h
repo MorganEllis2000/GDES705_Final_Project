@@ -11,6 +11,7 @@
 class AGun;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FUpdateIventoryDelegate, const TArray<APickup*>&, IventoryItems);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FUpdateCodexDelegate, const TArray<APickup*>&, CodexItems);
 
 UCLASS()
 class CODENAME_LOST_API ACharacterController : public ACharacter
@@ -52,6 +53,13 @@ public:
 
 	void ToggleMovement();
 	void OnInteract();
+
+	UFUNCTION(BlueprintCallable)
+	void AddToCodex(class APickup* actor);
+	UFUNCTION(BlueprintCallable)
+	void AddItemToCodex();
+	UFUNCTION(BlueprintCallable)
+	void UpdateCodexDelegate();
 #pragma endregion
 
 protected:
@@ -175,10 +183,18 @@ public:
 #pragma region Inventory Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bIsInventoryOpen;
+	
 	UPROPERTY(BlueprintAssignable, Category = "Pickup")
 	FUpdateIventoryDelegate OnUpdateInventory;
+	
+	UPROPERTY(BlueprintAssignable, Category = "Pickup")
+	FUpdateCodexDelegate OnUpdateCodex;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<APickup*> _inventory;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<APickup*> _Codex;
 #pragma endregion
 
 	// World Variables

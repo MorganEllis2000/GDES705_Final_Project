@@ -74,6 +74,13 @@ void APickup::Pickup()
 		ObjectMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 		ObjectMesh->SetRelativeLocationAndRotation(InitialLocation, InitialRotation);
 	}
+
+	if(this->bCanBeAddedToCodex && this->bHasBeenAddedToCodex == false)
+	{
+		this->bHasBeenAddedToCodex = true;
+		ACharacterController* player = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(this, 0));
+		player->AddToCodex(this);
+	}
 }
 
 void APickup::OnInteract()
@@ -84,6 +91,8 @@ void APickup::OnInteract()
 	if (player) {
 		Show(false);
 
+
+		
 		player->AddToInventory(this);
 		ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 		for (auto& Elem : GameMode->TMapOfKeys) {
