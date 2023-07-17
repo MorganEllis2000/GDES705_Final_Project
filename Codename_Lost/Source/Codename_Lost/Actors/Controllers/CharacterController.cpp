@@ -212,7 +212,7 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	//EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
-	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract, HitResult);
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
 
 	EnhancedInputComponent->BindAction(InputActions->InputPickup, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
@@ -557,27 +557,27 @@ void ACharacterController::OnPickup() {
 	}
 }
 
-void ACharacterController::OnInteract(FHitResult Hit)
+void ACharacterController::OnInteract()
 {
-	if(Cast<ABook>(Hit.GetActor()))
+	if(Cast<ABook>(HitResult.GetActor()))
 	{
-		ABook* book = Cast<ABook>(Hit.GetActor());
+		ABook* book = Cast<ABook>(HitResult.GetActor());
 		if(!book->bWasBookInteractedWith)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Is A BOOK"));
 		}
 		book->OnInteract();
-	} else if(Cast<ACobweb>(Hit.GetActor()))
+	} else if(Cast<ACobweb>(HitResult.GetActor()))
 	{
-		ACobweb* Cobweb = Cast<ACobweb>(Hit.GetActor());
+		ACobweb* Cobweb = Cast<ACobweb>(HitResult.GetActor());
 		Cobweb->bInteractedWith = true;
-	} else if(Cast<AOpenDoorWithLerp>(Hit.GetActor()))
+	} else if(Cast<AOpenDoorWithLerp>(HitResult.GetActor()))
 	{
-		AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(Hit.GetActor());
+		AOpenDoorWithLerp* Door = Cast<AOpenDoorWithLerp>(HitResult.GetActor());
 		Door->OpenDoor();
-	}else if(Cast<AShadowPuzzle>(Hit.GetActor()))
+	}else if(Cast<AShadowPuzzle>(HitResult.GetActor()))
 	{
-		AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(Hit.GetActor());
+		AShadowPuzzle* ShadowPuzzle = Cast<AShadowPuzzle>(HitResult.GetActor());
 		ShadowPuzzle->bIsRotating = !ShadowPuzzle->bIsRotating;
 		bInteractingWithShadowPuzzle = ShadowPuzzle->bIsRotating;
 

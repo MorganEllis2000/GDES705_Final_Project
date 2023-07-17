@@ -51,7 +51,7 @@ public:
 	void PrintInventory();
 
 	void ToggleMovement();
-	void OnInteract(FHitResult Hit);
+	void OnInteract();
 #pragma endregion
 
 protected:
