@@ -42,7 +42,14 @@ void AFlashlight::BeginPlay()
 	
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AWraithController::StaticClass(), FoundActors);
-	WraithController = Cast<AWraithController>(FoundActors[0]);
+	if(FoundActors.Num() > 0)
+	{
+		WraithController = Cast<AWraithController>(FoundActors[0]);
+	} else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("NO WRAITHS FOUND"));
+	}
+
 }
 
 // Called every frame

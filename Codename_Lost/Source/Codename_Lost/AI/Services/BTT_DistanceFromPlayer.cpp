@@ -16,6 +16,6 @@ void UBTT_DistanceFromPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uint8*
 	AWraithController* WraithController = Cast<AWraithController>(OwnerComp.GetAIOwner()->GetCharacter());
 	ACharacterController* Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	
-	WraithController->DistBtwnWraithAndPlayer = FVector::Dist(WraithPawn->GetActorLocation(), Character->GetActorLocation());
-	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(GetSelectedBlackboardKey(), WraithController->DistBtwnWraithAndPlayer);
+	float dist = FVector::Dist(OwnerComp.GetAIOwner()->GetCharacter()->GetActorLocation(), Character->GetActorLocation());
+	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(GetSelectedBlackboardKey(), dist);
 }

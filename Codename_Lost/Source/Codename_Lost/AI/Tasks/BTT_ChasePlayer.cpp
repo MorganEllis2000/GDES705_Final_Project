@@ -16,7 +16,8 @@ UBTT_ChasePlayer::UBTT_ChasePlayer()
 
 EBTNodeResult::Type UBTT_ChasePlayer::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	AWraithAIController* const AIController = Cast<AWraithAIController>(OwnerComp.GetAIOwner());
+	//AWraithAIController* const AIController = Cast<AWraithAIController>(OwnerComp.GetAIOwner());
+	AIController = OwnerComp.GetAIOwner();
 	FVector const PlayerLocation = AIController->GetBlackboardComponent()->GetValueAsVector(TEXT("PlayerLocation"));
 
 	UAIBlueprintHelperLibrary::SimpleMoveToLocation(AIController, PlayerLocation);

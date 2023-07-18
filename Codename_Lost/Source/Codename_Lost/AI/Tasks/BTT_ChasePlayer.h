@@ -17,5 +17,8 @@ public:
 	UBTT_ChasePlayer();
 
 	EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+
+	UPROPERTY(Category="Node", EditAnywhere)
+	class AAIController* AIController;
 	
 };

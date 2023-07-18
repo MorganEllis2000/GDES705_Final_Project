@@ -31,7 +31,6 @@ void AWraithController::BeginPlay()
 
 	//WraithWisperingAudioComponent = UGameplayStatics::SpawnSoundAtLocation(GetWorld(), WraithWisperingSoundCue, GetActorLocation());
 	//WraithWisperingAudioComponent->Play();
-	
 }
 
 // Called every frame
