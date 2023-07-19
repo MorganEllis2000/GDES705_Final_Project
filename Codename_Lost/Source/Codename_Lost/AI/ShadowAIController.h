@@ -40,4 +40,10 @@ public:
 	class UAIPerceptionComponent* perceptionComponent;
 
 	class AShadowCharacterController* ShadowCharacterController;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sight Variables")
+	float SightRadius;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sight Variables")
+	float SightFOV;
 };

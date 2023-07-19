@@ -33,7 +33,10 @@ void APickup::BeginPlay()
 	MyCharacter = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(this, 0));
 
 	TArray<USceneComponent*> Components;
-	MyCharacter->GetComponents(Components);
+	if(MyCharacter)
+	{
+		MyCharacter->GetComponents(Components);
+	}
 
 	if (Components.Num() > 0) {
 		for (auto& comp : Components) {

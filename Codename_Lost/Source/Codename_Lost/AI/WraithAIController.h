@@ -51,9 +51,14 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SFX")
 	class USoundCue* HitSoundFX;
-	
+
 	class AWraithController* WraithController;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sight Variables")
+	float SightRadius;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sight Variables")
+	float SightFOV;
 protected:
 
 private:

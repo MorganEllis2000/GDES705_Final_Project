@@ -89,11 +89,11 @@ void AWraithAIController::SetupPerceptionSystem()
 
 	if(SightConfig)
 	{
-		SightConfig->SightRadius = 500.f;
+		SightConfig->SightRadius = SightRadius;
 		SightConfig->LoseSightRadius = SightConfig->SightRadius + 50.f;
-		SightConfig->PeripheralVisionAngleDegrees = 90.f;
+		SightConfig->PeripheralVisionAngleDegrees = SightFOV;
 		SightConfig->SetMaxAge(1.f);
-		SightConfig->AutoSuccessRangeFromLastSeenLocation = 520.f;
+		SightConfig->AutoSuccessRangeFromLastSeenLocation = SightConfig->SightRadius + 20;
 		SightConfig->DetectionByAffiliation.bDetectEnemies = true;
 		SightConfig->DetectionByAffiliation.bDetectFriendlies = true;
 		SightConfig->DetectionByAffiliation.bDetectNeutrals = true;

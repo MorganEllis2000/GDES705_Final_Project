@@ -280,6 +280,9 @@ public:
 
 	UPROPERTY()
 	AGun* Glock;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPostProcessComponent* PostProcessComponent;
 protected:
 
 #pragma region Input Mapping

@@ -13,7 +13,9 @@ UBTT_ChangeWalkSpeed::UBTT_ChangeWalkSpeed()
 
 EBTNodeResult::Type UBTT_ChangeWalkSpeed::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	AWraithController* WraithController = Cast<AWraithController>(OwnerComp.GetAIOwner()->GetCharacter());
-	WraithController->GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	//AWraithController* WraithController = Cast<AWraithController>(OwnerComp.GetAIOwner()->GetCharacter());
+	//WraithController->GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+
+	OwnerComp.GetAIOwner()->GetCharacter()->GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 	return EBTNodeResult::Succeeded;
 }

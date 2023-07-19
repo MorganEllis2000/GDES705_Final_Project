@@ -503,11 +503,13 @@ void ACharacterController::OnInspect()
 	if (!bInspecting && CurrentItem) {
 		ToggleItemPickup();
 		LastRotation = GetControlRotation();
+		FlashlightOff();
 		ToggleMovement();
 		SkeletalMesh->SetVisibility(false);
 		Glock->Mesh->SetVisibility(false);
 		MouseLookRotationRateX = MouseLookRotationRateX * 1.5f;
 		MouseLookRotationRateY = MouseLookRotationRateY * 1.5f;
+
 	}
 	else {		
 		bInspecting = false;	
@@ -527,6 +529,7 @@ void ACharacterController::OnInspectReleased()
 		Glock->Mesh->SetVisibility(true);
 		MouseLookRotationRateX = MouseLookRotationX;
 		MouseLookRotationRateY = MouseLookRotationY;
+
 	}
 	else {	
 		bInspecting = false;
