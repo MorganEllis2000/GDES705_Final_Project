@@ -5,6 +5,7 @@
 #include "Codename_Lost/AI/ShadowCharacterController.h"
 #include "Perception/AISenseConfig_Hearing.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Codename_Lost/Actors/Controllers/CharacterController.h"
 #include "Perception/AISenseConfig_Sight.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -52,8 +53,8 @@ void AShadowAIController::SetupPerceptionSystem()
 		SightConfig->SetMaxAge(1.f);
 		SightConfig->AutoSuccessRangeFromLastSeenLocation = SightConfig->SightRadius + 20;
 		SightConfig->DetectionByAffiliation.bDetectEnemies = true;
-		SightConfig->DetectionByAffiliation.bDetectFriendlies = true;
-		SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
+		SightConfig->DetectionByAffiliation.bDetectFriendlies = false;
+		SightConfig->DetectionByAffiliation.bDetectNeutrals = false;
 
 		GetPerceptionComponent()->SetDominantSense(*SightConfig->GetSenseImplementation());
 		//GetPerceptionComponent()->OnTargetPerceptionUpdated.AddDynamic(this, &AWraithAIController::OnTargetDetected);
@@ -65,8 +66,8 @@ void AShadowAIController::SetupPerceptionSystem()
 	{
 		HearingConfig->HearingRange = 3000.f;
 		HearingConfig->DetectionByAffiliation.bDetectEnemies = true;
-		HearingConfig->DetectionByAffiliation.bDetectFriendlies = true;
-		HearingConfig->DetectionByAffiliation.bDetectNeutrals = true;
+		HearingConfig->DetectionByAffiliation.bDetectFriendlies = false;
+		HearingConfig->DetectionByAffiliation.bDetectNeutrals = false;
 		GetPerceptionComponent()->OnPerceptionUpdated.AddDynamic(this, &AShadowAIController::OnTargetDetected);
 		GetPerceptionComponent()->ConfigureSense((*HearingConfig));
 	}
@@ -87,11 +88,13 @@ void AShadowAIController::OnTargetDetected(TArray<AActor*> const& UpdatedActors)
 				GetBlackboardComponent()->SetValueAsVector(TEXT("SoundLocation"), Stimulus.StimulusLocation);
 			} else if(Stimulus.Type.Name == "Default__AISense_Sight")
 			{
-				GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), Stimulus.WasSuccessfullySensed());
-				GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
-				GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
+				if(UpdatedActors[i]->ActorHasTag("Player"))
+				{
+					GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), Stimulus.WasSuccessfullySensed());
+					GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
+					GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
+				}
 			}
-			
 		}
 	}
 }

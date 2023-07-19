@@ -55,7 +55,7 @@ ACharacterController::ACharacterController()
 	GetMesh()->SetupAttachment(PlayerCamera);
 	SkeletalMesh = Cast<USkeletalMeshComponent>(this->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 	
-	GetCharacterMovement()->MaxWalkSpeedCrouched = 125.f;
+	
 
 	CurrentItem = NULL;
 	bCanMove = true;
@@ -66,8 +66,7 @@ ACharacterController::ACharacterController()
 	RollMax = 10.f;
 	RollMin = -10.f;
 
-	GetCharacterMovement()->MaxWalkSpeed = 175;
-
+	
 	MouseLookRotationX = MouseLookRotationRateX;
 	MouseLookRotationY = MouseLookRotationRateY;
 }
@@ -78,11 +77,14 @@ void ACharacterController::BeginPlay()
 	Super::BeginPlay();
 	HeartRate = BaseHeartRate;
 	CurrentHealth = MaxHealth;
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	GetCharacterMovement()->MaxWalkSpeedCrouched = CrouchWalkSpeed;
 
+	
 	Glock = GetWorld()->SpawnActor<AGun>(GunClass);
 	//GetMesh()->HideBoneByName(TEXT("upperarm_l"), EPhysBodyOp::PBO_None);
 	//GetMesh()->HideBoneByName(TEXT("upperarm_r"), EPhysBodyOp::PBO_None);
-	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("middle_01_l"));
+	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, BoneToAttachGlockTo);
 	Glock->SetOwner(this);
 
 	if(Glock)
@@ -147,13 +149,13 @@ void ACharacterController::Tick(float DeltaTime)
 	}
 
 	if (bIsCrouched) {
-		if (SkeletalMesh->GetRelativeLocation().Z != -140.f) {
-			SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
+		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z) {
+			SkeletalMesh->SetRelativeLocation(ArmsOffset);
 		}
 	}
 	else {
-		if (SkeletalMesh->GetRelativeLocation().Z != -140.f) {
-			SkeletalMesh->SetRelativeLocation(FVector(-9.848078f, 1.736482f, -140.f));
+		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z) {
+			SkeletalMesh->SetRelativeLocation(ArmsOffset);
 		}
 	}
 
@@ -311,7 +313,7 @@ void ACharacterController::ControllerLook(const FInputActionValue& Value) {
 
 void ACharacterController::StartSprint() {
 	if (GetCharacterMovement() && bIsZoomedIn == false && CurrentStamina > 0 && MoveValue.Y > 0) {
-		GetCharacterMovement()->MaxWalkSpeed = 300.f;
+		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
 		bIsSprinting = true;
 		CurrentStamina -= StaminaDrainPerTick;
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
@@ -319,13 +321,13 @@ void ACharacterController::StartSprint() {
 	}
 	else {
 		bIsSprinting = false;
-		GetCharacterMovement()->MaxWalkSpeed = 175.f;
+		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 	}
 }
 
 void ACharacterController::FinishSprint() {
 	if (GetCharacterMovement() && CurrentStamina < MaxStamina) {
-		GetCharacterMovement()->MaxWalkSpeed = 125.f;
+		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 		bIsSprinting = false;
 		CurrentStamina += StaminaDrainPerTick;
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));

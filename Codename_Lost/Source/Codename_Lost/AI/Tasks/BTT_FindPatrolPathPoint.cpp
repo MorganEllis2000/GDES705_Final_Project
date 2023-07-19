@@ -26,30 +26,36 @@ EBTNodeResult::Type UBTT_FindPatrolPathPoint::ExecuteTask(UBehaviorTreeComponent
 		int const index = WraithAIController->GetBlackboardComponent()->GetValueAsInt(TEXT("PatrolPathIndex"));
 
 		AWraithController* const WraithController = Cast<AWraithController>(WraithAIController->GetPawn());
-		FVector const PatrolPoint = WraithController->GetPatrolPath()->GetPatrolPoint(index);
+		if(WraithController->PatrolPath)
+		{
+			FVector const PatrolPoint = WraithController->GetPatrolPath()->GetPatrolPoint(index);
 
-		FVector const GlobalPoint = WraithController->GetPatrolPath()->GetActorTransform().TransformPosition(PatrolPoint);
+			FVector const GlobalPoint = WraithController->GetPatrolPath()->GetActorTransform().TransformPosition(PatrolPoint);
 
-		WraithAIController->GetBlackboardComponent()->SetValueAsVector(TEXT("PatrolLocation"), GlobalPoint);
-		
-		UE_LOG(LogTemp, Warning, TEXT("Wraith"));
+			WraithAIController->GetBlackboardComponent()->SetValueAsVector(TEXT("PatrolLocation"), GlobalPoint);
+		}else
+		{
+			UE_LOG(LogTemp, Error, TEXT("PLEASE ASSIGN A PATROL PATH IN CHARACTER BLUEPRINT"));
+		}
 	} else if(Cast<AShadowCharacterController>(OwnerComp.GetAIOwner()->GetPawn()))
 	{
 		AShadowAIController* const ShadowAIController = Cast<AShadowAIController>(OwnerComp.GetAIOwner());
 		int const index = ShadowAIController->GetBlackboardComponent()->GetValueAsInt(TEXT("PatrolPathIndex"));
 
 		AShadowCharacterController* const ShadowCharacterController = Cast<AShadowCharacterController>(ShadowAIController->GetPawn());
-		FVector const PatrolPoint = ShadowCharacterController->GetPatrolPath()->GetPatrolPoint(index);
+		if(ShadowCharacterController->PatrolPath)
+		{
+			FVector const PatrolPoint = ShadowCharacterController->GetPatrolPath()->GetPatrolPoint(index);
 
-		FVector const GlobalPoint = ShadowCharacterController->GetPatrolPath()->GetActorTransform().TransformPosition(PatrolPoint);
+			FVector const GlobalPoint = ShadowCharacterController->GetPatrolPath()->GetActorTransform().TransformPosition(PatrolPoint);
 
-		ShadowAIController->GetBlackboardComponent()->SetValueAsVector(TEXT("PatrolLocation"), GlobalPoint);
-		
-		UE_LOG(LogTemp, Warning, TEXT("Shadow"));
+			ShadowAIController->GetBlackboardComponent()->SetValueAsVector(TEXT("PatrolLocation"), GlobalPoint);
+		}else
+		{
+			UE_LOG(LogTemp, Error, TEXT("PLEASE ASSIGN A PATROL PATH IN CHARACTER BLUEPRINT"));
+		}
 	}
 	
-	
-
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 
 	return EBTNodeResult::Succeeded;

@@ -87,7 +87,7 @@ void AFlashlight::Tick(float DeltaTime)
 					WraithController->TimeLightShinedOnSelf -= DeltaTime;
 				}
 			}
-			//DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
+			DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
 		} else
 		{
 			if(WraithController->TimeLightShinedOnSelf > 0.f)

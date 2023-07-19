@@ -124,7 +124,14 @@ public:
 	FVector CrouchEyeOffset;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Crouch")
 	float CrouchSpeed;
-
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Moving")
+	float SprintSpeed;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Moving")
+	float WalkSpeed;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Moving")
+	float CrouchWalkSpeed;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lean")
 	float MinLean;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lean")
@@ -280,6 +287,12 @@ public:
 
 	UPROPERTY()
 	AGun* Glock;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName BoneToAttachGlockTo;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector ArmsOffset;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	class UPostProcessComponent* PostProcessComponent;

@@ -33,12 +33,6 @@ protected:
 private: 
 	void SetupStimulus();
 public:	
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Patrol Points")
-	TArray<ATargetPoint*> PatrolPoints;
-
-	ATargetPoint* CurrentPatrolPoint;
-	FVector CurrentPatrolPointLocation;
 
 	class USoundCue* PlayerDamagedSoundCue;
 
@@ -53,13 +47,14 @@ public:
 	class UAudioComponent* WraithWisperingAudioComponent;
 
 	bool bIsFleeing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+	APatrolPath* PatrolPath;
 protected:
 
 
 private:
-	class UAIPerceptionStimuliSourceComponent* stimulus;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
-	APatrolPath* PatrolPath;
+	
 
 };

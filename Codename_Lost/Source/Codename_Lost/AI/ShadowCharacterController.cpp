@@ -36,6 +36,13 @@ void AShadowCharacterController::SetupPlayerInputComponent(UInputComponent* Play
 
 APatrolPath* AShadowCharacterController::GetPatrolPath()
 {
-	return PatrolPath;
+	if(PatrolPath)
+	{
+		return PatrolPath;
+	} else
+	{
+		UE_LOG(LogTemp, Error, TEXT("PLEASE ASSIGN BP_PATROLPOINT"));
+		return nullptr;
+	}
 }
 
