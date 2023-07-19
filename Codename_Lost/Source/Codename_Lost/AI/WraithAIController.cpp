@@ -67,13 +67,19 @@ void AWraithAIController::OnTargetDetected(TArray<AActor*> const& UpdatedActors)
 			FAIStimulus const Stimulus = info.LastSensedStimuli[j];
 			if(Stimulus.Tag == "Noise")
 			{
+				GetBlackboardComponent()->SetValueAsBool(TEXT("SoundWasHeard"), false);
+				GetBlackboardComponent()->ClearValue(TEXT("SoundLocation"));
 				GetBlackboardComponent()->SetValueAsBool(TEXT("SoundWasHeard"), Stimulus.WasSuccessfullySensed());
 				GetBlackboardComponent()->SetValueAsVector(TEXT("SoundLocation"), Stimulus.StimulusLocation);
 			} else if(Stimulus.Type.Name == "Default__AISense_Sight")
 			{
-				GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), Stimulus.WasSuccessfullySensed());
-				GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
-				GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
+
+				if(UpdatedActors[i]->ActorHasTag("Player"))
+				{
+					GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), Stimulus.WasSuccessfullySensed());
+					GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
+					GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
+				} 
 			}
 			
 		}

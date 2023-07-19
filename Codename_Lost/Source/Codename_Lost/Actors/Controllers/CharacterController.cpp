@@ -55,7 +55,7 @@ ACharacterController::ACharacterController()
 	GetMesh()->SetupAttachment(PlayerCamera);
 	SkeletalMesh = Cast<USkeletalMeshComponent>(this->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 	
-	
+	SetupStimulus();
 
 	CurrentItem = NULL;
 	bCanMove = true;
@@ -87,14 +87,14 @@ void ACharacterController::BeginPlay()
 	Glock->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, BoneToAttachGlockTo);
 	Glock->SetOwner(this);
 
-	if(Glock)
+	/*if(Glock)
 	{
 		Glock->MagazineSize = 12;
 		Glock->CurrentReserveAmmo = 24;
 		Glock->MaxReserveAmmo = 36;
 		Glock->CurrentAmmo = Glock->MagazineSize;
 		Glock->ReloadTime = 3.f;
-	}
+	}*/
 	
 	if (FlashlightClass) {
 		Flashlight = GetWorld()->SpawnActor<AFlashlight>(FlashlightClass);

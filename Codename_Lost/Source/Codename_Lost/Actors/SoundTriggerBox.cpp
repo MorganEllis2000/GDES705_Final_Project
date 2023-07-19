@@ -14,7 +14,7 @@ ASoundTriggerBox::ASoundTriggerBox()
 
 void ASoundTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-	if(OtherActor && (OtherActor != this))
+	if(OtherActor && (OtherActor != this) && OtherActor->ActorHasTag("Player"))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Overlap begin"));
 		UGameplayStatics::PlaySoundAtLocation(this, SoundFX, GetActorLocation());
@@ -24,7 +24,7 @@ void ASoundTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActo
 
 void ASoundTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-	if(OtherActor && (OtherActor != this))
+	if(OtherActor && (OtherActor != this) && OtherActor->ActorHasTag("Player"))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Overlap end"));
 		this->Destroy();
@@ -35,5 +35,5 @@ void ASoundTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
 
-	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
+	//DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
 }

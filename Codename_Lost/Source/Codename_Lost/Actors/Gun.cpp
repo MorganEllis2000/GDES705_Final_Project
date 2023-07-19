@@ -29,10 +29,8 @@ AGun::AGun()
 
 	LaserSight = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Laser Sight"));
 	LaserSight->SetupAttachment(MuzzleComponent);
-
-	MaxReserveAmmo = 36.f;
-	MagazineSize = 12.f;
-	CurrentAmmo = MagazineSize;
+	
+	
 }
 
 // Called when the game starts or when spawned
@@ -41,6 +39,8 @@ void AGun::BeginPlay()
 	Super::BeginPlay();
 	CharacterController = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	SetupRecoil();
+	CurrentReserveAmmo = MaxReserveAmmo;
+	CurrentAmmo = MagazineSize;
 }
 
 // Called every frame
@@ -124,7 +124,7 @@ void AGun::Reload() {
 		UGameplayStatics::PlaySoundAtLocation(this, GunReloadingSoundCue, MuzzleComponent->GetComponentLocation());
 		
 		float AmmoDifference = MagazineSize - CurrentAmmo;
-		if (CurrentAmmo + CurrentReserveAmmo < 13) {
+		if (CurrentAmmo + CurrentReserveAmmo < MagazineSize + 1) {
 			CurrentAmmo += CurrentReserveAmmo;
 			CurrentReserveAmmo = 0;
 			GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, TEXT("RELOAD"));
