@@ -49,16 +49,29 @@ public:
 	bool bHolding;
 	bool bGravity;
 	bool bHasBeenAddedToCodex;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool UsePlayerPitch;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool UsePlayerYaw;
+	
 	FRotator ControlRotation;
+
+	
 	class ACharacterController* MyCharacter;
 	class UCameraComponent* PlayerCamera;
 	FVector ForwardVector;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Transform")
 	FVector InitialLocation;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Transform")
 	FRotator InitialRotation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Transform")
+	FRotator PickupRotation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Transform")
+	FVector InitialScale;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Transform")
+	FVector PickupScale;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info")
 	FText ObjectName;
@@ -66,6 +79,7 @@ public:
 	FText ObjectType;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info", meta=(MultiLine=true))
 	FText ObjectDescription;
+
 
 	
 	FString Name;

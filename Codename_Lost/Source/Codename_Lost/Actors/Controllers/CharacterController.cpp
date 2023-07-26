@@ -525,8 +525,8 @@ void ACharacterController::OnInspectReleased()
 
 		PlayerController->PlayerCameraManager->ViewPitchMin = PitchMin;
 		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
-		ToggleMovement();
 		ToggleItemPickup();
+		ToggleMovement();
 		SkeletalMesh->SetVisibility(true);
 		Glock->Mesh->SetVisibility(true);
 		MouseLookRotationRateX = MouseLookRotationX;

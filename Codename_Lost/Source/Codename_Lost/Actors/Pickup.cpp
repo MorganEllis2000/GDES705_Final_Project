@@ -59,7 +59,14 @@ void APickup::Tick(float DeltaTime)
 void APickup::RotateActor()
 {
 	ControlRotation = GetWorld()->GetFirstPlayerController()->GetControlRotation();
-	SetActorRotation(FQuat(ControlRotation));
+	
+	if(UsePlayerPitch && !UsePlayerYaw){
+		SetActorRotation(FQuat(FRotator(ControlRotation.Pitch, PickupRotation.Yaw, PickupRotation.Roll)));
+	} else if (!UsePlayerPitch && UsePlayerYaw){
+		SetActorRotation(FQuat(FRotator(PickupRotation.Pitch, ControlRotation.Yaw, PickupRotation.Roll)));
+	} else{
+		SetActorRotation(FQuat(FRotator(ControlRotation.Pitch, ControlRotation.Yaw, ControlRotation.Roll)));
+	}
 }
 
 void APickup::Pickup()
@@ -67,17 +74,21 @@ void APickup::Pickup()
 	bHolding = !bHolding;
 	ObjectMesh->SetEnableGravity(bGravity);
 	ObjectMesh->SetSimulatePhysics(bGravity ? false : true);
+	
+	
 	//ObjectMesh->SetCollisionEnabled(bHolding ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryAndPhysics);
 
 	if (HoldingComp && bHolding) {
 		ObjectMesh->AttachToComponent(HoldingComp, FAttachmentTransformRules::KeepWorldTransform);
 		SetActorLocation(HoldingComp->GetComponentLocation());
+		ObjectMesh->SetRelativeScale3D(PickupScale);
 	}
 
 	if (!bHolding)
 	{
 		ObjectMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 		ObjectMesh->SetRelativeLocationAndRotation(InitialLocation, InitialRotation);
+		ObjectMesh->SetRelativeScale3D(InitialScale);
 	}
 
 	if(this->bCanBeAddedToCodex && Character)
