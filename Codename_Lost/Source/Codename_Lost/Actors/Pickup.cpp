@@ -64,7 +64,7 @@ void APickup::RotateActor()
 		SetActorRotation(FQuat(FRotator(ControlRotation.Pitch, PickupRotation.Yaw, PickupRotation.Roll)));
 	} else if (!UsePlayerPitch && UsePlayerYaw){
 		SetActorRotation(FQuat(FRotator(PickupRotation.Pitch, ControlRotation.Yaw, PickupRotation.Roll)));
-	} else{
+	} else if (UsePlayerPitch && UsePlayerYaw){
 		SetActorRotation(FQuat(FRotator(ControlRotation.Pitch, ControlRotation.Yaw, ControlRotation.Roll)));
 	}
 }

@@ -49,6 +49,8 @@ public:
 	bool bHolding;
 	bool bGravity;
 	bool bHasBeenAddedToCodex;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool bToggleUI;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool UsePlayerPitch;

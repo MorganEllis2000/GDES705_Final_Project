@@ -143,8 +143,20 @@ void ACharacterController::Tick(float DeltaTime)
 			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 179.90000002f;
 			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = -179.90000002f;
 			CurrentItem->RotateActor();
+
+			if(CurrentItem->bToggleUI)
+			{
+				PlayerController->SetInputMode(FInputModeGameAndUI());
+				PlayerController->bShowMouseCursor = true;
+			} else
+			{
+				PlayerController->SetInputMode(FInputModeGameOnly());
+				PlayerController->bShowMouseCursor = false;
+			}
 		}
 	} else {
+		PlayerController->SetInputMode(FInputModeGameOnly());
+		PlayerController->bShowMouseCursor = false;
 		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
 	}
 
@@ -507,11 +519,12 @@ void ACharacterController::OnInspect()
 		LastRotation = GetControlRotation();
 		FlashlightOff();
 		ToggleMovement();
+		
 		SkeletalMesh->SetVisibility(false);
 		Glock->Mesh->SetVisibility(false);
 		MouseLookRotationRateX = MouseLookRotationRateX * 1.5f;
 		MouseLookRotationRateY = MouseLookRotationRateY * 1.5f;
-
+		
 	}
 	else {		
 		bInspecting = false;	
@@ -527,11 +540,12 @@ void ACharacterController::OnInspectReleased()
 		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
 		ToggleItemPickup();
 		ToggleMovement();
+		
 		SkeletalMesh->SetVisibility(true);
 		Glock->Mesh->SetVisibility(true);
 		MouseLookRotationRateX = MouseLookRotationX;
 		MouseLookRotationRateY = MouseLookRotationY;
-
+		bCanInteractWithUI = false;
 	}
 	else {	
 		bInspecting = false;

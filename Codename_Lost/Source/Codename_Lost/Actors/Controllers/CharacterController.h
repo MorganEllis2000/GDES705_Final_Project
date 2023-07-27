@@ -70,12 +70,9 @@ protected:
 	void OnInspect();
 	void OnInspectReleased();
 	void OnPickup();
-
-	
 	void CheckForInteraction(FHitResult Hit);
-
-
 	void ToggleItemPickup();
+	void ToggleUIInteraction();
 #pragma endregion
 
 private:
@@ -169,6 +166,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool bCanInteract;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool bCanInteractWithUI;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interact")
 	FString InteractText;
