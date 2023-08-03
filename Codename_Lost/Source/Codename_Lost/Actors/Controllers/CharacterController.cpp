@@ -155,8 +155,6 @@ void ACharacterController::Tick(float DeltaTime)
 			}
 		}
 	} else {
-		PlayerController->SetInputMode(FInputModeGameOnly());
-		PlayerController->bShowMouseCursor = false;
 		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
 	}
 
@@ -546,6 +544,9 @@ void ACharacterController::OnInspectReleased()
 		MouseLookRotationRateX = MouseLookRotationX;
 		MouseLookRotationRateY = MouseLookRotationY;
 		bCanInteractWithUI = false;
+
+		PlayerController->SetInputMode(FInputModeGameOnly());
+		PlayerController->bShowMouseCursor = false;
 	}
 	else {	
 		bInspecting = false;
