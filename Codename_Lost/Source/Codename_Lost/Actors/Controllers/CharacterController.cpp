@@ -29,6 +29,7 @@
 #include "Codename_Lost/Actors/OpenDoorWithLerp.h"
 #include "Codename_Lost/Actors/Cobweb.h"
 #include "Codename_Lost/Actors/ShadowPuzzle.h"
+#include "Codename_Lost/Actors/Padlock.h"
 
 #pragma region Setup
 // Sets default values
@@ -620,6 +621,9 @@ void ACharacterController::OnInteract()
 		{
 			bInteractingWithShadowPuzzle = false;
 		}
+	} else if(Cast<APadlock>(HitResult.GetActor()))
+	{
+		bInteractingWithPadlockPuzzle = !bInteractingWithPadlockPuzzle;
 	} else
 	{
 		return;
@@ -665,6 +669,10 @@ void ACharacterController::CheckForInteraction(FHitResult Hit)
 	} else if(Cast<ACobweb>(Hit.GetActor()))
 	{
 		InteractText = "Press 'F' to Burn";
+		bCanInteract = true;
+	}else if(Cast<APadlock>(Hit.GetActor()))
+	{
+		InteractText = "Press 'F' to Interact";
 		bCanInteract = true;
 	} else
 	{

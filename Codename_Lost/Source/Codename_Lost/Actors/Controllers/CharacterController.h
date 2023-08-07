@@ -211,6 +211,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bInteractingWithShadowPuzzle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bInteractingWithPadlockPuzzle;
 	
 	// Camera Shake
 	UPROPERTY(EditAnywhere)
