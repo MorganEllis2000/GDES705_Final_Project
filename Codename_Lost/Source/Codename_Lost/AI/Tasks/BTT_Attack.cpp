@@ -8,6 +8,8 @@
 #include "Codename_Lost/Actors/Controllers/CharacterController.h"
 #include "Codename_Lost/AI/WraithController.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "Animation/AnimMontage.h"
+#include "Codename_Lost/AI/ShadowCharacterController.h"
 
 UBTT_Attack::UBTT_Attack()
 {
@@ -28,14 +30,15 @@ EBTNodeResult::Type UBTT_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 	}
 
 	AActor* WraithActor = OwnerComp.GetOwner();
-	APawn* WraithPawn = Cast<APawn>(OwnerComp.GetAIOwner()->GetPawn());
-	AWraithController* WraithController = Cast<AWraithController>(WraithPawn->GetController());
-	AController* controller = WraithPawn->GetController();
+	APawn* Pawn = Cast<APawn>(OwnerComp.GetAIOwner()->GetPawn());
+	AWraithController* WraithController = Cast<AWraithController>(Pawn->GetController());
+	AShadowCharacterController* ShadowController = Cast<AShadowCharacterController>(Pawn->GetController());
+	AController* controller = Pawn->GetController();
 	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0)->GetOwner();
 
 	ACharacterController* Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
-	float DistFromWraithToPlayer = FVector::Dist(WraithPawn->GetActorLocation(), Character->GetActorLocation());
+	float DistFromWraithToPlayer = FVector::Dist(Pawn->GetActorLocation(), Character->GetActorLocation());
 
 	if (Character == nullptr && WraithController == nullptr && WraithActor == nullptr) {
 		return EBTNodeResult::Failed;;

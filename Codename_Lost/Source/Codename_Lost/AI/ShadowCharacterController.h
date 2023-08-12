@@ -24,6 +24,8 @@ public:
 
 	APatrolPath* GetPatrolPath();
 
+	void DamageTimerReset();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -45,5 +47,17 @@ public:
 	bool IsAttacking;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool CanBeDamaged;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool IsDying;
+
+	UPROPERTY(EditAnywhere)
+	class USphereComponent* DamageSphere;
+
+	TArray<AActor*> OverlappingActors;
+
+	class ACharacterController* Character;
+
+	FTimerHandle DamageTimer;
 };
