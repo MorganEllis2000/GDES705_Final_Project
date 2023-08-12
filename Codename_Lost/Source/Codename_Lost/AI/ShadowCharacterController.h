@@ -34,4 +34,16 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Sound FX")
 	class USoundCue* ShadowWisperingSoundCue;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsWalking;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsIdle;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsAttacking;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsDying;
 };
