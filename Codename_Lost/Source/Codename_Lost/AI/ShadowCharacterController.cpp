@@ -23,6 +23,7 @@ void AShadowCharacterController::BeginPlay()
 
 	Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	CanBeDamaged = true;
+	CanAttack = true;
 	//UGameplayStatics::SpawnSoundAttached(ShadowWisperingSoundCue, RootComponent);
 }
 
@@ -43,6 +44,7 @@ void AShadowCharacterController::Tick(float DeltaTime)
 				UGameplayStatics::ApplyDamage(Character, 10.f,  Character->GetController()->GetInstigatorController(), this, UDamageType::StaticClass());
 				//UGameplayStatics::PlaySoundAtLocation(this, Character->DamagedSoundCue, Character->GetActorLocation());
 				CanBeDamaged = false;
+				CanAttack = false;
 				GetWorld()->GetTimerManager().SetTimer(DamageTimer, this, &AShadowCharacterController::DamageTimerReset, 3.f);
 			}
 		}
@@ -74,5 +76,6 @@ APatrolPath* AShadowCharacterController::GetPatrolPath()
 void AShadowCharacterController::DamageTimerReset()
 {
 	CanBeDamaged = true;
+	CanAttack = true;
 }
 

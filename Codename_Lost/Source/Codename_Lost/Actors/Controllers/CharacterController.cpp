@@ -346,13 +346,15 @@ void ACharacterController::FinishSprint() {
 }
 
 void ACharacterController::ZoomIn() {
-	if (PlayerCamera && bIsSprinting == false) {
+	if (PlayerCamera && bIsSprinting == false && bCanZoomIn) {
+		bIsZoomedIn = true;
 		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 60.f, 0.1f));
 	}
 }
 
 void ACharacterController::ZoomOut() {
 	if (PlayerCamera) {
+		bIsZoomedIn = false;
 		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
 	}
 }
@@ -756,7 +758,7 @@ void ACharacterController::UpdateCodexDelegate()
 #pragma region Shooting
 void ACharacterController::Shoot()
 {
-	if (!bInspecting && Glock && Glock->bCanShoot) {
+	if (!bInspecting && Glock && Glock->bCanShoot && bIsZoomedIn) {
 		FVector EndPos = PlayerCamera->GetForwardVector() * 10000.f * PlayerCamera->GetComponentLocation();
 		Glock->PullTrigger();
 	}

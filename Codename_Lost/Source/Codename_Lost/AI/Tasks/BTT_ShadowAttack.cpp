@@ -37,24 +37,14 @@ EBTNodeResult::Type UBTT_ShadowAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 
 	ACharacterController* Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
-	
-	
-	if (Character == nullptr && ShadowController == nullptr && Actor == nullptr) {
-		return EBTNodeResult::Failed;
-	}
-
-	if (OwnerComp.GetAIOwner()->LineOfSightTo(Character))
-	{
-		
-		if(Montage)
-		{
-			OwnerComp.GetAIOwner()->GetCharacter()->PlayAnimMontage(Montage);
-			UE_LOG(LogTemp, Warning, TEXT("Playing montage"));
-		} else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("NO ANIM MONTAGE"))
-		}
-	}
+    if(Montage)
+    {
+        OwnerComp.GetAIOwner()->GetCharacter()->PlayAnimMontage(Montage);
+        UE_LOG(LogTemp, Warning, TEXT("Playing montage"));
+    } else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("NO ANIM MONTAGE"))
+    }
 	
 	return EBTNodeResult::Succeeded;
 }

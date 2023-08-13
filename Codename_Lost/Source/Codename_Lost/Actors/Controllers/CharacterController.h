@@ -240,6 +240,9 @@ public:
 	bool bIsZoomedIn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool bCanZoomIn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool bIsReloading;
 #pragma endregion
 
@@ -288,7 +291,7 @@ public:
 #pragma endregion 
 	
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AGun* Glock;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

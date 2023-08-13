@@ -47,6 +47,9 @@ public:
 	bool IsAttacking;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool CanAttack;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool CanBeDamaged;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)

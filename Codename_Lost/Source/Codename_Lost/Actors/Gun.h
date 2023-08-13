@@ -82,6 +82,9 @@ public:
 
 	bool bCanShoot = true;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bIsShooting;
+
 	FTimeline RecoilTimeLine;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Advanced Recoil")

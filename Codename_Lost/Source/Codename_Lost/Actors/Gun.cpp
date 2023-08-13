@@ -66,6 +66,7 @@ void AGun::PullTrigger()
 		UGameplayStatics::PlaySoundAtLocation(this, GunFiringSoundCue, MuzzleComponent->GetComponentLocation());
 		UAISense_Hearing::ReportNoiseEvent(GetWorld(), this->GetActorLocation(), 1.f, this, 2500.f, "Noise");
 		bCanShoot = false;
+		bIsShooting = true;
 		StartRecoil();
 		GetWorld()->GetTimerManager().SetTimer(FireRateTimerHandle, this, &AGun::FireRateTimer, FireRate);
 		CurrentAmmo -= 1;
@@ -113,6 +114,7 @@ void AGun::PullTrigger()
 
 void AGun::FireRateTimer() {
 	bCanShoot = true;
+	bIsShooting = false;
 	//ReverseRecoil();
 }
 
