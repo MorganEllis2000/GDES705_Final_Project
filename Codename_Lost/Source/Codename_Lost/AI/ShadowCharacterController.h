@@ -54,6 +54,9 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool IsDying;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+    bool WasKilled;
 
 	UPROPERTY(EditAnywhere)
 	class USphereComponent* DamageSphere;
