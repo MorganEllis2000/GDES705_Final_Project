@@ -41,7 +41,7 @@ void AShadowCharacterController::Tick(float DeltaTime)
 		{
 			if(Cast<ACharacterController>(OverlappingActors[i]))
 			{
-				UGameplayStatics::ApplyDamage(Character, 10.f,  Character->GetController()->GetInstigatorController(), this, UDamageType::StaticClass());
+				UGameplayStatics::ApplyDamage(Character, 13.f,  Character->GetController()->GetInstigatorController(), this, UDamageType::StaticClass());
 				//UGameplayStatics::PlaySoundAtLocation(this, Character->DamagedSoundCue, Character->GetActorLocation());
 				CanBeDamaged = false;
 				CanAttack = false;

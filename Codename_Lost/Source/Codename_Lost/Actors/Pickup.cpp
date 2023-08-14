@@ -75,9 +75,6 @@ void APickup::Pickup()
 	ObjectMesh->SetEnableGravity(bGravity);
 	ObjectMesh->SetSimulatePhysics(bGravity ? false : true);
 	
-	
-	//ObjectMesh->SetCollisionEnabled(bHolding ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryAndPhysics);
-
 	if (HoldingComp && bHolding) {
 		ObjectMesh->AttachToComponent(HoldingComp, FAttachmentTransformRules::KeepWorldTransform);
 		SetActorLocation(HoldingComp->GetComponentLocation());
@@ -91,27 +88,15 @@ void APickup::Pickup()
 		ObjectMesh->SetRelativeScale3D(InitialScale);
 	}
 
-	if(this->bCanBeAddedToCodex && Character)
+	if(Character && bCanBeAddedToCodex && !bWasPickedUp)
 	{
-		for(auto& Elem : Character->_Codex)
-		{
-			if(this->ObjectName.ToString() == Elem->ObjectName.ToString())
-			{
-				return;
-			} 
-		}
+		bWasPickedUp = true;
 		Character->AddToCodex(this);
+		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
 	}
-}
 
-void APickup::OnInteract()
-{
-	FString pickup = FString::Printf(TEXT("Picked up: &s"), *ObjectName.ToString());
-	if (Character) {
-		Show(false);
-
-
-		
+	if (Character && bCanBeAddedToInventory && !bWasPickedUp) {
+		bWasPickedUp = true;
 		Character->AddToInventory(this);
 		ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 		for (auto& Elem : GameMode->TMapOfKeys) {
@@ -125,7 +110,6 @@ void APickup::OnInteract()
 			GameMode->bHasLighter = true;
 		}
 	}
-	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
 }
 
 void APickup::Show(bool visible) {

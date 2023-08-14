@@ -47,8 +47,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateInventoryDelegate();
 	UFUNCTION(BlueprintCallable)
-	void AddItemToInventory();
-	UFUNCTION(BlueprintCallable)
 	void PrintInventory();
 
 	void ToggleMovement();
@@ -56,8 +54,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddToCodex(class APickup* actor);
-	UFUNCTION(BlueprintCallable)
-	void AddItemToCodex();
 	UFUNCTION(BlueprintCallable)
 	void UpdateCodexDelegate();
 #pragma endregion

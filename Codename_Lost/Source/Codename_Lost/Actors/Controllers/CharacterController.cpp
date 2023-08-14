@@ -224,11 +224,12 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
 	//EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
 
-	EnhancedInputComponent->BindAction(InputActions->InputPickup, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
+	
 
 	EnhancedInputComponent->BindAction(InputActions->InputOpenInventory, ETriggerEvent::Started, this, &ACharacterController::OpenInventory);
 
@@ -550,8 +551,9 @@ void ACharacterController::OnInspectReleased()
 
 		PlayerController->SetInputMode(FInputModeGameOnly());
 		PlayerController->bShowMouseCursor = false;
+		
 	}
-	else {	
+	else {
 		bInspecting = false;
 	}
 }
@@ -567,7 +569,12 @@ void ACharacterController::ToggleItemPickup() {
 	if (CurrentItem) {
 		bHoldingItem = !bHoldingItem;
 		CurrentItem->Pickup();
-
+		if(bInspecting)
+		{
+			if (CurrentItem->bCanBeAddedToInventory == true || CurrentItem->bCanBeAddedToCodex == true) {
+				CurrentItem->Show(false);
+			}
+		}
 		if (!bHoldingItem) {
 			CurrentItem = NULL;
 		}
@@ -575,9 +582,12 @@ void ACharacterController::ToggleItemPickup() {
 }
 
 void ACharacterController::OnPickup() {
-	if (bInspecting && PlayerController && CurrentItem->bCanBeAddedToInventory == true) {
-		AddItemToInventory();
-	}
+	/*if(CurrentItem != nullptr && bInspecting)
+	{
+		if (bInspecting && PlayerController && CurrentItem->bWasPickedUp || CurrentItem->bCanBeAddedToInventory == true || CurrentItem->bCanBeAddedToCodex == true) {
+			CurrentItem->Show(false);
+		}
+	}*/
 }
 
 void ACharacterController::OnInteract()
@@ -735,18 +745,9 @@ void ACharacterController::UpdateInventoryDelegate() {
 	OnUpdateInventory.Broadcast(_inventory);
 }
 
-void ACharacterController::AddItemToInventory() {
-	CurrentItem->OnInteract();
-	OnInspectReleased();
-}
-
 void ACharacterController::AddToCodex(APickup* actor)
 {
 	_Codex.Add(actor);
-}
-
-void ACharacterController::AddItemToCodex()
-{
 }
 
 void ACharacterController::UpdateCodexDelegate()
