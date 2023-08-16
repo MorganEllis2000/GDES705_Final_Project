@@ -146,6 +146,8 @@ public:
 #pragma region Flashlight Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")
 	TSubclassOf<class AFlashlight> FlashlightClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class AFlashlight* Flashlight;
 #pragma endregion
 

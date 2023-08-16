@@ -58,7 +58,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
     bool WasKilled;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USphereComponent* DamageSphere;
 
 	TArray<AActor*> OverlappingActors;

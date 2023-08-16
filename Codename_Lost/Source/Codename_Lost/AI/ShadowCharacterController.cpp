@@ -24,6 +24,7 @@ void AShadowCharacterController::BeginPlay()
 	Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	CanBeDamaged = true;
 	CanAttack = true;
+	IsAttacking = false;
 	//UGameplayStatics::SpawnSoundAttached(ShadowWisperingSoundCue, RootComponent);
 }
 
@@ -34,13 +35,16 @@ void AShadowCharacterController::Tick(float DeltaTime)
 
 	if(IsAttacking && CanBeDamaged)
 	{
-		DamageSphere->SetSphereRadius(32.f);
+		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, "ATTACKING");
+		GEngine->AddOnScreenDebugMessage(2, 3, FColor::White, IsAttacking ? "True" : "False");
+		//DamageSphere->SetSphereRadius(32.f);
 		DamageSphere->GetOverlappingActors(OverlappingActors);
 
 		for(int i = 0; i < OverlappingActors.Num(); i++)
 		{
 			if(Cast<ACharacterController>(OverlappingActors[i]))
 			{
+				
 				UGameplayStatics::ApplyDamage(Character, 13.f,  Character->GetController()->GetInstigatorController(), this, UDamageType::StaticClass());
 				//UGameplayStatics::PlaySoundAtLocation(this, Character->DamagedSoundCue, Character->GetActorLocation());
 				CanBeDamaged = false;

@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CharacterController.h"
-#include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInput/Public/EnhancedInputComponent.h"
 #include "Codename_Lost/MyInputConfigData.h"
@@ -16,7 +15,6 @@
 #include "Math/UnrealMathUtility.h"
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "Blueprint/UserWidget.h"
 #include "Codename_Lost/Actors/Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
@@ -160,13 +158,19 @@ void ACharacterController::Tick(float DeltaTime)
 	}
 
 	if (bIsCrouched) {
-		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z) {
+		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z && !Flashlight->bIsLightOn) {
 			SkeletalMesh->SetRelativeLocation(ArmsOffset);
+		} else
+		{
+			//SkeletalMesh->SetRelativeLocation(FVector(-6.311464,-5.170529,-87.208986));
 		}
 	}
 	else {
-		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z) {
+		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z && !Flashlight->bIsLightOn) {
 			SkeletalMesh->SetRelativeLocation(ArmsOffset);
+		} else
+		{
+			//SkeletalMesh->SetRelativeLocation(FVector(-6.311464,-5.170529,-87.208986));
 		}
 	}
 
@@ -790,7 +794,7 @@ void ACharacterController::StopPlayerMovingCameraShake()
 void ACharacterController::ToggleFlashlight() {
 	if (bCanMove) {
 		Flashlight->ToggleLight();
-		SkeletalMesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
+		//SkeletalMesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
 		Glock->Mesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
 		Glock->bCanShoot = !Flashlight->bCanBeSwitchedOn;
 	}
