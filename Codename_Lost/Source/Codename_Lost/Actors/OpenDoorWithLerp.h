@@ -25,7 +25,7 @@ protected:
 private:
 
 public:	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* Door;
 
 	UPROPERTY(EditAnywhere)
@@ -47,7 +47,8 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Door Vectors")
 	FRotator DoorOpenRotation;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool Open;
 	float RotateValue;
 	FRotator DoorRotation;

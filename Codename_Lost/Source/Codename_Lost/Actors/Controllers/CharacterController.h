@@ -47,8 +47,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateInventoryDelegate();
 	UFUNCTION(BlueprintCallable)
-	void AddItemToInventory();
-	UFUNCTION(BlueprintCallable)
 	void PrintInventory();
 
 	void ToggleMovement();
@@ -56,8 +54,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddToCodex(class APickup* actor);
-	UFUNCTION(BlueprintCallable)
-	void AddItemToCodex();
 	UFUNCTION(BlueprintCallable)
 	void UpdateCodexDelegate();
 #pragma endregion
@@ -150,6 +146,8 @@ public:
 #pragma region Flashlight Variables
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Flashlight")
 	TSubclassOf<class AFlashlight> FlashlightClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class AFlashlight* Flashlight;
 #pragma endregion
 
@@ -240,6 +238,9 @@ public:
 	bool bIsZoomedIn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool bCanZoomIn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool bIsReloading;
 #pragma endregion
 
@@ -288,7 +289,7 @@ public:
 #pragma endregion 
 	
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AGun* Glock;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

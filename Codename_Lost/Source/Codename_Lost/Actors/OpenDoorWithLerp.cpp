@@ -31,16 +31,16 @@ void AOpenDoorWithLerp::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    if (Open)
-    {
-        //->SetRelativeLocation(DoorOpenPosition);
-        Door->SetRelativeRotation(FQuat::Slerp(FQuat(DoorClosedRotation), FQuat(DoorOpenRotation), 0.01f));
-    }
-    else
-    {
-        //Door->SetRelativeLocation(DoorClosedPosition);
-        Door->SetRelativeRotation(FQuat::Slerp(FQuat(DoorOpenRotation), FQuat(DoorClosedRotation), 0.01f));
-    }
+    // if (Open)
+    // {
+    //     //->SetRelativeLocation(DoorOpenPosition);
+    //     Door->SetRelativeRotation(FQuat::Slerp(FQuat(DoorClosedRotation), FQuat(DoorOpenRotation), 0.01f));
+    // }
+    // else
+    // {
+    //     //Door->SetRelativeLocation(DoorClosedPosition);
+    //     Door->SetRelativeRotation(FQuat::Slerp(FQuat(DoorOpenRotation), FQuat(DoorClosedRotation), 0.01f));
+    // }
 }
 
 void AOpenDoorWithLerp::OpenDoor()

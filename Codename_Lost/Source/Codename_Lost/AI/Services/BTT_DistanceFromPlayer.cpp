@@ -16,6 +16,13 @@ void UBTT_DistanceFromPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uint8*
 	AWraithController* WraithController = Cast<AWraithController>(OwnerComp.GetAIOwner()->GetCharacter());
 	ACharacterController* Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	
-	float dist = FVector::Dist(OwnerComp.GetAIOwner()->GetCharacter()->GetActorLocation(), Character->GetActorLocation());
-	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(GetSelectedBlackboardKey(), dist);
+	if(Character)
+	{
+		float dist = FVector::Dist(OwnerComp.GetAIOwner()->GetCharacter()->GetActorLocation(), Character->GetActorLocation());
+		OwnerComp.GetBlackboardComponent()->SetValueAsFloat(GetSelectedBlackboardKey(), dist);
+	} else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("NO PLAYER FOUND"));
+	}
+
 }

@@ -20,6 +20,7 @@ public:
 
 	void CheckPuzzleCombination();
 
+	UFUNCTION()
 	void OpenBookshelf();
 
 	void ResetPuzzle();
@@ -55,6 +56,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="SFX")
 	class USoundCue* BookshelfLockingSoundCue;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsBookshelfOpen;
 
 	FTimerHandle WaitForSecondsTimerHandle;

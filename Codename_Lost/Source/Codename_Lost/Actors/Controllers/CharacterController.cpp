@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CharacterController.h"
-#include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInput/Public/EnhancedInputComponent.h"
 #include "Codename_Lost/MyInputConfigData.h"
@@ -16,7 +15,6 @@
 #include "Math/UnrealMathUtility.h"
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "Blueprint/UserWidget.h"
 #include "Codename_Lost/Actors/Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "TimerManager.h"
@@ -160,13 +158,19 @@ void ACharacterController::Tick(float DeltaTime)
 	}
 
 	if (bIsCrouched) {
-		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z) {
+		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z && !Flashlight->bIsLightOn) {
 			SkeletalMesh->SetRelativeLocation(ArmsOffset);
+		} else
+		{
+			//SkeletalMesh->SetRelativeLocation(FVector(-6.311464,-5.170529,-87.208986));
 		}
 	}
 	else {
-		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z) {
+		if (SkeletalMesh->GetRelativeLocation().Z != ArmsOffset.Z && !Flashlight->bIsLightOn) {
 			SkeletalMesh->SetRelativeLocation(ArmsOffset);
+		} else
+		{
+			//SkeletalMesh->SetRelativeLocation(FVector(-6.311464,-5.170529,-87.208986));
 		}
 	}
 
@@ -224,11 +228,12 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
 	//EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
+	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspect);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInteract);
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnInspectReleased);
 
-	EnhancedInputComponent->BindAction(InputActions->InputPickup, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
+	
 
 	EnhancedInputComponent->BindAction(InputActions->InputOpenInventory, ETriggerEvent::Started, this, &ACharacterController::OpenInventory);
 
@@ -346,13 +351,15 @@ void ACharacterController::FinishSprint() {
 }
 
 void ACharacterController::ZoomIn() {
-	if (PlayerCamera && bIsSprinting == false) {
+	if (PlayerCamera && bIsSprinting == false && bCanZoomIn) {
+		bIsZoomedIn = true;
 		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 60.f, 0.1f));
 	}
 }
 
 void ACharacterController::ZoomOut() {
 	if (PlayerCamera) {
+		bIsZoomedIn = false;
 		PlayerCamera->SetFieldOfView(FMath::Lerp(PlayerCamera->FieldOfView, 90.f, 0.1f));
 	}
 }
@@ -548,8 +555,9 @@ void ACharacterController::OnInspectReleased()
 
 		PlayerController->SetInputMode(FInputModeGameOnly());
 		PlayerController->bShowMouseCursor = false;
+		
 	}
-	else {	
+	else {
 		bInspecting = false;
 	}
 }
@@ -565,7 +573,12 @@ void ACharacterController::ToggleItemPickup() {
 	if (CurrentItem) {
 		bHoldingItem = !bHoldingItem;
 		CurrentItem->Pickup();
-
+		if(bInspecting)
+		{
+			if (CurrentItem->bCanBeAddedToInventory == true || CurrentItem->bCanBeAddedToCodex == true) {
+				CurrentItem->Show(false);
+			}
+		}
 		if (!bHoldingItem) {
 			CurrentItem = NULL;
 		}
@@ -573,9 +586,12 @@ void ACharacterController::ToggleItemPickup() {
 }
 
 void ACharacterController::OnPickup() {
-	if (bInspecting && PlayerController && CurrentItem->bCanBeAddedToInventory == true) {
-		AddItemToInventory();
-	}
+	/*if(CurrentItem != nullptr && bInspecting)
+	{
+		if (bInspecting && PlayerController && CurrentItem->bWasPickedUp || CurrentItem->bCanBeAddedToInventory == true || CurrentItem->bCanBeAddedToCodex == true) {
+			CurrentItem->Show(false);
+		}
+	}*/
 }
 
 void ACharacterController::OnInteract()
@@ -733,18 +749,9 @@ void ACharacterController::UpdateInventoryDelegate() {
 	OnUpdateInventory.Broadcast(_inventory);
 }
 
-void ACharacterController::AddItemToInventory() {
-	CurrentItem->OnInteract();
-	OnInspectReleased();
-}
-
 void ACharacterController::AddToCodex(APickup* actor)
 {
 	_Codex.Add(actor);
-}
-
-void ACharacterController::AddItemToCodex()
-{
 }
 
 void ACharacterController::UpdateCodexDelegate()
@@ -756,7 +763,7 @@ void ACharacterController::UpdateCodexDelegate()
 #pragma region Shooting
 void ACharacterController::Shoot()
 {
-	if (!bInspecting && Glock && Glock->bCanShoot) {
+	if (!bInspecting && Glock && Glock->bCanShoot && bIsZoomedIn) {
 		FVector EndPos = PlayerCamera->GetForwardVector() * 10000.f * PlayerCamera->GetComponentLocation();
 		Glock->PullTrigger();
 	}
@@ -787,7 +794,7 @@ void ACharacterController::StopPlayerMovingCameraShake()
 void ACharacterController::ToggleFlashlight() {
 	if (bCanMove) {
 		Flashlight->ToggleLight();
-		SkeletalMesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
+		//SkeletalMesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
 		Glock->Mesh->SetVisibility(!Flashlight->bCanBeSwitchedOn);
 		Glock->bCanShoot = !Flashlight->bCanBeSwitchedOn;
 	}

@@ -2,8 +2,8 @@
 
 
 #include "Codename_Lost/AI/ShadowCharacterController.h"
-#include "Components/AudioComponent.h"
-#include "Sound/SoundCue.h"
+#include "Codename_Lost/Actors/Controllers/CharacterController.h"
+#include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -11,6 +11,9 @@ AShadowCharacterController::AShadowCharacterController()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	DamageSphere = CreateDefaultSubobject<USphereComponent>(TEXT("Damage Spehre"));
+	DamageSphere->SetupAttachment(Cast<USkeletalMeshComponent>(this->GetComponentByClass(USkeletalMeshComponent::StaticClass())), TEXT("LeftHand"));
 }
 
 // Called when the game starts or when spawned
@@ -18,6 +21,10 @@ void AShadowCharacterController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	CanBeDamaged = true;
+	CanAttack = true;
+	IsAttacking = false;
 	//UGameplayStatics::SpawnSoundAttached(ShadowWisperingSoundCue, RootComponent);
 }
 
@@ -25,6 +32,30 @@ void AShadowCharacterController::BeginPlay()
 void AShadowCharacterController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if(IsAttacking && CanBeDamaged)
+	{
+		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, "ATTACKING");
+		GEngine->AddOnScreenDebugMessage(2, 3, FColor::White, IsAttacking ? "True" : "False");
+		//DamageSphere->SetSphereRadius(32.f);
+		DamageSphere->GetOverlappingActors(OverlappingActors);
+
+		for(int i = 0; i < OverlappingActors.Num(); i++)
+		{
+			if(Cast<ACharacterController>(OverlappingActors[i]))
+			{
+				
+				UGameplayStatics::ApplyDamage(Character, 13.f,  Character->GetController()->GetInstigatorController(), this, UDamageType::StaticClass());
+				//UGameplayStatics::PlaySoundAtLocation(this, Character->DamagedSoundCue, Character->GetActorLocation());
+				CanBeDamaged = false;
+				CanAttack = false;
+				GetWorld()->GetTimerManager().SetTimer(DamageTimer, this, &AShadowCharacterController::DamageTimerReset, 3.f);
+			}
+		}
+	} else
+	{
+		DamageSphere->SetSphereRadius(0.f);
+	}
 
 }
 
@@ -44,5 +75,11 @@ APatrolPath* AShadowCharacterController::GetPatrolPath()
 		UE_LOG(LogTemp, Error, TEXT("PLEASE ASSIGN BP_PATROLPOINT"));
 		return nullptr;
 	}
+}
+
+void AShadowCharacterController::DamageTimerReset()
+{
+	CanBeDamaged = true;
+	CanAttack = true;
 }
 

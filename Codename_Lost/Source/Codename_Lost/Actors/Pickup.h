@@ -56,6 +56,9 @@ public:
 	bool UsePlayerPitch;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
 	bool UsePlayerYaw;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bools")
+	bool bWasPickedUp;
 	
 	FRotator ControlRotation;
 
@@ -85,9 +88,6 @@ public:
 
 	
 	FString Name;
-
-	UFUNCTION(BlueprintCallable)
-	virtual void OnInteract();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup UI")
 	class UTexture2D* Image;

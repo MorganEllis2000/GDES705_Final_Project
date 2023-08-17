@@ -24,6 +24,8 @@ public:
 
 	APatrolPath* GetPatrolPath();
 
+	void DamageTimerReset();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -34,4 +36,34 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Sound FX")
 	class USoundCue* ShadowWisperingSoundCue;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsWalking;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsIdle;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsAttacking;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool CanAttack;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool CanBeDamaged;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsDying;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+    bool WasKilled;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USphereComponent* DamageSphere;
+
+	TArray<AActor*> OverlappingActors;
+
+	class ACharacterController* Character;
+
+	FTimerHandle DamageTimer;
 };
