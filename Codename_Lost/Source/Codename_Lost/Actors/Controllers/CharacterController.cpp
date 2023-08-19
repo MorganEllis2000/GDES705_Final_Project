@@ -543,7 +543,12 @@ void ACharacterController::OnInspectReleased()
 		GetController()->SetControlRotation(LastRotation);
 
 		PlayerController->PlayerCameraManager->ViewPitchMin = PitchMin;
-		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;
+		PlayerController->PlayerCameraManager->ViewPitchMax = PitchMax;                 
+
+		if(CurrentItem && CurrentItem->bHasAttachtedDialogue){
+			UGameplayStatics::PlaySoundAtLocation(this, CurrentItem->Dialogue, this->GetActorLocation());
+		}
+		
 		ToggleItemPickup();
 		ToggleMovement();
 		
@@ -555,6 +560,8 @@ void ACharacterController::OnInspectReleased()
 
 		PlayerController->SetInputMode(FInputModeGameOnly());
 		PlayerController->bShowMouseCursor = false;
+
+
 		
 	}
 	else {
