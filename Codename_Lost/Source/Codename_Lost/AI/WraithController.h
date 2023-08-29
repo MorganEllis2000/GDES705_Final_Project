@@ -26,6 +26,7 @@ public:
 
 	APatrolPath* GetPatrolPath();
 
+	void DamageTimerReset();
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -50,6 +51,24 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
 	APatrolPath* PatrolPath;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsAttacking;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool CanAttack;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool CanBeDamaged;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USphereComponent* DamageSphere;
+
+	TArray<AActor*> OverlappingActors;
+
+	class ACharacterController* Character;
+
+	FTimerHandle DamageTimer;
 protected:
 
 

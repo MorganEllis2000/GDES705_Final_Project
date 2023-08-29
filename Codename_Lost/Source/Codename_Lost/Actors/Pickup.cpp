@@ -104,10 +104,20 @@ void APickup::Pickup()
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
 	}
 
+	ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	if(Character && GameMode)
+	{
+		if(ObjectName.ToString() == "Map")
+		{
+			GameMode->bHasMap = true;
+		}
+	}
+	
 	if (Character && bCanBeAddedToInventory && !bWasPickedUp) {
 		bWasPickedUp = true;
 		Character->AddToInventory(this);
-		ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
 		for (auto& Elem : GameMode->TMapOfKeys) {
 			if (ObjectName.ToString() == Elem.Key) {
 				Elem.Value = true;
@@ -130,7 +140,6 @@ void APickup::Show(bool visible) {
 	this->ObjectMesh->SetVisibility(visible);
 	this->ObjectMesh->SetSimulatePhysics(visible);
 	this->ObjectMesh->SetCollisionEnabled(collision);
-	
 	
 }
 
