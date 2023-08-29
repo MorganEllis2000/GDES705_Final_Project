@@ -14,7 +14,7 @@
 
 UBTT_ShadowAttack::UBTT_ShadowAttack()
 {
-	NodeName = TEXT("Shadow Attack");
+	NodeName = TEXT("Play Anim Montage");
 }
 
 void UBTT_ShadowAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
@@ -29,13 +29,6 @@ EBTNodeResult::Type UBTT_ShadowAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 	if (OwnerComp.GetAIOwner() == nullptr) {
 		UE_LOG(LogTemp, Warning, TEXT("No Owner"));
 	}
-
-	AActor* Actor = OwnerComp.GetOwner();
-	APawn* Pawn = Cast<APawn>(OwnerComp.GetAIOwner()->GetPawn());
-	AShadowCharacterController* ShadowController = Cast<AShadowCharacterController>(Pawn->GetController());
-	AController* controller = Pawn->GetController();
-
-	ACharacterController* Character = Cast<ACharacterController>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
     if(Montage)
     {

@@ -10,6 +10,8 @@
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Codename_Lost/Actors/GameModes/Codename_LostGameModeBase.h"
 #include "Containers/UnrealString.h"
+#include "Sound/DialogueWave.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 APickup::APickup()
@@ -92,13 +94,30 @@ void APickup::Pickup()
 	{
 		bWasPickedUp = true;
 		Character->AddToCodex(this);
+
+		if(bHasAttachtedDialogue)
+		{
+			//UGameplayStatics::PlayDialogueAtLocation(GetWorld(), Dialogue, Context, this->GetActorLocation());
+			//UGameplayStatics::PlaySoundAtLocation(this, Dialogue, this->GetActorLocation());
+		}
+		
 		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
 	}
 
+	ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	if(Character && GameMode)
+	{
+		if(ObjectName.ToString() == "Map")
+		{
+			GameMode->bHasMap = true;
+		}
+	}
+	
 	if (Character && bCanBeAddedToInventory && !bWasPickedUp) {
 		bWasPickedUp = true;
 		Character->AddToInventory(this);
-		ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
 		for (auto& Elem : GameMode->TMapOfKeys) {
 			if (ObjectName.ToString() == Elem.Key) {
 				Elem.Value = true;
@@ -121,7 +140,6 @@ void APickup::Show(bool visible) {
 	this->ObjectMesh->SetVisibility(visible);
 	this->ObjectMesh->SetSimulatePhysics(visible);
 	this->ObjectMesh->SetCollisionEnabled(collision);
-	
 	
 }
 

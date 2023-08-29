@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Sound/DialogueTypes.h"
 #include "Pickup.generated.h"
 
 UCLASS()
@@ -85,7 +86,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item Info", meta=(MultiLine=true))
 	FText ObjectDescription;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bHasAttachtedDialogue;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(EditCondition="bHasAttachtedDialogue"))
+	class USoundCue* Dialogue;
 	
 	FString Name;
 

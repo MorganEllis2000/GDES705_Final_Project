@@ -107,6 +107,12 @@ private:
 	void PauseGame();
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mouse Inputs")
+	float MouseLookRotationRateX = 1.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mouse Inputs")
+	float MouseLookRotationRateY = 1.f;
+	
 	class UAIPerceptionStimuliSourceComponent* stimulus;
 
 #pragma region Movement Variables
@@ -331,11 +337,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
 	float MouseLookRotationY = 1.f;
 
-	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
-	float MouseLookRotationRateX = 1.f;
 
-	UPROPERTY(EditAnywhere, Category = "Mouse Inputs")
-	float MouseLookRotationRateY = 1.f;
 
 	UPROPERTY(EditAnywhere, Category = "Controller Inputs")
 	float ControllerLookRotationRateX = 10.f;

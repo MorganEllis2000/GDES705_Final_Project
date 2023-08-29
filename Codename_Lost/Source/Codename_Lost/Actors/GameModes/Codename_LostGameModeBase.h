@@ -19,6 +19,9 @@ public:
 	bool bHasLighter;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bHasMap;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FString> ArrayOfKeys;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
