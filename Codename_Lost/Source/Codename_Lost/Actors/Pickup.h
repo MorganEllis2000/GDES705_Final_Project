@@ -96,4 +96,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup UI")
 	class UTexture2D* Image;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup")
+	class USoundCue* LighterPickupDialogue;
 };

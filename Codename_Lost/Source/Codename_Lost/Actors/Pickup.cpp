@@ -127,6 +127,7 @@ void APickup::Pickup()
 		if(ObjectName.ToString() == "Lighter")
 		{
 			GameMode->bHasLighter = true;
+			UGameplayStatics::PlaySoundAtLocation(this, LighterPickupDialogue, this->GetActorLocation());
 		}
 	}
 }
