@@ -32,7 +32,7 @@ void ABookshelfPuzzle::Tick(float DeltaTime)
 	if(bIsBookshelfOpen)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Moving Bookshelf"));
-		BookShelf->SetRelativeLocation(FMath::Lerp(GetActorLocation(), FVector(-1100.f, 3530.0f, 0.f), 0.01f));
+		BookShelf->SetRelativeLocation(FMath::Lerp(GetActorLocation(), FVector(-1004.805695,3542.731231,99.728719), 0.01f));
 	}
 }
 

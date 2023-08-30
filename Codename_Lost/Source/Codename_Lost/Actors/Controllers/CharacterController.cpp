@@ -188,6 +188,11 @@ void ACharacterController::Tick(float DeltaTime)
 		}
 	}
 
+	if(Flashlight && Flashlight->CurrentBatteryLife <= 0 && Flashlight->bIsLightOn)
+	{
+		FlashlightOff();
+	}
+
 	BreathingSFX();
 }
 

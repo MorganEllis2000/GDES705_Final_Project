@@ -111,7 +111,7 @@ public:
 	float MouseLookRotationRateX = 1.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mouse Inputs")
-	float MouseLookRotationRateY = 1.f;
+	float MouseLookRotationRateY = 1.f; 
 	
 	class UAIPerceptionStimuliSourceComponent* stimulus;
 
