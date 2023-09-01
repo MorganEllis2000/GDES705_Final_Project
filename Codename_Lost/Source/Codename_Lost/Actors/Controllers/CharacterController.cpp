@@ -616,16 +616,20 @@ void ACharacterController::OnInteract()
 		{
 			if(ShadowPuzzle->bIsRotating)
 			{
+				FlashlightOff();
 				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 179.90000002f;
 				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = -179.90000002f;
 				LastRotation = GetControlRotation();
 				ToggleMovement();
+				
 			} else
 			{
+				FlashlightOn();
 				GetController()->SetControlRotation(LastRotation);
 				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = PitchMax;
 				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = PitchMin;
 				ToggleMovement();
+				
 			}
 		} else
 		{
