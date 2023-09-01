@@ -101,7 +101,7 @@ void APickup::Pickup()
 			//UGameplayStatics::PlaySoundAtLocation(this, Dialogue, this->GetActorLocation());
 		}
 		
-		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
+		//GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *ObjectName.ToString());
 	}
 
 	ACodename_LostGameModeBase* GameMode = Cast<ACodename_LostGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));

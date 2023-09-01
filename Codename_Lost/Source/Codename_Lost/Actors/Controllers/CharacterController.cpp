@@ -105,13 +105,11 @@ void ACharacterController::BeginPlay()
 	if(Flashlight)
 	{
 		Flashlight->TurnLightOn();
-		Flashlight->TurnLightOff();
+		//Flashlight->TurnLightOff();
 	}
 	
 
 	GetWorld()->GetTimerManager().SetTimer(StaminaRechargeTimerHandle, this, &ACharacterController::FinishSprint, DrainStaminaTickTime, true);
-
-	RunningAudioComponent = UGameplayStatics::SpawnSoundAtLocation(GetWorld(), RunningBreathingSoundCue, GetActorLocation());
 }
 
 // Called every frame
@@ -174,26 +172,10 @@ void ACharacterController::Tick(float DeltaTime)
 		}
 	}
 
-	if(bIsSprinting)
-	{
-		if(HeartRate < 130.f)
-		{
-			HeartRate += DeltaTime * 2.f;
-		}
-	} else
-	{
-		if(HeartRate > 70.f)
-		{
-			HeartRate -= DeltaTime;
-		}
-	}
-
 	if(Flashlight && Flashlight->CurrentBatteryLife <= 0 && Flashlight->bIsLightOn)
 	{
 		FlashlightOff();
 	}
-
-	BreathingSFX();
 }
 
 // Called to bind functionality to input
@@ -230,7 +212,7 @@ void ACharacterController::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Triggered, this, &ACharacterController::StartSprint);
 	EnhancedInputComponent->BindAction(InputActions->InputSprint, ETriggerEvent::Completed, this, &ACharacterController::FinishSprint);
 
-	EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
+	//EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Started, this, &ACharacterController::ToggleFlashlight);
 	//EnhancedInputComponent->BindAction(InputActions->InputFlashlight, ETriggerEvent::Completed, this, &ACharacterController::FlashlightOff);
 
 	EnhancedInputComponent->BindAction(InputActions->InputInspect, ETriggerEvent::Started, this, &ACharacterController::OnPickup);
@@ -337,7 +319,7 @@ void ACharacterController::StartSprint() {
 		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
 		bIsSprinting = true;
 		CurrentStamina -= StaminaDrainPerTick;
-		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
+		//GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
 		
 	}
 	else {
@@ -351,7 +333,7 @@ void ACharacterController::FinishSprint() {
 		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 		bIsSprinting = false;
 		CurrentStamina += StaminaDrainPerTick;
-		GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
+		//GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentStamina));
 	}
 }
 
@@ -735,7 +717,7 @@ void ACharacterController::PrintInventory() {
 		sInventory.Append(" | ");
 	}
 
-	GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *sInventory);
+	//GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, *sInventory);
 }
 
 void ACharacterController::OpenInventory() {

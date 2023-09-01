@@ -87,7 +87,7 @@ void AFlashlight::Tick(float DeltaTime)
 					WraithController->TimeLightShinedOnSelf -= DeltaTime;
 				}
 			}
-			DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
+			//DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
 		} else
 		{
 			if(WraithController->TimeLightShinedOnSelf > 0.f)
@@ -147,9 +147,9 @@ void AFlashlight::BatteryDrain()
 	{
 		if (CurrentBatteryLife > 0.f)
 		{
-			CurrentBatteryLife -= BatteryDrainPerTick;
+			CurrentBatteryLife -= 0;
 			LightDrained.Broadcast(CurrentBatteryLife);
-			GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentBatteryLife));
+			//GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentBatteryLife));
 		}
 		else
 		{
@@ -159,9 +159,9 @@ void AFlashlight::BatteryDrain()
 	}
 	else {
 		if (CurrentBatteryLife < MaxBatteryLife) {
-			CurrentBatteryLife += BatteryDrainPerTick;
+			CurrentBatteryLife += 0;
 			LightDrained.Broadcast(CurrentBatteryLife);
-			GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentBatteryLife));
+			//GEngine->AddOnScreenDebugMessage(1, 3, FColor::White, FString::SanitizeFloat(CurrentBatteryLife));
 		}
 	}
 }

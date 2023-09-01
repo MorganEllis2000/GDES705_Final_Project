@@ -92,7 +92,9 @@ private:
 
 	// Flashlight Functions
 	void ToggleFlashlight();
+	UFUNCTION(BlueprintCallable)
 	void FlashlightOn();
+	UFUNCTION(BlueprintCallable)
 	void FlashlightOff();
 
 #pragma region Shooting Functions
