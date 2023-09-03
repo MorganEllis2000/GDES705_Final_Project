@@ -59,6 +59,10 @@ void AGun::Tick(float DeltaTime)
 	}
 }
 
+/* Logic responsible for the events that occur when the trigger is pulled, first it checks that the player is not reloading or already shooting and has enough ammo, if they pass these checks
+ * then a linetrace is fired from the muzzle of the gun and a corresponding sound is played which is then registered with the AI's perception system. If the line trace hits an AI it will
+ * apply damage to the hit character
+ */
 void AGun::PullTrigger()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, FString::Printf(TEXT("Bool: %s"), bCanShoot ? TEXT("true") : TEXT("false")));
@@ -112,12 +116,16 @@ void AGun::PullTrigger()
 	}
 }
 
+/* Linked to a timer handle that stops the player from shooting for the corresponding fire rate time*/
 void AGun::FireRateTimer() {
 	bCanShoot = true;
 	bIsShooting = false;
 	//ReverseRecoil();
 }
 
+/* When the player hits the reload key calculations are made to deduct the correct ammo from the reserve and add this ammo into the current magazine size, the player cannot fire the weapon
+ * while the gun is reloading
+ */
 void AGun::Reload() {
 	
 	if (CurrentAmmo != MagazineSize && CurrentReserveAmmo > 0 && bIsReloading == false) {

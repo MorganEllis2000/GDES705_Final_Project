@@ -9,6 +9,7 @@
 #include "Codename_Lost/AI/WraithController.h"
 #include "Components/AudioComponent.h"
 
+/* Gets the distance from the AI to the player */
 void UBTT_DistanceFromPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);

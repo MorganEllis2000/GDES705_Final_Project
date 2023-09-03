@@ -38,6 +38,7 @@ void AShadowAIController::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 }
 
+/* Setup of the hearing and sight perceptions on the wraith AI*/
 void AShadowAIController::SetupPerceptionSystem()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Setting up perception system"));
@@ -73,6 +74,9 @@ void AShadowAIController::SetupPerceptionSystem()
 	}
 }
 
+/* If the AI has sensed something with its stimulus then it will update the corresponding blackboard values so that the AI
+ * can investigate what it was that triggered its perception system
+ */
 void AShadowAIController::OnTargetDetected(TArray<AActor*> const& UpdatedActors)
 {
 	for(int i = 0; i < UpdatedActors.Num(); i++)

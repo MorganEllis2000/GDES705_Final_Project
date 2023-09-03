@@ -21,11 +21,11 @@ void ABook::BeginPlay()
 	Super::BeginPlay();
 }
 
-// Called every frame
 void ABook::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	// Rotates the book once interacted with 30 degree forward to signify interaction
 	if(bWasBookInteractedWith)
 	{
 		BookMesh->SetRelativeRotation(FMath::Lerp(FQuat(NewRotation), FQuat(OriginalRotation), DeltaTime));
@@ -35,6 +35,7 @@ void ABook::Tick(float DeltaTime)
 		
 	}
 }
+
 
 void ABook::OnInteract()
 {

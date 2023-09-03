@@ -67,7 +67,7 @@ void AFlashlight::Tick(float DeltaTime)
 	FHitResult Hit;
 	GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_Visibility);
 	
-
+	/* Used to detect how much damage is being done to the wraith with the flashlight */
 	if(WraithController)
 	{
 		if(bIsLightOn)

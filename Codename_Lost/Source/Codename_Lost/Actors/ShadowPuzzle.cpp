@@ -55,6 +55,7 @@ void AShadowPuzzle::RotateActor()
 	ObjectMesh->SetRelativeRotation(FQuat(ControlRotation));
 }
 
+/* When the player is rotating the puzzle piece this code checks if the puzzle pieces transform is within a range of values, if it is then the puzzle is solved */
 void AShadowPuzzle::CheckPuzzle()
 {
 	if(GetActorRotation().Roll < (CorrectRotation.Roll + 2) && GetActorRotation().Roll > (CorrectRotation.Roll - 2))

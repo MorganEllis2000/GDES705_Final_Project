@@ -12,6 +12,7 @@ ASoundTriggerBox::ASoundTriggerBox()
 	OnActorEndOverlap.AddDynamic(this, &ASoundTriggerBox::OnOverlapEnd);
 }
 
+
 void ASoundTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
 {
 	if(OtherActor && (OtherActor != this) && OtherActor->ActorHasTag("Player"))
