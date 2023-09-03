@@ -58,6 +58,7 @@ void APickup::Tick(float DeltaTime)
 
 }
 
+/* Responsible for how the player is able to rotate the picked up object */
 void APickup::RotateActor()
 {
 	ControlRotation = GetWorld()->GetFirstPlayerController()->GetControlRotation();
@@ -71,6 +72,10 @@ void APickup::RotateActor()
 	}
 }
 
+/* This function is called when the player picks up the object, its is attached to a holding component on the character so that the player is able to see the object they are holding,
+ * if the object can be added to the codex of the inventory then it is, it also checks if the object is of a certain type such as a lighter which is the saved as the player can make use
+ * of this object later in the game.
+ */
 void APickup::Pickup()
 {
 	bHolding = !bHolding;
@@ -132,6 +137,7 @@ void APickup::Pickup()
 	}
 }
 
+/* This function is responsible for hiding the object from the game world */
 void APickup::Show(bool visible) {
 
 	ECollisionEnabled::Type collision = visible ? ECollisionEnabled::QueryAndPhysics : ECollisionEnabled::NoCollision;

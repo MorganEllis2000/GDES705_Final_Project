@@ -46,16 +46,9 @@ void AWraithAIController::Tick(float DeltaSeconds)
 	}
 	
 }
-
-/*void AWraithAIController::OnTargetDetected(AActor* actor, FAIStimulus const stimulus)
-{
-	if (auto const character = Cast<ACharacterController>(actor))
-	{
-		GetBlackboardComponent()->SetValueAsBool(TEXT("WasPlayerSeen"), stimulus.WasSuccessfullySensed());
-		GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
-		GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLoc"), PlayerPawn->GetActorLocation());
-	}
-}*/
+/* If the AI has sensed something with its stimulus then it will update the corresponding blackboard values so that the AI
+ * can investigate what it was that triggered its perception system
+ */
 void AWraithAIController::OnTargetDetected(TArray<AActor*> const& UpdatedActors)
 {
 	for(int i = 0; i < UpdatedActors.Num(); i++)
@@ -85,7 +78,7 @@ void AWraithAIController::OnTargetDetected(TArray<AActor*> const& UpdatedActors)
 		}
 	}
 }
-
+/* Setup of the hearing and sight perceptions on the wraith AI*/
 void AWraithAIController::SetupPerceptionSystem()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Setting up perception system"));

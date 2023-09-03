@@ -36,6 +36,9 @@ void ABookshelfPuzzle::Tick(float DeltaTime)
 	}
 }
 
+/* If the bookshelf is not open, it keeps a running tally of the correct number of books, if the users book matches the name of the same book in the correct book array then the
+ * tally is increased by one, if the tally reaches 3 than the player has got the correct order and the bookshelf is opened.
+ */
 void ABookshelfPuzzle::CheckPuzzleCombination()
 {
 	if(bIsBookshelfOpen == false)

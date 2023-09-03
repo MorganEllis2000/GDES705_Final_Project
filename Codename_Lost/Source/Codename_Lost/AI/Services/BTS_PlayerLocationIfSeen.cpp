@@ -12,6 +12,7 @@ UBTS_PlayerLocationIfSeen::UBTS_PlayerLocationIfSeen()
 	NodeName = TEXT("Update Player Location If Seen");
 }
 
+/* If the AI sees the player they update the player location vector with the players current location */
 void UBTS_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
